@@ -28,7 +28,7 @@ jobs:
         name: Deploy NPM
         with:
           token: ${{ secrets.NPM_TOKEN }}
-      - uses: martinbeentjes/npm-get-version-action@v1
+      - uses: martinbeentjes/npm-get-version-action@v1.3.1
         id: get-package-version
         name: Get package.json version
       - uses: elgohr/Github-Release-Action@v5
