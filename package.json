@@ -1,14 +1,14 @@
 {
   "name": "@blue-tomato/blue-to",
   "version": "0.0.1",
+  "license": "EUPL-1.2",
   "description": "🔵 BlueTo - the design system of blue tomato",
+  "homepage": "https://github.com/blue-tomato/blue-to#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/blue-tomato/blue-to.git"
   },
-  "license": "EUPL-1.2",
   "bugs": {
     "url": "https://github.com/blue-tomato/blue-to/issues"
-  },
-  "homepage": "https://github.com/blue-tomato/blue-to#readme"
+  }
 }
