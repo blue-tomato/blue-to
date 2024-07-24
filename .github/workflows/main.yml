@@ -1,0 +1,29 @@
+name: publish
+run-name: Publish
+on:
+  push:
+    branches:
+      - "main"
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        name: Checkout
+      - uses: actions/setup-node@v4
+        name: Setup node
+        with:
+          node-version: 20
+      - uses: bitovi/github-actions-storybook-to-github-pages@v1
+        name: Deploy Storybook
+        with:
+          checkout: false
+          path: storybook-static
+      - uses: JS-DevTools/npm-publish@v1
+        name: Deploy NPM
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
