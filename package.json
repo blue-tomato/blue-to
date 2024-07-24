@@ -1,14 +1,30 @@
 {
-  "name": "@blue-tomato/blue-to",
-  "version": "0.0.1",
-  "license": "EUPL-1.2",
-  "description": "🔵 BlueTo - the design system of blue tomato",
-  "homepage": "https://github.com/blue-tomato/blue-to#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/blue-tomato/blue-to.git"
-  },
-  "bugs": {
-    "url": "https://github.com/blue-tomato/blue-to/issues"
-  }
+	"name": "@blue-tomato/blueto",
+	"version": "0.0.1",
+	"license": "EUPL-1.2",
+	"description": "🪐 BLUETO - the design system of Blue Tomato",
+	"homepage": "https://github.com/blue-tomato/blueto#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/blue-tomato/blueto.git"
+	},
+	"bugs": {
+		"url": "https://github.com/blue-tomato/blueto/issues"
+	},
+	"scripts": {
+		"dev": "storybook dev -p 6006",
+		"build-storybook": "storybook build"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.8.3",
+		"@storybook/addon-essentials": "^8.2.5",
+		"@storybook/addon-interactions": "^8.2.5",
+		"@storybook/addon-links": "^8.2.5",
+		"@storybook/blocks": "^8.2.5",
+		"@storybook/react": "^8.2.5",
+		"@storybook/react-vite": "^8.2.5",
+		"@storybook/test": "^8.2.5",
+		"prop-types": "^15.8.1",
+		"storybook": "^8.2.5"
+	}
 }

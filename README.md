@@ -1,5 +1,5 @@
-# 🔵 BlueTo
+# 🪐 BLUETO
 
-> the design system of blue tomato
+> the design system of Blue Tomato
 
 ![Logo](logo.png)
