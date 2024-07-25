@@ -27,6 +27,7 @@ jobs:
       - name: Deploy NPM
         uses: JS-DevTools/npm-publish@v3
         with:
+          access: public
           token: ${{ secrets.NPM_TOKEN }}
       - name: Get package.json version
         uses: martinbeentjes/npm-get-version-action@v1.3.1
