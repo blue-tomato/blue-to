@@ -34,8 +34,4 @@ jobs:
         uses: martinbeentjes/npm-get-version-action@v1.3.1
         id: get-package-version
       - name: Create a release
-        uses: elgohr/Github-Release-Action@v5
-        with:
-          title: ${{ steps.get-package-version.outputs.current-version }}
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release create -t ${{ steps.get-package-version.outputs.current-version }} ${{ steps.get-package-version.outputs.current-version }} --generate-notes
