@@ -10,29 +10,29 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        name: Checkout
-      - uses: actions/setup-node@v4
-        name: Setup node
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup node
+        uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm ci
-        name: NPM install
-      - run: npm run build-storybook
-        name: Build Storybook
-      - uses: JamesIves/github-pages-deploy-action@v4
-        name: Deploy Storybook
+      - name: NPM install
+        run: npm ci
+      - name: Build Storybook
+        run: npm run build:storybook
+      - name: Deploy Storybook
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: storybook-static
-      - uses: JS-DevTools/npm-publish@v3
-        name: Deploy NPM
+      - name: Deploy NPM
+        uses: JS-DevTools/npm-publish@v3
         with:
           token: ${{ secrets.NPM_TOKEN }}
-      - uses: martinbeentjes/npm-get-version-action@v1.3.1
+      - name: Get package.json version
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
         id: get-package-version
-        name: Get package.json version
-      - uses: elgohr/Github-Release-Action@v5
-        name: Create a release
+      - name: Create a release
+        uses: elgohr/Github-Release-Action@v5
         with:
           title: ${{ steps.get-package-version.outputs.current-version }}
         env:
