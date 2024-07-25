@@ -35,3 +35,5 @@ jobs:
         id: get-package-version
       - name: Create a release
         run: gh release create -t ${{ steps.get-package-version.outputs.current-version }} ${{ steps.get-package-version.outputs.current-version }} --generate-notes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
