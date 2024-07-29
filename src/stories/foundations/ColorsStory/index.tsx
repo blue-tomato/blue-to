@@ -13,10 +13,10 @@ const ColorsStory = () => (
 		</div>
 
 		<div className={classes.row}>
-			<ColorTile color="#ffde00" name="$green-1" />
-			<ColorTile color="#ffde00" name="$green-2" />
-			<ColorTile color="#ffde00" name="$green-3" />
-			<ColorTile color="#fffad9" name="$green-4" />
+			<ColorTile color="#ffde00" name="$yellow-1" />
+			<ColorTile color="#ffde00" name="$yellow-2" />
+			<ColorTile color="#ffde00" name="$yellow-3" />
+			<ColorTile color="#fffad9" name="$yellow-4" />
 		</div>
 
 		<div className={classes.row}>
