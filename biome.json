@@ -3,6 +3,9 @@
 	"formatter": {
 		"enabled": true
 	},
+	"javascript": {
+		"globals": ["React"]
+	},
 	"linter": {
 		"enabled": true,
 		"rules": {
