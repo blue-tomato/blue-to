@@ -1,0 +1,17 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 32px;
+  font-family: Open Sans, Helvetica, Arial, sans-serif;
+}
+
+.header {
+  font-size: 20px;
+}
+
+.row {
+  display: flex;
+  gap: 16px;
+}
