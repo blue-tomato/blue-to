@@ -13,6 +13,7 @@ const ColorTile = ({ color, name, ...props }: Props) => (
 		{...props}
 	>
 		{name}
+		<br />({color?.toUpperCase()})
 	</button>
 );
 

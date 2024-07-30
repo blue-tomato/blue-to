@@ -1,6 +1,6 @@
 {
 	"name": "@blue-tomato/blueto",
-	"version": "0.1.5",
+	"version": "0.1.6",
 	"license": "EUPL-1.2",
 	"description": "🪐 BLUETO - the design system of Blue Tomato",
 	"homepage": "https://blueto.blue-tomato.com",
@@ -24,6 +24,7 @@
 		"@storybook/react": "^8.2.5",
 		"@storybook/react-vite": "^8.2.5",
 		"@storybook/test": "^8.2.5",
+		"classnames": "^2.5.1",
 		"prop-types": "^15.8.1",
 		"sass": "^1.77.8",
 		"storybook": "^8.2.5"
