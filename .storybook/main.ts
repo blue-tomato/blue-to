@@ -1,4 +1,5 @@
 import type { StorybookConfig } from "@storybook/react-vite";
+import { mergeConfig } from "vite";
 
 const config: StorybookConfig = {
 	addons: [
@@ -8,6 +9,10 @@ const config: StorybookConfig = {
 	],
 	framework: "@storybook/react-vite",
 	stories: ["../src/**/*.stories.@(ts|tsx)"],
+	viteFinal: (config) =>
+		mergeConfig(config, {
+			css: { modules: { localsConvention: "camelCase" } },
+		}),
 };
 
 export default config;

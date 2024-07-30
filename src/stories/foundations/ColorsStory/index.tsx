@@ -60,6 +60,41 @@ const ColorsStory = () => (
 			<ColorTile color="#bde5d7" name="$green-3" />
 			<ColorTile color="#def2eb" name="$green-4" />
 		</div>
+
+		<div className={classes.row}>
+			<ColorTile color="#84a2a5" name="$cyprus-2" />
+			<ColorTile color="#bcccce" name="$cyprus-3" />
+		</div>
+
+		<div className={classes.row}>
+			<ColorTile color="#b4c3b8" name="$olive-2" />
+			<ColorTile color="#D6DED8" name="$olive-3" />
+		</div>
+
+		<div className={classes.row}>
+			<ColorTile color="#eee6e3" name="$almond-2" />
+			<ColorTile color="#f6f1f0" name="$almond-3" />
+		</div>
+
+		<div className={classes.row}>
+			<ColorTile color="#aeaed2" name="$purple-2" />
+			<ColorTile color="#d1d1e6" name="$purple-3" />
+		</div>
+
+		<div className={classes.row}>
+			<ColorTile color="#d59cd3" name="$redpurple-2" />
+			<ColorTile color="#e8c9e7" name="$redpurple-3" />
+		</div>
+
+		<div className={classes.row}>
+			<ColorTile color="#d06f82" name="$rustyred-2" />
+			<ColorTile color="#e8b7c0" name="$rustyred-3" />
+		</div>
+
+		<div className={classes.row}>
+			<ColorTile color="#ee7766" name="$coral-2" />
+			<ColorTile color="#f9ccc6" name="$coral-3" />
+		</div>
 	</div>
 );
 

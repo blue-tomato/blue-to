@@ -1,0 +1,55 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 32px 0;
+  font-family: Open Sans, Helvetica, Arial, sans-serif;
+}
+
+.header {
+  font-size: 20px;
+}
+
+.breakpoint {
+  width: 100%;
+  border: 0;
+  background-color: red;
+  cursor: pointer;
+}
+
+.breakpoint-value {
+  margin: 16px;
+}
+
+.breakpoint-xs {
+  max-width: 767px;
+
+  @media (max-width: 767px) {
+    background-color: green;
+  }
+}
+
+.breakpoint-s {
+  @media (min-width: 768px) {
+    background-color: green;
+  }
+}
+
+.breakpoint-m {
+  @media (min-width: 1024px) {
+    background-color: green;
+  }
+}
+
+.breakpoint-l {
+  @media (min-width: 1200px) {
+    background-color: green;
+  }
+}
+
+.breakpoint-xl {
+  @media (min-width: 1400px) {
+    background-color: green;
+  }
+}
