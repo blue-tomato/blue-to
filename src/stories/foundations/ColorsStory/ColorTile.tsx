@@ -1,4 +1,4 @@
-import classes from "./ColorTile.module.scss";
+import styles from "./ColorTile.module.scss";
 
 type Props = React.HTMLAttributes<HTMLElement> & {
 	color?: string;
@@ -7,7 +7,7 @@ type Props = React.HTMLAttributes<HTMLElement> & {
 
 const ColorTile = ({ color, name, ...props }: Props) => (
 	<button
-		className={classes.wrapper}
+		className={styles.wrapper}
 		onClick={() => name && navigator.clipboard.writeText(name)}
 		style={{ backgroundColor: color }}
 		{...props}

@@ -1,3 +1,5 @@
+@import "@/index.module.scss";
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -14,7 +16,7 @@
 .breakpoint {
   width: 100%;
   border: 0;
-  background-color: red;
+  background-color: $red-1;
   cursor: pointer;
 }
 
@@ -26,30 +28,30 @@
   max-width: 767px;
 
   @media (max-width: 767px) {
-    background-color: green;
+    background-color: $green-1;
   }
 }
 
 .breakpoint-s {
   @media (min-width: 768px) {
-    background-color: green;
+    background-color: $green-1;
   }
 }
 
 .breakpoint-m {
   @media (min-width: 1024px) {
-    background-color: green;
+    background-color: $green-1;
   }
 }
 
 .breakpoint-l {
   @media (min-width: 1200px) {
-    background-color: green;
+    background-color: $green-1;
   }
 }
 
 .breakpoint-xl {
   @media (min-width: 1400px) {
-    background-color: green;
+    background-color: $green-1;
   }
 }

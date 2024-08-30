@@ -1,3 +1,5 @@
+@import "@/index.module.scss";
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -11,8 +13,17 @@
   font-size: 20px;
 }
 
-.subtitle {
-  font-size: 18px;
+.button {
+  display: flex;
+  gap: 8px;
+  border: 0;
+  background-color: unset;
+  cursor: pointer;
+}
+
+.box {
+  height: 16px;
+  background-color: $sky-1;
 }
 
 .row {

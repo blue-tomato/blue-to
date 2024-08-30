@@ -1,5 +1,7 @@
+import { resolve } from "node:path";
 import type { StorybookConfig } from "@storybook/react-vite";
 import { mergeConfig } from "vite";
+import tsconfigPaths from "vite-tsconfig-paths";
 
 const config: StorybookConfig = {
 	addons: [
@@ -12,6 +14,12 @@ const config: StorybookConfig = {
 	viteFinal: (config) =>
 		mergeConfig(config, {
 			css: { modules: { localsConvention: "camelCase" } },
+			plugins: [tsconfigPaths()],
+			resolve: {
+				alias: {
+					"@": resolve(__dirname, "../src"),
+				},
+			},
 		}),
 };
 
