@@ -1,4 +1,4 @@
-@import "@/index.module.scss";
+@use "@/index.module.scss" as *;
 
 .wrapper {
   display: flex;
