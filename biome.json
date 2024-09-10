@@ -11,6 +11,7 @@
 		"rules": {
 			"all": true,
 			"a11y": {
+				"useAltText": "off",
 				"useButtonType": "off"
 			},
 			"correctness": {
