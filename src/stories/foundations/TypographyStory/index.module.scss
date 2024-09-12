@@ -1,0 +1,175 @@
+@use "@/index.module.scss" as *;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 32px;
+  font-family: Open Sans, Helvetica, Arial, sans-serif;
+}
+
+.header {
+  font-size: 20px;
+}
+
+.fonts-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.font-button {
+  margin-top: $space-8;
+  border: 0;
+  text-align: left;
+  background-color: $white;
+  cursor: pointer;
+}
+
+.subtitle {
+  @include font-16;
+}
+
+.font-10 {
+  @include font-10;
+}
+
+.font-10-sb {
+  @include font-10-sb;
+}
+
+.font-10-b {
+  @include font-10-b;
+}
+
+.font-10-eb {
+  @include font-10-eb;
+}
+
+.font-12 {
+  @include font-12;
+}
+
+.font-12-sb {
+  @include font-12-sb;
+}
+
+.font-12-b {
+  @include font-12-b;
+}
+
+.font-12-eb {
+  @include font-12-eb;
+}
+
+.font-14 {
+  @include font-14;
+}
+
+.font-14-sb {
+  @include font-14-sb;
+}
+
+.font-14-b {
+  @include font-14-b;
+}
+
+.font-14-eb {
+  @include font-14-eb;
+}
+
+.font-16 {
+  @include font-16;
+}
+
+.font-16-sb {
+  @include font-16-sb;
+}
+
+.font-16-b {
+  @include font-16-b;
+}
+
+.font-16-eb {
+  @include font-16-eb;
+}
+
+.font-20 {
+  @include font-20;
+}
+
+.font-20-sb {
+  @include font-20-sb;
+}
+
+.font-20-b {
+  @include font-20-b;
+}
+
+.font-20-eb {
+  @include font-20-eb;
+}
+
+.font-24 {
+  @include font-24;
+}
+
+.font-24-sb {
+  @include font-24-sb;
+}
+
+.font-24-b {
+  @include font-24-b;
+}
+
+.font-24-eb {
+  @include font-24-eb;
+}
+
+.font-32 {
+  @include font-32;
+}
+
+.font-32-sb {
+  @include font-32-sb;
+}
+
+.font-32-b {
+  @include font-32-b;
+}
+
+.font-32-eb {
+  @include font-32-eb;
+}
+
+.font-40 {
+  @include font-40;
+}
+
+.font-40-sb {
+  @include font-40-sb;
+}
+
+.font-40-b {
+  @include font-40-b;
+}
+
+.font-40-eb {
+  @include font-40-eb;
+}
+
+.font-60 {
+  @include font-60;
+}
+
+.font-60-sb {
+  @include font-60-sb;
+}
+
+.font-60-b {
+  @include font-60-b;
+}
+
+.font-60-eb {
+  @include font-60-eb;
+}

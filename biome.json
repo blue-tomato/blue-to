@@ -11,10 +11,14 @@
 		"rules": {
 			"all": true,
 			"a11y": {
+				"useAltText": "off",
 				"useButtonType": "off"
 			},
 			"correctness": {
 				"noNodejsModules": "off"
+			},
+			"performance": {
+				"noBarrelFile": "off"
 			},
 			"style": {
 				"noDefaultExport": "off"

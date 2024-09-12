@@ -1,0 +1,4 @@
+link confluence and figma
+confirmation on copy
+include icons from foundations
+storybook branden
