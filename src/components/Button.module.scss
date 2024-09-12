@@ -1,0 +1,16 @@
+@use "@/index.module.scss" as *;
+
+.button {
+  min-height: 42px;
+  padding: 0 $space-32;
+  background-color: $blue-1;
+  border: 0;
+  cursor: pointer;
+
+  @include font-16-b($white);
+  line-height: $space-16;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}

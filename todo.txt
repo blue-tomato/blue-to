@@ -1,5 +1,4 @@
 link confluence and figma
 confirmation on copy
-update styles with foundation styles
+include icons from foundations
 storybook branden
-foundation fertig machen
