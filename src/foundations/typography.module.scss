@@ -1,0 +1,154 @@
+@use "./colors.module.scss" as *;
+
+@mixin bto-text($color: $grey-1, $weight: normal, $size: 16px, $lineHeight: 26px) {
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  letter-spacing: 0;
+  color: $color;
+  font-weight: $weight;
+  font-size: $size;
+  line-height: $lineHeight;
+}
+
+@mixin font-10($color: $grey-1, $weight: normal) {
+  @include bto-text($color: $color, $weight: $weight, $size: 10px, $lineHeight: 13px);
+}
+
+@mixin font-10-sb($color: $grey-1) {
+  @include font-10($color: $color, $weight: 600);
+}
+
+@mixin font-10-b($color: $grey-1) {
+  @include font-10($color: $color, $weight: 700);
+}
+
+@mixin font-10-eb($color: $grey-1) {
+  @include font-10($color: $color, $weight: 800);
+}
+
+@mixin font-12($color: $grey-1, $weight: normal) {
+  @include bto-text($color: $color, $weight: $weight, $size: 12px, $lineHeight: 18px);
+}
+
+@mixin font-12-sb($color: $grey-1) {
+  @include font-12($color: $color, $weight: 600);
+}
+
+@mixin font-12-b($color: $grey-1) {
+  @include font-12($color: $color, $weight: 700);
+}
+
+@mixin font-12-eb($color: $grey-1) {
+  @include font-12($color: $color, $weight: 800);
+}
+
+@mixin font-14($color: $grey-1, $weight: normal) {
+  @include bto-text($color: $color, $weight: $weight, $size: 14px, $lineHeight: 22px);
+}
+
+@mixin font-14-sb($color: $grey-1) {
+  @include font-14($color: $color, $weight: 600);
+}
+
+@mixin font-14-b($color: $grey-1) {
+  @include font-14($color: $color, $weight: 700);
+}
+
+@mixin font-14-eb($color: $grey-1) {
+  @include font-14($color: $color, $weight: 800);
+}
+
+@mixin font-16($color: $grey-1, $weight: normal) {
+  @include bto-text($color: $color, $weight: $weight, $size: 16px, $lineHeight: 26px);
+}
+
+@mixin font-16-sb($color: $grey-1) {
+  @include font-16($color: $color, $weight: 600);
+}
+
+@mixin font-16-b($color: $grey-1) {
+  @include font-16($color: $color, $weight: 700);
+}
+
+@mixin font-16-eb($color: $grey-1) {
+  @include font-16($color: $color, $weight: 800);
+}
+
+@mixin font-20($color: $grey-1, $weight: normal) {
+  @include bto-text($color: $color, $weight: $weight, $size: 20px, $lineHeight: 28px);
+}
+
+@mixin font-20-sb($color: $grey-1) {
+  @include font-20($color: $color, $weight: 600);
+}
+
+@mixin font-20-b($color: $grey-1) {
+  @include font-20($color: $color, $weight: 700);
+}
+
+@mixin font-20-eb($color: $grey-1) {
+  @include font-20($color: $color, $weight: 800);
+}
+
+@mixin font-24($color: $grey-1, $weight: normal) {
+  @include bto-text($color: $color, $weight: $weight, $size: 24px, $lineHeight: 36px);
+}
+
+@mixin font-24-sb($color: $grey-1) {
+  @include font-24($color: $color, $weight: 600);
+}
+
+@mixin font-24-b($color: $grey-1) {
+  @include font-24($color: $color, $weight: 700);
+}
+
+@mixin font-24-eb($color: $grey-1) {
+  @include font-24($color: $color, $weight: 800);
+}
+
+@mixin font-32($color: $grey-1, $weight: normal) {
+  @include bto-text($color: $color, $weight: $weight, $size: 32px, $lineHeight: 44px);
+}
+
+@mixin font-32-sb($color: $grey-1) {
+  @include font-32($color: $color, $weight: 600);
+}
+
+@mixin font-32-b($color: $grey-1) {
+  @include font-32($color: $color, $weight: 700);
+}
+
+@mixin font-32-eb($color: $grey-1) {
+  @include font-32($color: $color, $weight: 800);
+}
+
+@mixin font-40($color: $grey-1, $weight: normal) {
+  @include bto-text($color: $color, $weight: $weight, $size: 40px, $lineHeight: 52px);
+}
+
+@mixin font-40-sb($color: $grey-1) {
+  @include font-40($color: $color, $weight: 600);
+}
+
+@mixin font-40-b($color: $grey-1) {
+  @include font-40($color: $color, $weight: 700);
+}
+
+@mixin font-40-eb($color: $grey-1) {
+  @include font-40($color: $color, $weight: 800);
+}
+
+@mixin font-60($color: $grey-1, $weight: normal) {
+  @include bto-text($color: $color, $weight: $weight, $size: 60px, $lineHeight: 80px);
+}
+
+@mixin font-60-sb($color: $grey-1) {
+  @include font-60($color: $color, $weight: 600);
+}
+
+@mixin font-60-b($color: $grey-1) {
+  @include font-60($color: $color, $weight: 700);
+}
+
+@mixin font-60-eb($color: $grey-1) {
+  @include font-60($color: $color, $weight: 800);
+}

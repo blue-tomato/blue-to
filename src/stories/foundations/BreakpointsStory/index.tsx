@@ -6,9 +6,7 @@ const writeMediaQueryToClipboard = (breakpoint: string) =>
 
 const BreakpointsStory = () => (
 	<div className={styles.wrapper}>
-		<div className={styles.header}>
-			Breakpoints (click to copy a media query)
-		</div>
+		<div className={styles.header}>Breakpoints (click to copy)</div>
 
 		<button
 			className={classNames(styles.breakpoint, styles.breakpointXs)}
