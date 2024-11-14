@@ -1,0 +1,56 @@
+<svg width="48" height="36" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g clip-path="url(#clip0_644_981)">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0V36H48V0H0Z" fill="#2E42A5" />
+    <path fill-rule="evenodd" clip-rule="evenodd"
+      d="M37.2798 30.75L34.6348 32.1406L35.1398 29.1952L33 27.1094L35.9572 26.6798L37.2798 24L38.6022 26.6798L41.5596 27.1094L39.4196 29.1952L39.9248 32.1406L37.2798 30.75Z"
+      fill="#F50100" stroke="#F7FCFF" stroke-width="0.25" />
+    <path fill-rule="evenodd" clip-rule="evenodd"
+      d="M31.8 20.8048L29.7604 21.877L30.15 19.606L28.5 17.9977L30.7802 17.6663L31.8 15.6001L32.8198 17.6663L35.1 17.9977L33.45 19.606L33.8396 21.877L31.8 20.8048Z"
+      fill="#F50100" stroke="#F7FCFF" stroke-width="0.25" />
+    <path fill-rule="evenodd" clip-rule="evenodd"
+      d="M42.2964 20.799L40.259 21.87L40.6482 19.6016L39 17.995L41.2778 17.6641L42.2964 15.6001L43.315 17.6641L45.5926 17.995L43.9446 19.6016L44.3336 21.87L42.2964 20.799Z"
+      fill="#F50100" stroke="#F7FCFF" stroke-width="0.25" />
+    <path fill-rule="evenodd" clip-rule="evenodd"
+      d="M37.8 12.4049L35.7604 13.4772L36.15 11.2061L34.5 9.59778L36.7802 9.26644L37.8 7.2002L38.8198 9.26644L41.1 9.59778L39.45 11.2061L39.8396 13.4772L37.8 12.4049Z"
+      fill="#F50100" stroke="#F7FCFF" stroke-width="0.25" />
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0V19.5H26V0H0Z" fill="#2E42A5" />
+    <mask id="mask0_644_981" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0"
+      width="26" height="20">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0V19.5H26V0H0Z" fill="white" />
+    </mask>
+    <g mask="url(#mask0_644_981)">
+      <path
+        d="M-2.8949 18.1067L2.82648 20.5264L26.13 2.63051L29.1478 -0.9652L23.0296 -1.77393L13.5247 5.93789L5.87424 11.1339L-2.8949 18.1067Z"
+        fill="white" />
+      <path d="M-2.11145 19.8019L0.803326 21.206L28.0644 -1.29932H23.9716L-2.11145 19.8019Z"
+        fill="#F50100" />
+      <path
+        d="M28.895 18.1067L23.1736 20.5264L-0.129864 2.63051L-3.14777 -0.9652L2.97043 -1.77393L12.4754 5.93789L20.1258 11.1339L28.895 18.1067Z"
+        fill="white" />
+      <path
+        d="M28.7 19.3233L25.7852 20.7276L14.1772 11.0918L10.7357 10.0152L-3.43793 -0.952881H0.654761L14.8204 9.75488L18.5831 11.0458L28.7 19.3233Z"
+        fill="#F50100" />
+      <path fill-rule="evenodd" clip-rule="evenodd"
+        d="M16.0694 -1.625H9.93051V6.5H-2.16675V13H9.93051V21.125H16.0694V13H28.1666V6.5H16.0694V-1.625Z"
+        fill="#F50100" />
+      <mask id="mask1_644_981" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="-3" y="-2"
+        width="32" height="24">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M16.0694 -1.625H9.93051V6.5H-2.16675V13H9.93051V21.125H16.0694V13H28.1666V6.5H16.0694V-1.625Z"
+          fill="white" />
+      </mask>
+      <g mask="url(#mask1_644_981)">
+        <path
+          d="M9.93051 -1.625V-3.625H7.93051V-1.625H9.93051ZM16.0694 -1.625H18.0694V-3.625H16.0694V-1.625ZM9.93051 6.5V8.5H11.9305V6.5H9.93051ZM-2.16675 6.5V4.5H-4.16675V6.5H-2.16675ZM-2.16675 13H-4.16675V15H-2.16675V13ZM9.93051 13H11.9305V11H9.93051V13ZM9.93051 21.125H7.93051V23.125H9.93051V21.125ZM16.0694 21.125V23.125H18.0694V21.125H16.0694ZM16.0694 13V11H14.0694V13H16.0694ZM28.1666 13V15H30.1666V13H28.1666ZM28.1666 6.5H30.1666V4.5H28.1666V6.5ZM16.0694 6.5H14.0694V8.5H16.0694V6.5ZM9.93051 0.375H16.0694V-3.625H9.93051V0.375ZM11.9305 6.5V-1.625H7.93051V6.5H11.9305ZM-2.16675 8.5H9.93051V4.5H-2.16675V8.5ZM-0.166756 13V6.5H-4.16675V13H-0.166756ZM9.93051 11H-2.16675V15H9.93051V11ZM11.9305 21.125V13H7.93051V21.125H11.9305ZM16.0694 19.125H9.93051V23.125H16.0694V19.125ZM14.0694 13V21.125H18.0694V13H14.0694ZM28.1666 11H16.0694V15H28.1666V11ZM26.1666 6.5V13H30.1666V6.5H26.1666ZM16.0694 8.5H28.1666V4.5H16.0694V8.5ZM14.0694 -1.625V6.5H18.0694V-1.625H14.0694Z"
+          fill="white" />
+      </g>
+    </g>
+    <path d="M0 9.75H26" stroke="#F50100" stroke-width="1.5" />
+    <path d="M13 0V19.5" stroke="#F50100" stroke-width="1.5" />
+  </g>
+  <defs>
+    <clipPath id="clip0_644_981">
+      <rect width="48" height="36" fill="white" />
+    </clipPath>
+  </defs>
+</svg>

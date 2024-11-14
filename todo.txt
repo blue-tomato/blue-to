@@ -1,4 +1,10 @@
+include icons from foundations
+add figma plugin https://storybook.js.org/blog/figma-plugin-for-storybook/
 link confluence and figma
 confirmation on copy
-include icons from foundations
 storybook branden
+logos increase gap 48px
+check font boldness
+left align fonts
+create 2 lines for fonts
+add category and size button

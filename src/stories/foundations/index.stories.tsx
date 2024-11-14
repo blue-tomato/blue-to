@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import BrandLogoStory from "./BrandLogoStory";
+import BrandlogosStory from "./BrandlogosStory";
 import BreakpointsStory from "./BreakpointsStory";
 import ColorsStory from "./ColorsStory";
 import ResponsiveExampleStory from "./ResponsiveExampleStory";
 import SpacingStory from "./SpacingStory";
 import TypographyStory from "./TypographyStory";
 
-const BrandLogo: StoryObj = { render: BrandLogoStory };
+const BrandLogo: StoryObj = { render: BrandlogosStory };
 const Breakpoints: StoryObj = { render: BreakpointsStory };
 const Colors: StoryObj = { render: ColorsStory };
 const ResponsiveExample: StoryObj = { render: ResponsiveExampleStory };
