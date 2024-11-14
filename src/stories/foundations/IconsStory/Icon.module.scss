@@ -1,0 +1,25 @@
+@use "@/index.module.scss" as *;
+
+.wrapper {
+  max-height: $space-64;
+  width: $space-64;
+  padding: $space-8;
+  border-radius: $space-16;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & img {
+    max-height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+}
+
+.light {
+  background-color: $white;
+}
+
+.dark {
+  background-color: $grey-1;
+}

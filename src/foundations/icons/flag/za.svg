@@ -1,0 +1,31 @@
+<svg width="48" height="36" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <mask id="mask0_97_4321" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0"
+    width="48" height="36">
+    <path d="M48 0H0V36H48V0Z" fill="white" />
+  </mask>
+  <g mask="url(#mask0_97_4321)">
+    <path d="M48 0H0V36H48V0Z" fill="white" />
+    <path fill-rule="evenodd" clip-rule="evenodd"
+      d="M-1.14294 -0.856934H49.1428V36.8574H-1.14294V-0.856934Z" fill="#F7FCFF" />
+    <path fill-rule="evenodd" clip-rule="evenodd"
+      d="M-1.14294 -0.856934V11.7145H49.1428V-0.856934H-1.14294Z" fill="#E31D1C" />
+    <path fill-rule="evenodd" clip-rule="evenodd"
+      d="M-1.14294 24.2856V36.857H49.1428V24.2856H-1.14294Z" fill="#3D58DB" />
+    <path fill-rule="evenodd" clip-rule="evenodd"
+      d="M23.102 14.8571L-1.14288 -4V40L23.102 21.1428H49.1428V14.8571H23.102Z" fill="#5EAA22" />
+    <mask id="mask1_97_4321" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="-4" y="-10"
+      width="57" height="56">
+      <path d="M52.8571 -10H-3.14288V46H52.8571V-10Z" fill="white" />
+      <path fill-rule="evenodd" clip-rule="evenodd"
+        d="M23.102 14.8571L-1.14288 -4V40L23.102 21.1428H49.1428V14.8571H23.102Z" fill="black" />
+    </mask>
+    <g mask="url(#mask1_97_4321)">
+      <path
+        d="M-1.14289 -4.00008L0.0849946 -5.57878L-3.14288 -8.08936V-4.00008H-1.14289ZM23.102 14.8571L21.8742 16.4358L22.4158 16.8571H23.102V14.8571ZM-1.14289 39.9999H-3.14288V44.0891L0.0849946 41.5787L-1.14289 39.9999ZM23.102 21.1427V19.1428H22.4158L21.8742 19.5641L23.102 21.1427ZM49.1428 21.1427V23.1427H51.1428V21.1427H49.1428ZM49.1428 14.8571H51.1428V12.8571H49.1428V14.8571ZM-2.37076 -2.42138L21.8742 16.4358L24.3298 13.2784L0.0849946 -5.57878L-2.37076 -2.42138ZM0.857113 39.9999V-4.00008H-3.14288V39.9999H0.857113ZM21.8742 19.5641L-2.37076 38.4211L0.0849946 41.5787L24.3298 22.7215L21.8742 19.5641ZM49.1428 19.1428H23.102V23.1427H49.1428V19.1428ZM47.1428 14.8571V21.1427H51.1428V14.8571H47.1428ZM23.102 16.8571H49.1428V12.8571H23.102V16.8571Z"
+        fill="#F7FCFF" />
+    </g>
+    <path
+      d="M-0.542948 7.77129L-2.14294 6.57129V8.57129V27.4284V29.4284L-0.542948 28.2284L12.0285 18.7999L13.0952 17.9999L12.0285 17.1999L-0.542948 7.77129Z"
+      fill="#272727" stroke="#FECA00" />
+  </g>
+</svg>

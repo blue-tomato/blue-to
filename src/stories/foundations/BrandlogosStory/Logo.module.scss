@@ -1,0 +1,15 @@
+@use "@/index.module.scss" as *;
+
+.wrapper {
+  width: 256px;
+  padding: $space-16;
+  border-radius: $space-16;
+}
+
+.light {
+  background-color: $white;
+}
+
+.dark {
+  background-color: $grey-1;
+}
