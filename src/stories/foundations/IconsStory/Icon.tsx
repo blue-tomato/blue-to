@@ -1,12 +1,13 @@
 import classNames from "classnames";
-import styles from "./Logo.module.scss";
+import styles from "./Icon.module.scss";
 
 type Props = {
 	background?: "dark" | "light";
+	name?: string;
 	src?: string;
 };
 
-const Logo = ({ background = "light", src }: Props) => (
+const Icon = ({ background = "light", src }: Props) => (
 	<div
 		className={classNames(
 			styles.wrapper,
@@ -17,4 +18,4 @@ const Logo = ({ background = "light", src }: Props) => (
 	</div>
 );
 
-export default Logo;
+export default Icon;
