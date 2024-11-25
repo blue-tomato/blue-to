@@ -3,14 +3,49 @@
 .button {
   min-height: 42px;
   padding: 0 $space-32;
-  background-color: $blue-1;
   border: 0;
+  background-color: $blue-1;
+  color: $white;
   cursor: pointer;
 
   @include font-16-b($white);
-  line-height: $space-16;
 
   &:hover {
     opacity: 0.8;
   }
+}
+
+.secondary {
+  background-color: $grey-1;
+}
+
+.secondary-white {
+  background-color: $white;
+  color: $grey-1;
+}
+
+.tertiary {
+  border: 1px solid $grey-1;
+  background-color: $white;
+  color: $grey-1;
+}
+
+.tertiary-transparent {
+  border: 1px solid $grey-1;
+  background-color: transparent;
+  color: $grey-1;
+}
+
+.disabled {
+  background-color: #D0D2D3;
+  cursor: not-allowed;
+
+  &:hover {
+    opacity: unset;
+  }
+}
+
+.tertiary-disabled {
+  border: unset;
+  color: $white;
 }

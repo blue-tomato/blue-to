@@ -10,9 +10,11 @@ export default {
 	tags: ["autodocs"],
 };
 
-export const Default: Meta = {
+export const Default: Meta<typeof Button> = {
 	args: {
-		primary: false,
 		children: "Button",
+		disabled: false,
+		loading: false,
+		variant: "primary",
 	},
 };
