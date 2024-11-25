@@ -1,8 +1,10 @@
 import classNames from "classnames";
 import styles from "./Button.module.scss";
+import Icon from "./Icon";
 
 type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 	disabled?: boolean;
+	icon?: React.ComponentProps<typeof Icon>["icon"];
 	loading?: boolean;
 	variant?:
 		| "primary"
@@ -13,8 +15,10 @@ type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 const Button = ({
+	children,
 	className,
 	disabled = false,
+	icon,
 	loading = false,
 	variant = "primary",
 	...props
@@ -28,11 +32,19 @@ const Button = ({
 			variant === "tertiary" && styles.tertiary,
 			variant === "tertiary-transparent" && styles.tertiaryTransparent,
 			disabled && styles.disabled,
-			variant === "tertiary" && disabled && styles.tertiaryDisabled,
 		)}
 		disabled={disabled}
 		{...props}
-	/>
+	>
+		{loading && (
+			<Icon
+				className={classNames(styles.icon, styles.loading)}
+				icon="functional.spinnerFilledWhite"
+			/>
+		)}
+		{icon && <Icon className={styles.icon} icon={icon} />}
+		{children}
+	</button>
 );
 
 export default Button;

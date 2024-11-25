@@ -3,6 +3,9 @@
 .button {
   min-height: 42px;
   padding: 0 $space-32;
+  display: flex;
+  align-items: center;
+  gap: $space-8;
   border: 0;
   background-color: $blue-1;
   color: $white;
@@ -38,6 +41,8 @@
 
 .disabled {
   background-color: #D0D2D3;
+  border: unset;
+  color: $white;
   cursor: not-allowed;
 
   &:hover {
@@ -45,7 +50,21 @@
   }
 }
 
-.tertiary-disabled {
-  border: unset;
-  color: $white;
+.icon {
+  max-height: $space-24;
+  max-width: $space-24;
+}
+
+@keyframes loadingAnimation {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.loading {
+  animation: loadingAnimation 1s steps(8, end) infinite;
 }

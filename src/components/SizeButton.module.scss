@@ -21,11 +21,17 @@
 }
 
 .disabled {
-  background-color: unset;
+  background: linear-gradient(to bottom right, hsla(0, 0%, 100%, 0) calc(50% - 1px), $grey-3 50%, hsla(0, 0%, 100%, 0) calc(50% + 1px));
   border-color: $grey-3;
   color: $grey-3;
 
   &:hover {
     background-color: unset;
   }
+}
+
+.active-disabled {
+  background: linear-gradient(to bottom right, hsla(0, 0%, 100%, 0) calc(50% - 1px), $grey-2 50%, hsla(0, 0%, 100%, 0) calc(50% + 1px));
+  border-color: $grey-2;
+  color: $grey-2;
 }
