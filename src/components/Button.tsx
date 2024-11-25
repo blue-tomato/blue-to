@@ -1,35 +1,38 @@
 import classNames from "classnames";
-import * as PropTypes from "prop-types";
 import styles from "./Button.module.scss";
+
+type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+	disabled?: boolean;
+	loading?: boolean;
+	variant?:
+		| "primary"
+		| "secondary"
+		| "secondary-white"
+		| "tertiary"
+		| "tertiary-transparent";
+};
 
 const Button = ({
 	className,
+	disabled = false,
+	loading = false,
+	variant = "primary",
 	...props
-}: React.ButtonHTMLAttributes<HTMLButtonElement>) => (
-	<button className={classNames(styles.button, className)} {...props} />
+}: Props) => (
+	<button
+		className={classNames(
+			className,
+			styles.button,
+			variant === "secondary" && styles.secondary,
+			variant === "secondary-white" && styles.secondaryWhite,
+			variant === "tertiary" && styles.tertiary,
+			variant === "tertiary-transparent" && styles.tertiaryTransparent,
+			disabled && styles.disabled,
+			variant === "tertiary" && disabled && styles.tertiaryDisabled,
+		)}
+		disabled={disabled}
+		{...props}
+	/>
 );
-
-Button.propTypes = {
-	/**
-	 * Is this the principal call to action on the page?
-	 */
-	primary: PropTypes.bool,
-	/**
-	 * What background color to use
-	 */
-	backgroundColor: PropTypes.string,
-	/**
-	 * How large should the button be?
-	 */
-	size: PropTypes.oneOf(["small", "medium", "large"]),
-	/**
-	 * Button contents
-	 */
-	label: PropTypes.string.isRequired,
-	/**
-	 * Optional click handler
-	 */
-	onClick: PropTypes.func,
-};
 
 export default Button;

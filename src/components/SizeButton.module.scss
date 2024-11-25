@@ -1,0 +1,31 @@
+@use "@/index.module.scss" as *;
+
+.button {
+  padding: $space-8 $space-16;
+  background-color: transparent;
+  border: 1px solid $grey-1;
+  border-radius: 3px;
+
+  @include font-14($grey-1);
+
+  &:hover {
+    background-color: $blue-4;
+    opacity: unset;
+  }
+}
+
+.active {
+  background-color: $blue-4;
+
+  @include font-14-b($grey-1);
+}
+
+.disabled {
+  background-color: unset;
+  border-color: $grey-3;
+  color: $grey-3;
+
+  &:hover {
+    background-color: unset;
+  }
+}
