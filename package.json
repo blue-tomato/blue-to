@@ -13,7 +13,10 @@
 		"build:storybook": "storybook build"
 	},
 	"dependencies": {
-		"modern-normalize": "^2.0.0"
+		"classnames": "^2.5.1",
+		"es-toolkit": "^1.27.0",
+		"modern-normalize": "^2.0.0",
+		"type-fest": "^4.28.0"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.8.3",
@@ -24,9 +27,6 @@
 		"@storybook/react": "^8.2.5",
 		"@storybook/react-vite": "^8.2.5",
 		"@storybook/test": "^8.2.5",
-		"classnames": "^2.5.1",
-		"es-toolkit": "^1.27.0",
-		"prop-types": "^15.8.1",
 		"sass": "^1.77.8",
 		"storybook": "^8.2.5",
 		"vite-tsconfig-paths": "^5.0.1"

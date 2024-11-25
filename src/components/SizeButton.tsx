@@ -17,6 +17,7 @@ const SizeButton = ({
 		className={classNames(
 			className,
 			styles.button,
+			active && disabled && styles.activeDisabled,
 			active && styles.active,
 			disabled && styles.disabled,
 		)}
