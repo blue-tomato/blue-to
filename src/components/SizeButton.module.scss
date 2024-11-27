@@ -6,7 +6,7 @@
   border: 1px solid $grey-1;
   border-radius: 3px;
 
-  @include font-14($grey-1);
+  @include font-14;
 
   &:hover {
     background-color: $blue-4;
@@ -17,7 +17,7 @@
 .active {
   background-color: $blue-4;
 
-  @include font-14-b($grey-1);
+  @include font-14-b;
 }
 
 .disabled {

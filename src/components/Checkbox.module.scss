@@ -1,0 +1,55 @@
+@use "@/index.module.scss" as *;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: $space-8;
+  cursor: pointer;
+
+  @include font-14;
+}
+
+.box {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box-checked {
+  font-weight: 700;
+}
+
+.input {
+  appearance: none;
+  margin: 0;
+  display: block;
+  height: $space-24;
+  width: $space-24;
+  background-color: $white;
+  border: 1px solid $grey-3;
+  cursor: pointer;
+}
+
+.input-error {
+  border-color: $red-1;
+}
+
+.checkmark {
+  position: absolute;
+  width: $space-16;
+}
+
+.checkmark-hidden {
+  display: none;
+}
+
+.error {
+  @include font-12($red-1);
+}

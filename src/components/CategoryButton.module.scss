@@ -5,13 +5,13 @@
   padding: 0 $space-16;
   background-color: $white;
 
-  @include font-14-b($grey-1);
+  @include font-14-b;
 }
 
 .small {
   min-height: 34px;
 
-  @include font-12-b($grey-1);
+  @include font-12-b;
 }
 
 .grey {
