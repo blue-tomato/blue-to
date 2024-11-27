@@ -1,5 +1,5 @@
 import { Button } from "@/components";
-import type { Meta } from "@storybook/react/*";
+import type { Meta } from "@storybook/react";
 
 export default {
 	title: "components/Button",
