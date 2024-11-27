@@ -11,6 +11,9 @@ export default {
 		loading: false,
 		variant: "primary",
 	},
+	argTypes: {
+		icon: { control: "text" },
+	},
 };
 
 export const Default: Meta<typeof Button> = {};

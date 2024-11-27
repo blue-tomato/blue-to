@@ -6,7 +6,10 @@ export default {
 	component: Checkbox,
 	args: {
 		children: "Checkbox",
-		error: "",
+		error: undefined,
+	},
+	argTypes: {
+		error: { control: "text" },
 	},
 };
 

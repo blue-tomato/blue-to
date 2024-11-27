@@ -7,6 +7,9 @@ export default {
 	args: {
 		icon: "flag.at",
 	},
+	argTypes: {
+		icon: { control: "text" },
+	},
 };
 
 export const Default: Meta<typeof Icon> = {};
