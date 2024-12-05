@@ -3,7 +3,7 @@ import "./preview.scss";
 
 const preview: Preview = {
 	parameters: {
-		layout: "centered",
+		layout: "padded",
 	},
 	tags: ["autodocs"],
 };

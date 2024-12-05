@@ -5,8 +5,14 @@ export default {
 	title: "components/RadioButton",
 	component: (props: React.ComponentProps<typeof RadioButton>) => (
 		<form>
-			<RadioButton inputProps={{ name: "test", value: "1" }} {...props} />
-			<RadioButton inputProps={{ name: "test", value: "2" }} {...props} />
+			<RadioButton
+				inputProps={{ name: "radio-button", value: "1" }}
+				{...props}
+			/>
+			<RadioButton
+				inputProps={{ name: "radio-button", value: "2" }}
+				{...props}
+			/>
 		</form>
 	),
 	args: {
