@@ -21,7 +21,8 @@
 				"noBarrelFile": "off"
 			},
 			"style": {
-				"noDefaultExport": "off"
+				"noDefaultExport": "off",
+				"useBlockStatements": "off"
 			}
 		}
 	},

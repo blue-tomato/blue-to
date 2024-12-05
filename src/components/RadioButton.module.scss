@@ -29,11 +29,11 @@
 .input {
   appearance: none;
   margin: 0;
-  display: block;
   height: $space-24;
   width: $space-24;
   background-color: $white;
   border: 1px solid $grey-3;
+  border-radius: 100%;
   cursor: pointer;
 }
 
@@ -41,10 +41,13 @@
   border-color: $red-1;
 }
 
-.checkmark {
+.check {
   position: absolute;
   display: none;
-  width: $space-16;
+  height: 10px;
+  width: 10px;
+  background-color: $blue-1;
+  border-radius: 100%;
 
   input:checked~& {
     display: unset;
