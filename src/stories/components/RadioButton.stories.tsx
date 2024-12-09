@@ -1,10 +1,11 @@
 import { RadioButton } from "@/components";
 import type { Meta } from "@storybook/react";
+import styles from "./RadioButton.stories.module.scss";
 
-export default {
-	title: "components/RadioButton",
-	component: (props: React.ComponentProps<typeof RadioButton>) => (
-		<form>
+const Docs: Meta<typeof RadioButton> = {
+	title: "BLUETO/components/RadioButton",
+	render: (props: React.ComponentProps<typeof RadioButton>) => (
+		<form className={styles.wrapper}>
 			<RadioButton
 				inputProps={{ name: "radio-button", value: "1" }}
 				{...props}
@@ -24,10 +25,13 @@ export default {
 	},
 };
 
-export const Default: Meta<typeof RadioButton> = {};
+const Default: Meta<typeof RadioButton> = {};
 
-export const WithError: Meta<typeof RadioButton> = {
+const WithError: Meta<typeof RadioButton> = {
 	args: {
 		error: "Error",
 	},
 };
+
+export default Docs;
+export { Default, WithError };

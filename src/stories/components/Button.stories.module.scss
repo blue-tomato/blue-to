@@ -1,0 +1,5 @@
+@use "@/index.module.scss" as *;
+
+.long-text {
+  max-width: 128px;
+}

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta } from "@storybook/react";
 import BrandlogosStory from "./BrandlogosStory";
 import BreakpointsStory from "./BreakpointsStory";
 import ColorsStory from "./ColorsStory";
@@ -7,21 +7,36 @@ import ResponsiveExampleStory from "./ResponsiveExampleStory";
 import SpacingStory from "./SpacingStory";
 import TypographyStory from "./TypographyStory";
 
-const BrandLogo: StoryObj = { render: BrandlogosStory };
-const Breakpoints: StoryObj = { render: BreakpointsStory };
-const Colors: StoryObj = { render: ColorsStory };
-const Icons: StoryObj = { render: IconsStory };
-const ResponsiveExample: StoryObj = { render: ResponsiveExampleStory };
-const Spacing: StoryObj = { render: SpacingStory };
-const Typography: StoryObj = { render: TypographyStory };
-
-const meta: Meta = {
-	title: "Foundations",
+const Docs: Meta<typeof BrandlogosStory> = {
+	title: "BLUETO/foundations",
+	tags: ["!autodocs"],
 };
 
-export default meta;
+const Brandlogos: Meta<typeof BrandlogosStory> = {
+	render: BrandlogosStory,
+};
+
+const Breakpoints: Meta<typeof BreakpointsStory> = {
+	render: BreakpointsStory,
+};
+
+const Colors: Meta<typeof ColorsStory> = { render: ColorsStory };
+
+const Icons: Meta<typeof IconsStory> = { render: IconsStory };
+
+const ResponsiveExample: Meta<typeof ResponsiveExampleStory> = {
+	render: ResponsiveExampleStory,
+};
+
+const Spacing: Meta<typeof SpacingStory> = { render: SpacingStory };
+
+const Typography: Meta<typeof TypographyStory> = {
+	render: TypographyStory,
+};
+
+export default Docs;
 export {
-	BrandLogo,
+	Brandlogos,
 	Breakpoints,
 	Colors,
 	Icons,
