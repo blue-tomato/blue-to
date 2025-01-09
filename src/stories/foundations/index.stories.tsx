@@ -1,4 +1,4 @@
-import type { Meta } from "@storybook/react";
+import type { StoryMeta } from "@/types";
 import BrandlogosStory from "./BrandlogosStory";
 import BreakpointsStory from "./BreakpointsStory";
 import ColorsStory from "./ColorsStory";
@@ -7,31 +7,72 @@ import ResponsiveExampleStory from "./ResponsiveExampleStory";
 import SpacingStory from "./SpacingStory";
 import TypographyStory from "./TypographyStory";
 
-const Docs: Meta<typeof BrandlogosStory> = {
+const Docs: StoryMeta<typeof BrandlogosStory> = {
 	title: "BLUETO/foundations",
 	tags: ["!autodocs"],
 };
 
-const Brandlogos: Meta<typeof BrandlogosStory> = {
+const Brandlogos: StoryMeta<typeof BrandlogosStory> = {
 	render: BrandlogosStory,
+	parameters: {
+		links: {
+			confluence: "UAA6Hg",
+			figma: "4BjT8a6YN5icL5bpEfsszx/Foundation?node-id=3-2",
+		},
+	},
 };
 
-const Breakpoints: Meta<typeof BreakpointsStory> = {
+const Breakpoints: StoryMeta<typeof BreakpointsStory> = {
 	render: BreakpointsStory,
+	parameters: {
+		links: {
+			confluence: "nADjH",
+		},
+	},
 };
 
-const Colors: Meta<typeof ColorsStory> = { render: ColorsStory };
+const Colors: StoryMeta<typeof ColorsStory> = {
+	render: ColorsStory,
+	parameters: {
+		links: {
+			confluence: "mwCtGw",
+			figma: "4BjT8a6YN5icL5bpEfsszx/Foundation?node-id=3-4",
+		},
+	},
+};
 
-const Icons: Meta<typeof IconsStory> = { render: IconsStory };
+const Icons: StoryMeta<typeof IconsStory> = {
+	render: IconsStory,
+	parameters: {
+		links: {
+			confluence: "AQBCHg",
+			figma: "4BjT8a6YN5icL5bpEfsszx/Foundation?node-id=3-6",
+		},
+	},
+};
 
-const ResponsiveExample: Meta<typeof ResponsiveExampleStory> = {
+const ResponsiveExample: StoryMeta<typeof ResponsiveExampleStory> = {
 	render: ResponsiveExampleStory,
 };
 
-const Spacing: Meta<typeof SpacingStory> = { render: SpacingStory };
+const Spacing: StoryMeta<typeof SpacingStory> = {
+	render: SpacingStory,
+	parameters: {
+		links: {
+			confluence: "h4CyGw",
+			figma: "4BjT8a6YN5icL5bpEfsszx/Foundation?node-id=3-8",
+		},
+	},
+};
 
-const Typography: Meta<typeof TypographyStory> = {
+const Typography: StoryMeta<typeof TypographyStory> = {
 	render: TypographyStory,
+	parameters: {
+		links: {
+			confluence: "1QDnH",
+			figma: "4BjT8a6YN5icL5bpEfsszx/Foundation?node-id=3-9",
+		},
+	},
 };
 
 export default Docs;

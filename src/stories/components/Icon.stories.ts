@@ -1,7 +1,7 @@
 import { Icon } from "@/components";
-import type { Meta } from "@storybook/react";
+import type { StoryMeta } from "@/types";
 
-const Docs: Meta<typeof Icon> = {
+const Docs: StoryMeta<typeof Icon> = {
 	title: "BLUETO/components/Icon",
 	component: Icon,
 	args: {
@@ -18,7 +18,7 @@ const Docs: Meta<typeof Icon> = {
 	},
 };
 
-const Default: Meta<typeof Icon> = {};
+const Default: StoryMeta<typeof Icon> = {};
 
 export default Docs;
 export { Default };

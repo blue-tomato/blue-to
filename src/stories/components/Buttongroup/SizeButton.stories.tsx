@@ -1,8 +1,8 @@
 import { SizeButton } from "@/components";
-import type { Meta } from "@storybook/react";
+import type { StoryMeta } from "@/types";
 import styles from "./SizeButton.stories.module.scss";
 
-const Docs: Meta<typeof SizeButton> = {
+const Docs: StoryMeta<typeof SizeButton> = {
 	title: "BLUETO/components/Buttongroup/SizeButton",
 	render: (props) => (
 		<div className={styles.wrapper}>
@@ -23,7 +23,7 @@ const Docs: Meta<typeof SizeButton> = {
 	},
 };
 
-const Default: Meta<typeof SizeButton> = {};
+const Default: StoryMeta<typeof SizeButton> = {};
 
 export default Docs;
 export { Default };
