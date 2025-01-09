@@ -1,0 +1,6 @@
+@use "@/index.module.scss" as *;
+
+.wrapper {
+  display: flex;
+  gap: $space-16;
+}

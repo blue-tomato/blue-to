@@ -1,0 +1,7 @@
+@use "@/index.module.scss" as *;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: $space-16;
+}

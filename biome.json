@@ -4,7 +4,7 @@
 		"enabled": true
 	},
 	"javascript": {
-		"globals": ["React"]
+		"globals": ["React", "StoryMeta"]
 	},
 	"linter": {
 		"enabled": true,

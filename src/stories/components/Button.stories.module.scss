@@ -1,5 +1,5 @@
 @use "@/index.module.scss" as *;
 
-.icon {
-  display: block;
+.long-text {
+  max-width: 128px;
 }

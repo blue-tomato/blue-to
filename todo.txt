@@ -1,5 +1,3 @@
-add figma plugin https://storybook.js.org/blog/figma-plugin-for-storybook/
-link confluence and figma
 confirmation on copy
 storybook branden
 logos increase gap 48px
