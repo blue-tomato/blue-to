@@ -10,6 +10,12 @@ const Docs: Meta<typeof Icon> = {
 	argTypes: {
 		icon: { control: "text" },
 	},
+	parameters: {
+		links: {
+			confluence: "AQBCHg",
+			figma: "4BjT8a6YN5icL5bpEfsszx/Foundation?node-id=3-6",
+		},
+	},
 };
 
 const Default: Meta<typeof Icon> = {};

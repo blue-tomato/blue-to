@@ -16,6 +16,12 @@ const Docs: Meta<typeof CategoryButton> = {
 		color: "white",
 		size: "large",
 	},
+	parameters: {
+		links: {
+			confluence: "B4B6L",
+			figma: "rUIq4O2W7nCzofq3nFoURP/BLUETO-Components?node-id=420-52",
+		},
+	},
 };
 
 const Default: Meta<typeof CategoryButton> = {};

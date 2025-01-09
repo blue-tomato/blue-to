@@ -11,6 +11,12 @@ const Docs: Meta<typeof Checkbox> = {
 	argTypes: {
 		error: { control: "text" },
 	},
+	parameters: {
+		links: {
+			confluence: "NwA0L",
+			figma: "rUIq4O2W7nCzofq3nFoURP/BLUETO-Components?node-id=167-125",
+		},
+	},
 };
 
 const Default: Meta<typeof Checkbox> = {};

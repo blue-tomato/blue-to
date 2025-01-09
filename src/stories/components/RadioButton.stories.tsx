@@ -23,6 +23,12 @@ const Docs: Meta<typeof RadioButton> = {
 	argTypes: {
 		error: { control: "text" },
 	},
+	parameters: {
+		links: {
+			confluence: "sAAnL",
+			figma: "rUIq4O2W7nCzofq3nFoURP/Components?node-id=167-126",
+		},
+	},
 };
 
 const Default: Meta<typeof RadioButton> = {};

@@ -15,6 +15,12 @@ const Docs: Meta<typeof SizeButton> = {
 		children: "46",
 		disabled: false,
 	},
+	parameters: {
+		links: {
+			confluence: "CACDL",
+			figma: "rUIq4O2W7nCzofq3nFoURP/BLUETO-Components?node-id=420-52",
+		},
+	},
 };
 
 const Default: Meta<typeof SizeButton> = {};
