@@ -1,0 +1,60 @@
+@use "@/index.module.scss" as *;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: $space-8;
+}
+
+.inputs-container {
+  display: flex;
+  gap: $space-8;
+  align-items: center;
+  @include font-14-b($grey-1);
+}
+
+.inputWrapper {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 42px;
+  border: 1px solid $grey-3;
+  padding: $space-8 $space-16;
+  background-color: $white;
+}
+
+.input {
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  max-width: 50px;
+  font-weight: bold;
+  text-align: center;
+  background: transparent;
+}
+
+.text {
+  margin-left: $space-4;
+}
+
+.info-text {
+  @include font-16-b($grey-1);
+}
+
+.range-container {
+  width: 270px;
+}
+
+.range-input {
+  width: 100%;
+  height: 3px;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  border-radius: 2px;
+  background: $grey-3;
+}
