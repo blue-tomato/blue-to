@@ -22,23 +22,26 @@
   justify-content: center;
   width: 100px;
   height: 42px;
-  border: 1px solid $grey-3;
   padding: $space-8 $space-16;
+  border: 1px solid $grey-3;
   background-color: $white;
+  @include font-14-b($grey-1);
 }
 
 .input {
   box-sizing: border-box;
+  padding: 0;
   border: none;
   outline: none;
-  max-width: 50px;
+  max-width: 50%;
   font-weight: bold;
   text-align: center;
   background: transparent;
+  @include font-14-b($grey-1);
 }
 
-.text {
-  margin-left: $space-4;
+.symbol {
+  @include font-14-b($grey-1);
 }
 
 .info-text {
