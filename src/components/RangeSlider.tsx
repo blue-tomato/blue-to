@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import styles from "./RangeSlider.module.scss";
-import { forwardRef, useEffect, useRef, useState } from "react";
+import { forwardRef, useEffect, useRef, useState, useCallback } from "react";
 
 interface SliderProps extends React.HTMLAttributes<HTMLDivElement> {
   symbol?: string;
@@ -10,9 +10,6 @@ interface SliderProps extends React.HTMLAttributes<HTMLDivElement> {
   range?: string;
   tempValue?: number;
 }
-
-const clamp = (value: number, min: number, max: number) =>
-  Math.min(Math.max(value, min), max);
 
 const InputWrapper = ({ symbol, value, min, max, defaultValue }: any) => {
   const inputValue = value ?? "";
@@ -60,6 +57,9 @@ const InputWrapper = ({ symbol, value, min, max, defaultValue }: any) => {
   );
 };
 
+const clamp = (value: number, min: number, max: number) =>
+  Math.min(Math.max(value, min), max);
+
 const RangeSlider = forwardRef<HTMLDivElement, SliderProps>(
   (
     {
@@ -76,12 +76,80 @@ const RangeSlider = forwardRef<HTMLDivElement, SliderProps>(
   ) => {
     const isTouch = "ontouchstart" in window;
     const inputRef = useRef<HTMLInputElement>(null);
+    const inputMinRef = useRef<HTMLInputElement>(null);
+    const inputMaxRef = useRef<HTMLInputElement>(null);
+    const trackRef = useRef<HTMLDivElement>(null);
+    const thumbLeftRef = useRef<HTMLDivElement>(null);
+    const thumbRightRef = useRef<HTMLDivElement>(null);
+
+    const [minValue, setMinValue] = useState(min);
+    const [maxValue, setMaxValue] = useState(max);
+    const [activeThumb, setActiveThumb] = useState<"left" | "right" | null>(
+      null
+    );
+
+    useEffect(() => {
+      updateThumbs();
+    }, [minValue, maxValue]);
 
     useEffect(() => {
       if (autoFocusOnDesktop && !isTouch) {
         inputRef.current?.focus();
       }
     }, [autoFocusOnDesktop, isTouch]);
+
+    const updateThumbs = useCallback(() => {
+      const minPercent = ((minValue - min) / (max - min)) * 100;
+      const maxPercent = ((maxValue - min) / (max - min)) * 100;
+
+      if (thumbLeftRef.current) {
+        thumbLeftRef.current.style.left = `${minPercent}%`;
+      }
+      if (thumbRightRef.current) {
+        thumbRightRef.current.style.right = `${100 - maxPercent}%`;
+      }
+      if (trackRef.current) {
+        trackRef.current.style.left = `${minPercent}%`;
+        trackRef.current.style.right = `${100 - maxPercent}%`;
+      }
+    }, [minValue, maxValue, min, max]);
+
+    const handleMinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setMinValue(clamp(Number(e.target.value), min, maxValue - 1));
+    };
+
+    const handleMaxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setMaxValue(clamp(Number(e.target.value), minValue + 1, max));
+    };
+
+    const handleMouseMove = useCallback(
+      (e: MouseEvent) => {
+        if (!trackRef.current || activeThumb === null) return;
+
+        const rect = trackRef.current.getBoundingClientRect();
+        const percent = ((e.clientX - rect.left) / rect.width) * 100;
+        const newValue = Math.round((percent / 100) * (max - min) + min);
+
+        if (activeThumb === "left") {
+          setMinValue(clamp(newValue, min, maxValue - 1));
+        } else {
+          setMaxValue(clamp(newValue, minValue + 1, max));
+        }
+      },
+      [activeThumb, min, max, minValue, maxValue]
+    );
+
+    useEffect(() => {
+      if (activeThumb !== null) {
+        document.addEventListener("mousemove", handleMouseMove);
+        document.addEventListener("mouseup", () => setActiveThumb(null), {
+          once: true,
+        });
+      }
+      return () => {
+        document.removeEventListener("mousemove", handleMouseMove);
+      };
+    }, [activeThumb, handleMouseMove]);
 
     return (
       <div
@@ -90,27 +158,49 @@ const RangeSlider = forwardRef<HTMLDivElement, SliderProps>(
         {...props}
       >
         <div className={styles.inputsContainer}>
-          <InputWrapper
-            symbol={symbol}
-            value={min}
-            validRange={[min, max - 1]}
-          />
-          <span>{range ?? ""}</span>
-          <InputWrapper
-            symbol={symbol}
-            value={max}
-            validRange={[min + 1, max]}
-          />
+          <div className={styles.inputWrapper}>
+            <input value={minValue} onChange={handleMinChange} />
+            {symbol && <span className={styles.symbol}>{symbol}</span>}
+          </div>
+          <span>{range}</span>
+          <div className={styles.inputWrapper}>
+            <input value={maxValue} onChange={handleMaxChange} />
+            {symbol && <span className={styles.symbol}>{symbol}</span>}
+          </div>
         </div>
         <div className={styles.rangeContainer}>
           <input
-            className={styles.rangeInput}
+            ref={inputMinRef}
             type="range"
-            value={min}
-            onChange={(e) => {
-              console.log(e.target.value);
-            }}
+            min={min}
+            max={max}
+            value={minValue}
+            onChange={handleMinChange}
+            className={styles.rangeInput}
           />
+          <input
+            ref={inputMaxRef}
+            type="range"
+            min={min}
+            max={max}
+            value={maxValue}
+            onChange={handleMaxChange}
+            className={styles.rangeInput}
+          />
+          <div className={styles.trackWrapper}>
+            <div className={styles.track}></div>
+            <div ref={trackRef} className={styles.rangeBetween}></div>
+            <div
+              ref={thumbLeftRef}
+              className={classNames(styles.thumb, styles.thumbLeft)}
+              onMouseDown={() => setActiveThumb("left")}
+            ></div>
+            <div
+              ref={thumbRightRef}
+              className={classNames(styles.thumb, styles.thumbRight)}
+              onMouseDown={() => setActiveThumb("right")}
+            ></div>
+          </div>
         </div>
         <p className={classNames(className, styles.infoText)}>products count</p>
       </div>
