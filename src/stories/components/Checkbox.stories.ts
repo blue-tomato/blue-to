@@ -1,7 +1,7 @@
 import { Checkbox } from "@/components";
-import type { Meta } from "@storybook/react";
+import type { StoryMeta } from "@/types";
 
-const Docs: Meta<typeof Checkbox> = {
+const Docs: StoryMeta<typeof Checkbox> = {
 	title: "BLUETO/components/Checkbox",
 	component: Checkbox,
 	args: {
@@ -19,9 +19,9 @@ const Docs: Meta<typeof Checkbox> = {
 	},
 };
 
-const Default: Meta<typeof Checkbox> = {};
+const Default: StoryMeta<typeof Checkbox> = {};
 
-const WithError: Meta<typeof Checkbox> = {
+const WithError: StoryMeta<typeof Checkbox> = {
 	args: {
 		error: "Error",
 	},

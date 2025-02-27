@@ -1,8 +1,8 @@
 import { CategoryButton } from "@/components";
-import type { Meta } from "@storybook/react";
+import type { StoryMeta } from "@/types";
 import styles from "./CategoryButton.stories.module.scss";
 
-const Docs: Meta<typeof CategoryButton> = {
+const Docs: StoryMeta<typeof CategoryButton> = {
 	title: "BLUETO/components/Buttongroup/CategoryButton",
 	render: (props) => (
 		<div className={styles.wrapper}>
@@ -24,7 +24,7 @@ const Docs: Meta<typeof CategoryButton> = {
 	},
 };
 
-const Default: Meta<typeof CategoryButton> = {};
+const Default: StoryMeta<typeof CategoryButton> = {};
 
 export default Docs;
 export { Default };
