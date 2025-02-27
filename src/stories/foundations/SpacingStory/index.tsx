@@ -10,7 +10,10 @@ const ColorsStory = () => (
 			<button
 				key={space}
 				className={styles.button}
-				onClick={() => navigator.clipboard.writeText(`$space-${space}`)}
+				onClick={() => {
+					navigator.clipboard.writeText(`$space-${space}`);
+					alert(`Copied $space-${space} to clipboard!`);
+				}}
 			>
 				<div className={styles.breakpointValue}>$space-{space}</div>
 				<div style={{ width: `${space}px` }} className={styles.box} />

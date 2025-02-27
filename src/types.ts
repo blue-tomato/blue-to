@@ -2,8 +2,8 @@ import type { Meta } from "@storybook/react";
 
 type StoryMetaParameters = {
 	links?: {
-		confluence: string;
-		figma: string;
+		confluence?: string;
+		figma?: string;
 	};
 };
 

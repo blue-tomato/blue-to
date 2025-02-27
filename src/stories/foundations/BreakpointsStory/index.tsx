@@ -1,8 +1,10 @@
 import classNames from "classnames";
 import styles from "./index.module.scss";
 
-const writeMediaQueryToClipboard = (breakpoint: string) =>
+const writeMediaQueryToClipboard = (breakpoint: string) => {
 	navigator.clipboard.writeText(`@include mediaQuery(${breakpoint}) {}`);
+	alert(`Copied ${breakpoint} to clipboard!`);
+};
 
 const BreakpointsStory = () => (
 	<div className={styles.wrapper}>
