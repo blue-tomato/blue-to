@@ -2,9 +2,9 @@ import styles from "./index.module.scss";
 
 const sizes = ["10", "12", "14", "16", "20", "24", "32", "40", "60"];
 
-const writeIncludeToClipboard = (name: string) =>{
-	navigator.clipboard.writeText(`@include font-${name};`)
-	alert(`Copied @include font-${name}; to clipboard!`)	
+const writeIncludeToClipboard = (name: string) => {
+	navigator.clipboard.writeText(`@include font-${name};`);
+	alert(`Copied @include font-${name}; to clipboard!`);
 };
 
 const TypographyStory = () => (
