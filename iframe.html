@@ -509,11 +509,51 @@
   }
 </script>
 
-    <script type="module" crossorigin src="./assets/iframe-DKZpDXBR.js"></script>
+    <script type="module" crossorigin src="./assets/iframe-C5Z-e_ij.js"></script>
   </head>
 
   <body>
-    <div class="sb-preparing-story sb-wrapper">
+    <script type="text/javascript">
+  let currentId = "";
+
+  setInterval(() => {
+    const story = window.__STORYBOOK_PREVIEW__?.currentRender?.story;
+
+    if (!story) return;
+
+    const id = story.id;
+
+    if (currentId === id) return;
+
+    currentId = id;
+
+    const links = story.parameters.links;
+
+    document.querySelector(".docs-links")?.remove();
+
+    if (!links) return;
+
+    document.body.insertAdjacentHTML("beforeend", `
+      <div class="docs-links">
+        ${links.confluence ? `<a
+          href="https://blue-tomato.atlassian.net/wiki/x/${links.confluence}"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Confluence
+        </a>` : ''}
+        ${links.figma ? `<a
+          href="https://www.figma.com/design/${links.figma}"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Figma
+        </a>` : ''}
+      </div>
+    `);
+  }, 100);
+</script>
+<div class="sb-preparing-story sb-wrapper">
   <div class="sb-loader"></div>
 </div>
 
