@@ -1,5 +1,6 @@
 import arrowscribbleBlack from "./arrowscribble-black.svg";
 import avatarBlue from "./avatar-blue.svg";
+import bellBlack from "./bell-black.svg";
 import benefitBlack from "./benefit-black.svg";
 import bestpriceBlack from "./bestprice-black.svg";
 import bundleGreen from "./bundle-green.svg";
@@ -8,6 +9,7 @@ import calendarBlack from "./calendar-black.svg";
 import campsBlack from "./camps-black.svg";
 import christmastreeBlack from "./christmastree-black.svg";
 import christmastreeGreen from "./christmastree-green.svg";
+import clickandcollectBlack from "./clickandcollect-black.svg";
 import colors from "./colors.svg";
 import deliveryBlack from "./delivery-black.svg";
 import deliverycostBlack from "./deliverycost-black.svg";
@@ -51,7 +53,7 @@ import returnBlue from "./return-blue.svg";
 import returntoshopBlack from "./returntoshop-black.svg";
 import seasonalcardBlack from "./seasonalcard-black.svg";
 import shopBlack from "./shop-black.svg";
-import shopBlue from "./shop-black.svg";
+import shopBlue from "./shop-blue.svg";
 import shop2Black from "./shop2-black.svg";
 import shoppingguideBlue from "./shoppingguide-blue.svg";
 import sizefinderBlack from "./sizefinder-black.svg";
@@ -75,6 +77,7 @@ import voucherBlack from "./voucher-black.svg";
 const support = {
 	arrowscribbleBlack,
 	avatarBlue,
+	bellBlack,
 	benefitBlack,
 	bestpriceBlack,
 	bundleGreen,
@@ -83,6 +86,7 @@ const support = {
 	campsBlack,
 	christmastreeBlack,
 	christmastreeGreen,
+	clickandcollectBlack,
 	colors,
 	deliveryBlack,
 	deliverycostBlack,

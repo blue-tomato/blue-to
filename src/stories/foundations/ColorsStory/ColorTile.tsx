@@ -8,7 +8,10 @@ type Props = React.HTMLAttributes<HTMLElement> & {
 const ColorTile = ({ color, name, ...props }: Props) => (
 	<button
 		className={styles.wrapper}
-		onClick={() => name && navigator.clipboard.writeText(name)}
+		onClick={() => {
+			name && navigator.clipboard.writeText(name)
+			name && alert(`Copied ${name} to clipboard!`)
+		}}
 		style={{ backgroundColor: color }}
 		{...props}
 	>
