@@ -74,12 +74,12 @@ const RangeSlider = forwardRef<HTMLDivElement, SliderProps>(
     {
       autoFocusOnDesktop,
       className,
-      max = 200,
-      min = 6,
-      placeholderMin = "min",
-      placeholderMax = "max",
-      range = "bis",
-      symbol = "€",
+      max,
+      min,
+      placeholderMin,
+      placeholderMax,
+      range,
+      symbol,
       tempValue,
       ...props
     },
@@ -97,7 +97,7 @@ const RangeSlider = forwardRef<HTMLDivElement, SliderProps>(
       null
     );
 
-    const minDistance = 10; // Minimum distance between the two thumbs
+    const minDistance = 10;
 
     useEffect(() => {
       updateThumbs();
@@ -164,6 +164,22 @@ const RangeSlider = forwardRef<HTMLDivElement, SliderProps>(
       };
     }, [activeThumb, handleMouseMove]);
 
+    const handleMinBlur = (value: number) => {
+      if (value >= maxValue) {
+        setMinValue(maxValue - 1);
+      } else {
+        setMinValue(value);
+      }
+    };
+
+    const handleMaxBlur = (value: number) => {
+      if (value <= minValue) {
+        setMaxValue(minValue + 1);
+      } else {
+        setMaxValue(value);
+      }
+    };
+
     return (
       <div
         ref={ref}
@@ -178,7 +194,7 @@ const RangeSlider = forwardRef<HTMLDivElement, SliderProps>(
             max={max}
             defaultValue={min}
             placeholder={placeholderMin}
-            onBlur={setMinValue}
+            onBlur={handleMinBlur}
           />
           <span>{range}</span>
           <InputWrapper
@@ -188,7 +204,7 @@ const RangeSlider = forwardRef<HTMLDivElement, SliderProps>(
             max={max}
             defaultValue={max}
             placeholder={placeholderMax}
-            onBlur={setMaxValue}
+            onBlur={handleMaxBlur}
           />
         </div>
         <div className={styles.rangeContainer}>

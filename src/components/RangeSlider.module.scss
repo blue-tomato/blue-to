@@ -72,12 +72,11 @@
   opacity: 0;
 }
 
-//TODO: check styles if you can remove some
 input[type="range"]::-webkit-slider-thumb {
   pointer-events: all;
   -webkit-appearance: none;
-  width: 30px;
-  height: 30px;
+  width: var(--_thumb-size);
+  height: var(--_thumb-size);
   cursor: pointer;
   background-color: $white;
   border-radius: 50%;
@@ -127,8 +126,8 @@ input[type="range"]::-moz-range-thumb {
   .thumb {
     position: absolute;
     z-index: 3;
-    width: 30px;
-    height: 30px;
+    width: var(--_thumb-size);
+    height: var(--_thumb-size);
     cursor: pointer;
 
     //FIXME:
@@ -140,8 +139,8 @@ input[type="range"]::-moz-range-thumb {
 
     &::before {
       content: "";
-      width: 30px;
-      height: 30px;
+      width: 44px;
+      height: 44px;
       pointer-events: none;
       position: absolute;
       left: 0;

@@ -15,7 +15,24 @@ const Docs: StoryMeta<typeof RangeSlider> = {
   },
 };
 
-const Default: StoryMeta<typeof RangeSlider> = {};
+const Empty: StoryMeta<typeof RangeSlider> = {
+  args: {
+    placeholderMax: "max",
+    placeholderMin: "min",
+    range: "bis",
+  },
+};
+
+const Default: StoryMeta<typeof RangeSlider> = {
+  args: {
+    max: 200,
+    min: 10,
+    placeholderMax: "max",
+    placeholderMin: "min",
+    range: "bis",
+    symbol: "€",
+  },
+};
 
 export default Docs;
-export { Default };
+export { Default, Empty };
