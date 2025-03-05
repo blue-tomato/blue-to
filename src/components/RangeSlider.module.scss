@@ -50,6 +50,7 @@
 
 .range-container {
   width: 270px;
+  position: relative;
   margin-top: $space-32;
   --_height: 3px;
   --_thumb-size: 30px;
@@ -59,7 +60,7 @@
   position: absolute;
   width: 100%;
   height: var(--_height);
-  bottom: 0;
+  top: 0px;
   appearance: none;
   -webkit-appearance: none;
   outline: none;
@@ -68,18 +69,20 @@
   cursor: pointer;
   pointer-events: none;
   z-index: 2;
-  // opacity: 0;
+  opacity: 0;
 }
 
 //TODO: check styles if you can remove some
 input[type="range"]::-webkit-slider-thumb {
   pointer-events: all;
-  width: var(--_thumb-size);
-  height: var(--_thumb-size);
-  border-radius: 0;
-  border: 0 none;
-  background-color: $green-1;
   -webkit-appearance: none;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  background-color: $white;
+  border-radius: 50%;
+  border: 1px solid $grey-3;
+  z-index: 3;
 }
 
 input[type="range"]::-moz-range-thumb {
@@ -94,11 +97,10 @@ input[type="range"]::-moz-range-thumb {
 
 .track-wrapper {
   position: relative;
-  z-index: 1;
+  z-index: 3;
   height: var(--_height);
   display: grid;
   align-items: center;
-  margin: 0 calc(var(--_thumb-size) / 2);
 
   .track {
     position: absolute;
@@ -128,6 +130,9 @@ input[type="range"]::-moz-range-thumb {
     width: 30px;
     height: 30px;
     cursor: pointer;
+
+    //FIXME:
+    pointer-events: none;
     background-color: $white;
     border-radius: 50%;
     border: 1px solid $grey-3;
@@ -139,9 +144,8 @@ input[type="range"]::-moz-range-thumb {
       height: 30px;
       pointer-events: none;
       position: absolute;
-      left: 50%;
-      top: 50%;
-      // transform: translate(-50%, -50%);
+      left: 0;
+      top: 0;
       background-color: $blue-1;
       border-radius: inherit;
       opacity: 0;

@@ -159,12 +159,20 @@ const RangeSlider = forwardRef<HTMLDivElement, SliderProps>(
       >
         <div className={styles.inputsContainer}>
           <div className={styles.inputWrapper}>
-            <input value={minValue} onChange={handleMinChange} />
+            <input
+              value={minValue}
+              className={styles.input}
+              onChange={handleMinChange}
+            />
             {symbol && <span className={styles.symbol}>{symbol}</span>}
           </div>
           <span>{range}</span>
           <div className={styles.inputWrapper}>
-            <input value={maxValue} onChange={handleMaxChange} />
+            <input
+              value={maxValue}
+              className={styles.input}
+              onChange={handleMaxChange}
+            />
             {symbol && <span className={styles.symbol}>{symbol}</span>}
           </div>
         </div>
