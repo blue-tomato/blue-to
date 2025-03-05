@@ -1,6 +1,13 @@
 import classNames from "classnames";
 import styles from "./RangeSlider.module.scss";
-import { forwardRef, useEffect, useRef, useState, useCallback } from "react";
+import {
+  forwardRef,
+  useEffect,
+  useRef,
+  useState,
+  useCallback,
+  HTMLAttributes,
+} from "react";
 
 interface SliderProps extends React.HTMLAttributes<HTMLDivElement> {
   symbol?: string;
@@ -11,6 +18,18 @@ interface SliderProps extends React.HTMLAttributes<HTMLDivElement> {
   placeholderMin?: string;
   placeholderMax?: string;
   tempValue?: number;
+  count?: number;
+  handleCountUpdate?: () => number;
+}
+
+interface InputWrapperProps {
+  symbol?: string;
+  value?: number;
+  min: number;
+  max: number;
+  defaultValue: number;
+  placeholder?: string;
+  onBlur: (value: number) => void;
 }
 
 const clamp = (value: number, min: number, max: number) =>
@@ -24,7 +43,7 @@ const InputWrapper = ({
   defaultValue,
   placeholder,
   onBlur,
-}: any) => {
+}: InputWrapperProps) => {
   const inputValue = value ?? "";
   const [tempValue, setTempValue] = useState(+inputValue);
   const [isControlled, setIsControlled] = useState(true);
@@ -74,6 +93,8 @@ const RangeSlider = forwardRef<HTMLDivElement, SliderProps>(
     {
       autoFocusOnDesktop,
       className,
+      count,
+      handleCountUpdate,
       max,
       min,
       placeholderMin,
@@ -85,11 +106,12 @@ const RangeSlider = forwardRef<HTMLDivElement, SliderProps>(
     },
     ref
   ) => {
-    const isTouch = "ontouchstart" in window;
+    const isTouch = "ontouchstart" in window; //should check for window?
     const inputRef = useRef<HTMLInputElement>(null);
     const trackRef = useRef<HTMLDivElement>(null);
     const thumbLeftRef = useRef<HTMLDivElement>(null);
     const thumbRightRef = useRef<HTMLDivElement>(null);
+    const [newCount, setNewCount] = useState(count);
 
     const [minValue, setMinValue] = useState(min);
     const [maxValue, setMaxValue] = useState(max);
@@ -128,11 +150,13 @@ const RangeSlider = forwardRef<HTMLDivElement, SliderProps>(
     const handleMinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const newValue = clamp(Number(e.target.value), min, maxValue - 1);
       setMinValue(newValue);
+      count && setNewCount(handleCountUpdate?.());
     };
 
     const handleMaxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const newValue = clamp(Number(e.target.value), minValue + 1, max);
       setMaxValue(newValue);
+      count && setNewCount(handleCountUpdate?.());
     };
 
     const handleMouseMove = useCallback(
@@ -165,6 +189,8 @@ const RangeSlider = forwardRef<HTMLDivElement, SliderProps>(
     }, [activeThumb, handleMouseMove]);
 
     const handleMinBlur = (value: number) => {
+      setNewCount(handleCountUpdate?.());
+
       if (value >= maxValue) {
         setMinValue(maxValue - 1);
       } else {
@@ -173,6 +199,8 @@ const RangeSlider = forwardRef<HTMLDivElement, SliderProps>(
     };
 
     const handleMaxBlur = (value: number) => {
+      setNewCount(handleCountUpdate?.());
+
       if (value <= minValue) {
         setMaxValue(minValue + 1);
       } else {
@@ -196,7 +224,7 @@ const RangeSlider = forwardRef<HTMLDivElement, SliderProps>(
             placeholder={placeholderMin}
             onBlur={handleMinBlur}
           />
-          <span>{range}</span>
+          <span>{range ?? ""}</span>
           <InputWrapper
             symbol={symbol}
             value={maxValue}
@@ -239,7 +267,11 @@ const RangeSlider = forwardRef<HTMLDivElement, SliderProps>(
             ></div>
           </div>
         </div>
-        <p className={classNames(className, styles.infoText)}>products count</p>
+        {newCount ? (
+          <p className={classNames(className, styles.infoText)}>
+            {`${newCount} Produkte`}
+          </p>
+        ) : null}
       </div>
     );
   }

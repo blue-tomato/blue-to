@@ -25,6 +25,8 @@ const Empty: StoryMeta<typeof RangeSlider> = {
 
 const Default: StoryMeta<typeof RangeSlider> = {
   args: {
+    count: 230,
+    handleCountUpdate: () => 160,
     max: 200,
     min: 10,
     placeholderMax: "max",
