@@ -8,19 +8,27 @@ interface SliderProps extends React.HTMLAttributes<HTMLDivElement> {
   max: number;
   autoFocusOnDesktop?: boolean;
   range?: string;
+  placeholderMin?: string;
+  placeholderMax?: string;
   tempValue?: number;
 }
 
-const InputWrapper = ({ symbol, value, min, max, defaultValue }: any) => {
+const clamp = (value: number, min: number, max: number) =>
+  Math.min(Math.max(value, min), max);
+
+const InputWrapper = ({
+  symbol,
+  value,
+  min,
+  max,
+  defaultValue,
+  placeholder,
+  onBlur,
+}: any) => {
   const inputValue = value ?? "";
   const [tempValue, setTempValue] = useState(+inputValue);
   const [isControlled, setIsControlled] = useState(true);
   const inputRef = useRef<HTMLInputElement>(null);
-
-  const onInputChange: (newValue: number) => void = (newValue: number) => {
-    console.log(newValue);
-    setTempValue(newValue);
-  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = Number(e.target.value.replace(/\D+/g, ""));
@@ -34,8 +42,9 @@ const InputWrapper = ({ symbol, value, min, max, defaultValue }: any) => {
 
   const handleBlur = () => {
     setIsControlled(true);
-    onInputChange(tempValue);
-    console.log(tempValue);
+    const clampedValue = clamp(tempValue, min, max);
+    setTempValue(clampedValue);
+    onBlur(clampedValue);
   };
 
   return (
@@ -51,24 +60,26 @@ const InputWrapper = ({ symbol, value, min, max, defaultValue }: any) => {
         onFocus={handleFocus}
         pattern="[0-9]*"
         value={isControlled ? value : tempValue || ""}
+        placeholder={placeholder}
       />
-      {symbol && <span className={styles.symbol}>{symbol}</span>}
+      {!!symbol && tempValue > 0 ? (
+        <span className={styles.symbol}>{symbol ?? ""}</span>
+      ) : null}
     </div>
   );
 };
 
-const clamp = (value: number, min: number, max: number) =>
-  Math.min(Math.max(value, min), max);
-
 const RangeSlider = forwardRef<HTMLDivElement, SliderProps>(
   (
     {
+      autoFocusOnDesktop,
       className,
-      symbol = "€",
       max = 200,
       min = 6,
+      placeholderMin = "min",
+      placeholderMax = "max",
       range = "bis",
-      autoFocusOnDesktop,
+      symbol = "€",
       tempValue,
       ...props
     },
@@ -76,8 +87,6 @@ const RangeSlider = forwardRef<HTMLDivElement, SliderProps>(
   ) => {
     const isTouch = "ontouchstart" in window;
     const inputRef = useRef<HTMLInputElement>(null);
-    const inputMinRef = useRef<HTMLInputElement>(null);
-    const inputMaxRef = useRef<HTMLInputElement>(null);
     const trackRef = useRef<HTMLDivElement>(null);
     const thumbLeftRef = useRef<HTMLDivElement>(null);
     const thumbRightRef = useRef<HTMLDivElement>(null);
@@ -87,6 +96,8 @@ const RangeSlider = forwardRef<HTMLDivElement, SliderProps>(
     const [activeThumb, setActiveThumb] = useState<"left" | "right" | null>(
       null
     );
+
+    const minDistance = 10; // Minimum distance between the two thumbs
 
     useEffect(() => {
       updateThumbs();
@@ -115,11 +126,13 @@ const RangeSlider = forwardRef<HTMLDivElement, SliderProps>(
     }, [minValue, maxValue, min, max]);
 
     const handleMinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setMinValue(clamp(Number(e.target.value), min, maxValue - 1));
+      const newValue = clamp(Number(e.target.value), min, maxValue - 1);
+      setMinValue(newValue);
     };
 
     const handleMaxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setMaxValue(clamp(Number(e.target.value), minValue + 1, max));
+      const newValue = clamp(Number(e.target.value), minValue + 1, max);
+      setMaxValue(newValue);
     };
 
     const handleMouseMove = useCallback(
@@ -131,12 +144,12 @@ const RangeSlider = forwardRef<HTMLDivElement, SliderProps>(
         const newValue = Math.round((percent / 100) * (max - min) + min);
 
         if (activeThumb === "left") {
-          setMinValue(clamp(newValue, min, maxValue - 1));
+          setMinValue(clamp(newValue, min, maxValue - minDistance));
         } else {
-          setMaxValue(clamp(newValue, minValue + 1, max));
+          setMaxValue(clamp(newValue, minValue + minDistance, max));
         }
       },
-      [activeThumb, min, max, minValue, maxValue]
+      [activeThumb, min, max, minValue, maxValue, minDistance]
     );
 
     useEffect(() => {
@@ -158,27 +171,28 @@ const RangeSlider = forwardRef<HTMLDivElement, SliderProps>(
         {...props}
       >
         <div className={styles.inputsContainer}>
-          <div className={styles.inputWrapper}>
-            <input
-              value={minValue}
-              className={styles.input}
-              onChange={handleMinChange}
-            />
-            {symbol && <span className={styles.symbol}>{symbol}</span>}
-          </div>
+          <InputWrapper
+            symbol={symbol}
+            value={minValue}
+            min={min}
+            max={max}
+            defaultValue={min}
+            placeholder={placeholderMin}
+            onBlur={setMinValue}
+          />
           <span>{range}</span>
-          <div className={styles.inputWrapper}>
-            <input
-              value={maxValue}
-              className={styles.input}
-              onChange={handleMaxChange}
-            />
-            {symbol && <span className={styles.symbol}>{symbol}</span>}
-          </div>
+          <InputWrapper
+            symbol={symbol}
+            value={maxValue}
+            min={min}
+            max={max}
+            defaultValue={max}
+            placeholder={placeholderMax}
+            onBlur={setMaxValue}
+          />
         </div>
         <div className={styles.rangeContainer}>
           <input
-            ref={inputMinRef}
             type="range"
             min={min}
             max={max}
@@ -187,7 +201,6 @@ const RangeSlider = forwardRef<HTMLDivElement, SliderProps>(
             className={styles.rangeInput}
           />
           <input
-            ref={inputMaxRef}
             type="range"
             min={min}
             max={max}
