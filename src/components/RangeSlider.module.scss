@@ -131,7 +131,7 @@ input[type="range"]::-moz-range-thumb {
     cursor: pointer;
 
     //FIXME:
-    pointer-events: none;
+    pointer-events: all;
     background-color: $white;
     border-radius: 50%;
     border: 1px solid $grey-3;

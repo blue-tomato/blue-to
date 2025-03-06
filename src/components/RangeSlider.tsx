@@ -119,6 +119,9 @@ const RangeSlider = forwardRef<HTMLDivElement, SliderProps>(
       null
     );
 
+    const minValueRef = useRef(min);
+    const maxValueRef = useRef(max);
+
     const minDistance = 10;
 
     useEffect(() => {
@@ -132,20 +135,22 @@ const RangeSlider = forwardRef<HTMLDivElement, SliderProps>(
     }, [autoFocusOnDesktop, isTouch]);
 
     const updateThumbs = useCallback(() => {
-      const minPercent = ((minValue - min) / (max - min)) * 100;
-      const maxPercent = ((maxValue - min) / (max - min)) * 100;
+      requestAnimationFrame(() => {
+        const minPercent = ((minValueRef.current - min) / (max - min)) * 100;
+        const maxPercent = ((maxValueRef.current - min) / (max - min)) * 100;
 
-      if (thumbLeftRef.current) {
-        thumbLeftRef.current.style.left = `${minPercent}%`;
-      }
-      if (thumbRightRef.current) {
-        thumbRightRef.current.style.right = `${100 - maxPercent}%`;
-      }
-      if (trackRef.current) {
-        trackRef.current.style.left = `${minPercent}%`;
-        trackRef.current.style.right = `${100 - maxPercent}%`;
-      }
-    }, [minValue, maxValue, min, max]);
+        if (thumbLeftRef.current) {
+          thumbLeftRef.current.style.left = `${minPercent}%`;
+        }
+        if (thumbRightRef.current) {
+          thumbRightRef.current.style.right = `${100 - maxPercent}%`;
+        }
+        if (trackRef.current) {
+          trackRef.current.style.left = `${minPercent}%`;
+          trackRef.current.style.right = `${100 - maxPercent}%`;
+        }
+      });
+    }, []);
 
     const handleMinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const newValue = clamp(Number(e.target.value), min, maxValue - 1);
@@ -168,45 +173,61 @@ const RangeSlider = forwardRef<HTMLDivElement, SliderProps>(
         const newValue = Math.round((percent / 100) * (max - min) + min);
 
         if (activeThumb === "left") {
-          setMinValue(clamp(newValue, min, maxValue - minDistance));
+          const clampedValue = clamp(newValue, min, maxValueRef.current - 1);
+          minValueRef.current = clampedValue;
+          if (thumbLeftRef.current) {
+            thumbLeftRef.current.style.left = `${((clampedValue - min) / (max - min)) * 100}%`;
+          }
         } else {
-          setMaxValue(clamp(newValue, minValue + minDistance, max));
+          const clampedValue = clamp(newValue, minValueRef.current + 1, max);
+          maxValueRef.current = clampedValue;
+          if (thumbRightRef.current) {
+            thumbRightRef.current.style.right = `${100 - ((clampedValue - min) / (max - min)) * 100}%`;
+          }
         }
       },
-      [activeThumb, min, max, minValue, maxValue, minDistance]
+      [activeThumb, min, max]
     );
 
     useEffect(() => {
-      if (activeThumb !== null) {
-        document.addEventListener("mousemove", handleMouseMove);
-        document.addEventListener("mouseup", () => setActiveThumb(null), {
-          once: true,
-        });
-      }
+      if (activeThumb === null) return;
+
+      const handleMouseUp = () => {
+        setActiveThumb(null);
+        setMinValue(minValueRef.current);
+        setMaxValue(maxValueRef.current);
+        document.removeEventListener("mousemove", handleMouseMove);
+        document.removeEventListener("mouseup", handleMouseUp);
+      };
+
+      document.addEventListener("mousemove", handleMouseMove);
+      document.addEventListener("mouseup", handleMouseUp);
+
       return () => {
         document.removeEventListener("mousemove", handleMouseMove);
+        document.removeEventListener("mouseup", handleMouseUp);
       };
-    }, [activeThumb, handleMouseMove]);
+    }, [activeThumb]);
 
     const handleMinBlur = (value: number) => {
-      setNewCount(handleCountUpdate?.());
-
-      if (value >= maxValue) {
-        setMinValue(maxValue - 1);
-      } else {
-        setMinValue(value);
-      }
+      const newValue = clamp(value, min, maxValue - 1);
+      minValueRef.current = newValue;
+      setMinValue(newValue);
+      requestAnimationFrame(updateThumbs); // Ensure UI updates
     };
 
     const handleMaxBlur = (value: number) => {
-      setNewCount(handleCountUpdate?.());
-
-      if (value <= minValue) {
-        setMaxValue(minValue + 1);
-      } else {
-        setMaxValue(value);
-      }
+      const newValue = clamp(value, minValue + 1, max);
+      maxValueRef.current = newValue;
+      setMaxValue(newValue);
+      requestAnimationFrame(updateThumbs);
     };
+
+    const handleThumbMouseDown =
+      (thumb: "left" | "right") => (e: React.MouseEvent) => {
+        e.preventDefault();
+        setActiveThumb(thumb);
+      };
 
     return (
       <div
@@ -223,6 +244,7 @@ const RangeSlider = forwardRef<HTMLDivElement, SliderProps>(
             defaultValue={min}
             placeholder={placeholderMin}
             onBlur={handleMinBlur}
+            aria-label="min"
           />
           <span>{range ?? ""}</span>
           <InputWrapper
@@ -233,6 +255,7 @@ const RangeSlider = forwardRef<HTMLDivElement, SliderProps>(
             defaultValue={max}
             placeholder={placeholderMax}
             onBlur={handleMaxBlur}
+            aria-label="max"
           />
         </div>
         <div className={styles.rangeContainer}>
@@ -258,12 +281,12 @@ const RangeSlider = forwardRef<HTMLDivElement, SliderProps>(
             <div
               ref={thumbLeftRef}
               className={classNames(styles.thumb, styles.thumbLeft)}
-              onMouseDown={() => setActiveThumb("left")}
+              onMouseDown={handleThumbMouseDown("left")}
             ></div>
             <div
               ref={thumbRightRef}
               className={classNames(styles.thumb, styles.thumbRight)}
-              onMouseDown={() => setActiveThumb("right")}
+              onMouseDown={handleThumbMouseDown("right")}
             ></div>
           </div>
         </div>
