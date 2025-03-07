@@ -1,13 +1,6 @@
 import classNames from "classnames";
 import styles from "./RangeSlider.module.scss";
-import {
-  forwardRef,
-  useEffect,
-  useRef,
-  useState,
-  useCallback,
-  HTMLAttributes,
-} from "react";
+import { forwardRef, useEffect, useRef, useState, useCallback } from "react";
 
 interface SliderProps extends React.HTMLAttributes<HTMLDivElement> {
   symbol?: string;
@@ -106,7 +99,7 @@ const RangeSlider = forwardRef<HTMLDivElement, SliderProps>(
     },
     ref
   ) => {
-    const isTouch = "ontouchstart" in window; //should check for window?
+    const isTouch = typeof window !== "undefined" && "ontouchstart" in window;
     const inputRef = useRef<HTMLInputElement>(null);
     const trackRef = useRef<HTMLDivElement>(null);
     const thumbLeftRef = useRef<HTMLDivElement>(null);
@@ -135,21 +128,19 @@ const RangeSlider = forwardRef<HTMLDivElement, SliderProps>(
     }, [autoFocusOnDesktop, isTouch]);
 
     const updateThumbs = useCallback(() => {
-      requestAnimationFrame(() => {
-        const minPercent = ((minValueRef.current - min) / (max - min)) * 100;
-        const maxPercent = ((maxValueRef.current - min) / (max - min)) * 100;
+      const minPercent = ((minValueRef.current - min) / (max - min)) * 100;
+      const maxPercent = ((maxValueRef.current - min) / (max - min)) * 100;
 
-        if (thumbLeftRef.current) {
-          thumbLeftRef.current.style.left = `${minPercent}%`;
-        }
-        if (thumbRightRef.current) {
-          thumbRightRef.current.style.right = `${100 - maxPercent}%`;
-        }
-        if (trackRef.current) {
-          trackRef.current.style.left = `${minPercent}%`;
-          trackRef.current.style.right = `${100 - maxPercent}%`;
-        }
-      });
+      if (thumbLeftRef.current) {
+        thumbLeftRef.current.style.left = `${minPercent}%`;
+      }
+      if (thumbRightRef.current) {
+        thumbRightRef.current.style.right = `${100 - maxPercent}%`;
+      }
+      if (trackRef.current) {
+        trackRef.current.style.left = `${minPercent}%`;
+        trackRef.current.style.right = `${100 - maxPercent}%`;
+      }
     }, []);
 
     const handleMinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -175,30 +166,40 @@ const RangeSlider = forwardRef<HTMLDivElement, SliderProps>(
         if (activeThumb === "left") {
           const clampedValue = clamp(newValue, min, maxValueRef.current - 1);
           minValueRef.current = clampedValue;
+          setMinValue(clampedValue);
+
           if (thumbLeftRef.current) {
             thumbLeftRef.current.style.left = `${((clampedValue - min) / (max - min)) * 100}%`;
           }
         } else {
           const clampedValue = clamp(newValue, minValueRef.current + 1, max);
           maxValueRef.current = clampedValue;
+          setMaxValue(clampedValue);
+
           if (thumbRightRef.current) {
             thumbRightRef.current.style.right = `${100 - ((clampedValue - min) / (max - min)) * 100}%`;
           }
         }
+        count && setNewCount(handleCountUpdate?.());
       },
-      [activeThumb, min, max]
+      [activeThumb, min, max, count, handleCountUpdate]
     );
+
+    const handleMouseUp = () => {
+      setActiveThumb(null);
+      updateThumbs();
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
+    };
+
+    const handleThumbMouseDown =
+      (thumb: "left" | "right") => (e: React.MouseEvent) => {
+        e.preventDefault();
+        setActiveThumb(thumb);
+      };
 
     useEffect(() => {
       if (activeThumb === null) return;
-
-      const handleMouseUp = () => {
-        setActiveThumb(null);
-        setMinValue(minValueRef.current);
-        setMaxValue(maxValueRef.current);
-        document.removeEventListener("mousemove", handleMouseMove);
-        document.removeEventListener("mouseup", handleMouseUp);
-      };
 
       document.addEventListener("mousemove", handleMouseMove);
       document.addEventListener("mouseup", handleMouseUp);
@@ -207,27 +208,23 @@ const RangeSlider = forwardRef<HTMLDivElement, SliderProps>(
         document.removeEventListener("mousemove", handleMouseMove);
         document.removeEventListener("mouseup", handleMouseUp);
       };
-    }, [activeThumb]);
+    }, [activeThumb, handleMouseMove, handleMouseUp]);
 
     const handleMinBlur = (value: number) => {
       const newValue = clamp(value, min, maxValue - 1);
       minValueRef.current = newValue;
       setMinValue(newValue);
-      requestAnimationFrame(updateThumbs); // Ensure UI updates
+      updateThumbs();
+      count && setNewCount(handleCountUpdate?.());
     };
 
     const handleMaxBlur = (value: number) => {
       const newValue = clamp(value, minValue + 1, max);
       maxValueRef.current = newValue;
       setMaxValue(newValue);
-      requestAnimationFrame(updateThumbs);
+      updateThumbs();
+      count && setNewCount(handleCountUpdate?.());
     };
-
-    const handleThumbMouseDown =
-      (thumb: "left" | "right") => (e: React.MouseEvent) => {
-        e.preventDefault();
-        setActiveThumb(thumb);
-      };
 
     return (
       <div
@@ -266,6 +263,10 @@ const RangeSlider = forwardRef<HTMLDivElement, SliderProps>(
             value={minValue}
             onChange={handleMinChange}
             className={styles.rangeInput}
+            aria-valuemin={min}
+            aria-valuemax={max}
+            aria-valuenow={minValue}
+            aria-orientation="horizontal"
           />
           <input
             type="range"
@@ -274,6 +275,9 @@ const RangeSlider = forwardRef<HTMLDivElement, SliderProps>(
             value={maxValue}
             onChange={handleMaxChange}
             className={styles.rangeInput}
+            aria-valuemin={min}
+            aria-valuemax={max}
+            aria-valuenow={maxValue}
           />
           <div className={styles.trackWrapper}>
             <div className={styles.track}></div>
@@ -282,11 +286,13 @@ const RangeSlider = forwardRef<HTMLDivElement, SliderProps>(
               ref={thumbLeftRef}
               className={classNames(styles.thumb, styles.thumbLeft)}
               onMouseDown={handleThumbMouseDown("left")}
+              onMouseUp={handleMouseUp}
             ></div>
             <div
               ref={thumbRightRef}
               className={classNames(styles.thumb, styles.thumbRight)}
               onMouseDown={handleThumbMouseDown("right")}
+              onMouseUp={handleMouseUp}
             ></div>
           </div>
         </div>

@@ -129,8 +129,6 @@ input[type="range"]::-moz-range-thumb {
     width: var(--_thumb-size);
     height: var(--_thumb-size);
     cursor: pointer;
-
-    //FIXME:
     pointer-events: all;
     background-color: $white;
     border-radius: 50%;
