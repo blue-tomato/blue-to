@@ -1,0 +1,160 @@
+@use "@/index.module.scss" as *;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: $space-8;
+}
+
+.inputs-container {
+  display: flex;
+  gap: $space-8;
+  align-items: center;
+  @include font-14-b($grey-1);
+}
+
+.inputWrapper {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 42px;
+  padding: $space-8 $space-16;
+  border: 1px solid $grey-3;
+  background-color: $white;
+  @include font-14-b($grey-1);
+}
+
+.input {
+  box-sizing: border-box;
+  padding: 0;
+  border: none;
+  outline: none;
+  max-width: 50%;
+  font-weight: bold;
+  text-align: center;
+  background: transparent;
+  @include font-14-b($grey-1);
+}
+
+.symbol {
+  @include font-14-b($grey-1);
+}
+
+.info-text {
+  @include font-16-b($grey-1);
+}
+
+.range-container {
+  width: 270px;
+  position: relative;
+  margin-top: $space-32;
+  --_height: 3px;
+  --_thumb-size: 30px;
+}
+
+.range-input {
+  position: absolute;
+  width: 100%;
+  height: var(--_height);
+  top: 0px;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  border-radius: 2px;
+  background: $grey-3;
+  cursor: pointer;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  pointer-events: all;
+  -webkit-appearance: none;
+  width: var(--_thumb-size);
+  height: var(--_thumb-size);
+  cursor: pointer;
+  background-color: $white;
+  border-radius: 50%;
+  border: 1px solid $grey-3;
+  z-index: 3;
+}
+
+input[type="range"]::-moz-range-thumb {
+  pointer-events: all;
+  width: var(--_thumb-size);
+  height: var(--_thumb-size);
+  border-radius: 0;
+  border: 0 none;
+  background-color: var(--green);
+  -webkit-appearance: none;
+}
+
+.track-wrapper {
+  position: relative;
+  z-index: 3;
+  height: var(--_height);
+  display: grid;
+  align-items: center;
+
+  .track {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 5px;
+    background-color: $grey-3;
+  }
+
+  .range-between {
+    position: absolute;
+    z-index: 2;
+    left: 0%;
+    right: 0%;
+    top: 0;
+    bottom: 0;
+    border-radius: 5px;
+    background-color: $blue-1;
+  }
+
+  .thumb {
+    position: absolute;
+    z-index: 3;
+    width: var(--_thumb-size);
+    height: var(--_thumb-size);
+    cursor: pointer;
+    pointer-events: all;
+    background-color: $white;
+    border-radius: 50%;
+    border: 1px solid $grey-3;
+    transition: box-shadow 0.3s ease-in-out;
+
+    &::before {
+      content: "";
+      width: 44px;
+      height: 44px;
+      pointer-events: none;
+      position: absolute;
+      left: 0;
+      top: 0;
+      background-color: $blue-1;
+      border-radius: inherit;
+      opacity: 0;
+    }
+  }
+  .thumb-left {
+    left: 0;
+    transform: translate(calc(var(--_thumb-size) / -2), 0px);
+  }
+
+  .thumb-right {
+    right: 0;
+    transform: translate(calc(var(--_thumb-size) / 2), 0px);
+  }
+}
