@@ -1,67 +1,45 @@
-import classNames from "classnames";
+import { forwardRef } from "react";
 import styles from "./Breadcrumb.module.scss";
 import Icon from "./Icon";
 
-type Props = {
-  href: string;
-  text: string;
-  className?: string;
-  iconClassName?: string;
-  isLast?: boolean;
+type BreadcrumbItem = {
+	href: string;
+	isLast?: boolean;
+	text: string;
 };
 
-const BreadcrumbItem = ({
-  className,
-  iconClassName,
-  isLast,
-  href,
-  text,
-}: Props) => {
-  return (
-    <li
-      className={classNames(className, styles.item)}
-      area-current={isLast ? "page" : undefined}
-    >
-      <a href={href}>{text}</a>
-      {!isLast && (
-        <Icon
-          className={classNames(iconClassName, styles.icon)}
-          icon="functional.arrowrightDefaultBlack"
-        />
-      )}
-    </li>
-  );
+const BreadcrumbItem = ({ href, isLast, text }: BreadcrumbItem) => (
+	<li className={styles.item} area-current={isLast ? "page" : undefined}>
+		<a href={href}>{text}</a>
+
+		{!isLast && (
+			<Icon className={styles.icon} icon="functional.arrowrightDefaultBlack" />
+		)}
+	</li>
+);
+
+type Props = React.HTMLAttributes<HTMLElement> & {
+	breadcrumbs?: {
+		href: string;
+		text: string;
+	}[];
 };
 
-type Breadcrumbs = {
-  href: string;
-  text: string;
-}[];
-
-type BreadcrumbProps = {
-  className?: string;
-  breadcrumbs: Breadcrumbs;
-};
-
-const Breadcrumb = ({ breadcrumbs, className }: BreadcrumbProps) => {
-  if (!breadcrumbs) {
-    return null;
-  }
-
-  return (
-    <nav aria-label="breadcrumb">
-      <ol className={className}>
-        {breadcrumbs?.map((item, index) => (
-          <BreadcrumbItem
-            key={index}
-            href={item.href ?? ""}
-            text={item.text ?? ""}
-            isLast={index === breadcrumbs.length - 1}
-          />
-        ))}
-      </ol>
-    </nav>
-  );
-};
+const Breadcrumb = forwardRef<HTMLElement, Props>(
+	({ breadcrumbs, ...props }, ref) => (
+		<nav ref={ref} aria-label="breadcrumb" {...props}>
+			<ol className={styles.list}>
+				{breadcrumbs?.map((item, index) => (
+					<BreadcrumbItem
+						key={item.href + item.text}
+						href={item.href}
+						text={item.text}
+						isLast={index === breadcrumbs.length - 1}
+					/>
+				))}
+			</ol>
+		</nav>
+	),
+);
 
 export default Breadcrumb;
