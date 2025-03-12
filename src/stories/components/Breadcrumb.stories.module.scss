@@ -1,0 +1,8 @@
+@use "@/index.module.scss" as *;
+
+.text {
+  @media (max-width: 767px) {
+    position: relative;
+    top: 120px;
+  }
+}

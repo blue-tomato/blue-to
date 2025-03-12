@@ -5,31 +5,59 @@ import Icon from "./Icon";
 type Props = {
   href: string;
   text: string;
+  className?: string;
+  iconClassName?: string;
+  isLast?: boolean;
 };
 
-const BreadcrumbItem = ({ href, text }: Props) => {
+const BreadcrumbItem = ({
+  className,
+  iconClassName,
+  isLast,
+  href,
+  text,
+}: Props) => {
   return (
-    <li className="breadcrumb-item" area-current="page">
+    <li
+      className={classNames(className, styles.item)}
+      area-current={isLast ? "page" : undefined}
+    >
       <a href={href}>{text}</a>
-      <Icon icon="functional.arrowrightDefaultBlack" />
+      {!isLast && (
+        <Icon
+          className={classNames(iconClassName, styles.icon)}
+          icon="functional.arrowrightDefaultBlack"
+        />
+      )}
     </li>
   );
 };
 
-const testBreadcrumbData = [
-  { href: "blue-tomato.com", text: "Home" },
-  { href: "blue-tomato.com/test", text: "Library" },
-  { href: "blue-tomato.com/test/123", text: "Data" },
-  { href: "blue-tomato.com/test/123/456", text: "Streetwear" },
-  { href: "blue-tomato.com/test/123/456/789", text: "Shoes" },
-];
+type Breadcrumbs = {
+  href: string;
+  text: string;
+}[];
 
-const Breadcrumb = () => {
+type BreadcrumbProps = {
+  className?: string;
+  breadcrumbs: Breadcrumbs;
+};
+
+const Breadcrumb = ({ breadcrumbs, className }: BreadcrumbProps) => {
+  if (!breadcrumbs) {
+    return null;
+  }
+
   return (
     <nav aria-label="breadcrumb">
-      <ol className="breadcrumb">
-        {testBreadcrumbData.map((item, index) => (
-          <BreadcrumbItem key={index} href={item.href} text={item.text} />
+      <ol className={className}>
+        {breadcrumbs?.map((item, index) => (
+          <BreadcrumbItem
+            key={index}
+            href={item.href ?? ""}
+            text={item.text ?? ""}
+            isLast={index === breadcrumbs.length - 1}
+          />
         ))}
       </ol>
     </nav>

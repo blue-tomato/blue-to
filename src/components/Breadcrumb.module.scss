@@ -1,0 +1,33 @@
+@use "@/index.module.scss" as *;
+
+ol {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  gap: $space-8;
+}
+
+.item {
+  display: flex;
+  gap: $space-8;
+  align-items: center;
+
+  > a {
+    text-decoration: none;
+    @include font-12-sb($grey-1);
+
+    @media (min-width: 768px) {
+      @include font-14-sb($grey-1);
+    }
+  }
+}
+
+.icon {
+  width: $space-4;
+  height: $space-8;
+
+  @media (min-width: 768px) {
+    width: 6px;
+    height: 10px;
+  }
+}
