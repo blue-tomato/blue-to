@@ -4,19 +4,23 @@ ol {
   display: flex;
   flex-wrap: wrap;
   padding: 0;
-  gap: $space-8;
+  row-gap: 0;
+  column-gap: $space-8;
 }
 
 .item {
   display: flex;
-  gap: $space-8;
+  row-gap: 0;
+  column-gap: $space-8;
   align-items: center;
 
   > a {
     text-decoration: none;
+    padding: $space-8 0;
     @include font-12-sb($grey-1);
 
     @media (min-width: 768px) {
+      padding: 10px 0;
       @include font-14-sb($grey-1);
     }
   }
