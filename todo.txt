@@ -1,3 +1,4 @@
+add normalize to storybook
 storybook branden
 logos increase gap 48px
 check font boldness
