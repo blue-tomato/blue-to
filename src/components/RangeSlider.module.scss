@@ -148,6 +148,7 @@ input[type="range"]::-moz-range-thumb {
       opacity: 0;
     }
   }
+
   .thumb-left {
     left: 0;
     transform: translate(calc(var(--_thumb-size) / -2), 0px);
