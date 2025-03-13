@@ -1,0 +1,8 @@
+@use "@/index.module.scss" as *;
+
+.wrapper {
+  @media (max-width: 768px) {
+    position: relative;
+    top: 500px;
+  }
+}

@@ -1,17 +1,19 @@
 import Button from "@/components/Button";
 import styles from "./Pagination.module.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 type PaginationProps = {
-  totalPagesCount: number;
   totalItemsCount: number;
   itemsCountPerPage: number;
+  shouldShowProgressBar?: boolean;
+  shouldShowInfoText?: boolean;
 };
 
 const Pagination = ({
-  totalPagesCount,
   totalItemsCount,
   itemsCountPerPage,
+  shouldShowInfoText,
+  shouldShowProgressBar,
 }: PaginationProps) => {
   const currentPageSearchParam = new URLSearchParams(
     window.location.search
@@ -20,6 +22,8 @@ const Pagination = ({
   const [page, setPage] = useState(
     currentPageSearchParam ? parseInt(currentPageSearchParam) : 1
   );
+
+  const totalPagesCount = Math.ceil(totalItemsCount / itemsCountPerPage);
 
   const handleNavigation = (page: number) => {
     setPage(page);
@@ -30,6 +34,7 @@ const Pagination = ({
       "",
       `${window.location.pathname}?${newUrlSearchParams.toString()}`
     );
+    window.scrollTo(0, 0);
   };
 
   const navigateToNext = () => {
@@ -44,19 +49,33 @@ const Pagination = ({
     }
   };
 
-  const itemsVisibleOnPage = page * itemsCountPerPage;
+  const handleKeyUp = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "ArrowRight") {
+      navigateToNext();
+    } else if (event.key === "ArrowLeft") {
+      navigateToPrevious();
+    }
+  };
+
+  const itemsSeen = page * itemsCountPerPage;
+  const itemsVisibleOnPage =
+    itemsSeen > totalItemsCount ? totalItemsCount : itemsSeen;
 
   return (
-    <div className={styles.wrapper}>
-      <p className={styles.infoText}>
-        {`you saw ${itemsVisibleOnPage} from ${totalItemsCount}`}
-      </p>
-      <div className={styles.progressBar}>
-        <div
-          className={styles.progress}
-          style={{ width: `${(page / totalPagesCount) * 100}%` }}
-        ></div>
-      </div>
+    <div className={styles.wrapper} onKeyUp={handleKeyUp} tabIndex={0}>
+      {shouldShowInfoText ? (
+        <p className={styles.infoText}>
+          {`you saw ${itemsVisibleOnPage} from ${totalItemsCount}`}
+        </p>
+      ) : null}
+      {shouldShowProgressBar ? (
+        <div className={styles.progressBar}>
+          <div
+            className={styles.progress}
+            style={{ width: `${(page / totalPagesCount) * 100}%` }}
+          ></div>
+        </div>
+      ) : null}
       <nav aria-label="pagination" className={styles.buttonsContainer}>
         <Button
           icon="functional.arrowleftDefaultWhite"

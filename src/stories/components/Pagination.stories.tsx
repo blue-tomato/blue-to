@@ -1,13 +1,13 @@
 import { Pagination } from "@/components";
 import type { StoryMeta } from "@/types";
+import styles from "./Pagination.stories.module.scss";
 
 const Docs: StoryMeta<typeof Pagination> = {
   title: "BLUETO/components/Pagination",
   component: Pagination,
   args: {
-    totalPagesCount: 20,
-    totalItemsCount: 380,
-    itemsCountPerPage: 20,
+    totalItemsCount: 20,
+    itemsCountPerPage: 8,
   },
   parameters: {
     links: {
@@ -19,24 +19,25 @@ const Docs: StoryMeta<typeof Pagination> = {
 
 const Default: StoryMeta<typeof Pagination> = {
   render: (props) => (
-    <div style={{ position: "relative", top: "500px" }}>
+    <div className={styles.wrapper}>
       <Pagination {...props}></Pagination>
     </div>
   ),
 };
 
-const MiddlePage: StoryMeta<typeof Pagination> = {
+const Extended: StoryMeta<typeof Pagination> = {
   args: {
-    totalPagesCount: 20,
-    totalItemsCount: 380,
+    totalItemsCount: 379,
     itemsCountPerPage: 20,
+    shouldShowInfoText: true,
+    shouldShowProgressBar: true,
   },
   render: (props) => (
-    <div style={{ position: "relative", top: "500px" }}>
+    <div className={styles.wrapper}>
       <Pagination {...props}></Pagination>
     </div>
   ),
 };
 
 export default Docs;
-export { Default, MiddlePage };
+export { Default, Extended };
