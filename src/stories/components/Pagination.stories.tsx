@@ -5,8 +5,9 @@ const Docs: StoryMeta<typeof Pagination> = {
   title: "BLUETO/components/Pagination",
   component: Pagination,
   args: {
-    page: 1,
-    totalPage: 10,
+    totalPagesCount: 20,
+    totalItemsCount: 380,
+    itemsCountPerPage: 20,
   },
   parameters: {
     links: {
@@ -26,7 +27,9 @@ const Default: StoryMeta<typeof Pagination> = {
 
 const MiddlePage: StoryMeta<typeof Pagination> = {
   args: {
-    page: 5,
+    totalPagesCount: 20,
+    totalItemsCount: 380,
+    itemsCountPerPage: 20,
   },
   render: (props) => (
     <div style={{ position: "relative", top: "500px" }}>

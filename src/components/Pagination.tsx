@@ -1,21 +1,60 @@
 import Button from "@/components/Button";
 import styles from "./Pagination.module.scss";
+import { useState } from "react";
 
 type PaginationProps = {
-  page: number;
-  setPage: (page: number) => void;
-  totalPage: number;
+  totalPagesCount: number;
+  totalItemsCount: number;
+  itemsCountPerPage: number;
 };
 
-const Pagination = ({ page, setPage, totalPage }: PaginationProps) => {
+const Pagination = ({
+  totalPagesCount,
+  totalItemsCount,
+  itemsCountPerPage,
+}: PaginationProps) => {
+  const currentPageSearchParam = new URLSearchParams(
+    window.location.search
+  ).get("page");
+
+  const [page, setPage] = useState(
+    currentPageSearchParam ? parseInt(currentPageSearchParam) : 1
+  );
+
+  const handleNavigation = (page: number) => {
+    setPage(page);
+    const newUrlSearchParams = new URLSearchParams(window.location.search);
+    newUrlSearchParams.set("page", page.toString());
+    window.history.pushState(
+      {},
+      "",
+      `${window.location.pathname}?${newUrlSearchParams.toString()}`
+    );
+  };
+
+  const navigateToNext = () => {
+    if (page < totalPagesCount) {
+      handleNavigation(page + 1);
+    }
+  };
+
+  const navigateToPrevious = () => {
+    if (page > 1) {
+      handleNavigation(page - 1);
+    }
+  };
+
+  const itemsVisibleOnPage = page * itemsCountPerPage;
+
   return (
     <div className={styles.wrapper}>
-      <p className={styles.infoText}>{`you saw 10 from 200 products`}</p>
-      {/* <p>{`you saw ${productsCount} from ${totalProductsCount}`}</p> */}
+      <p className={styles.infoText}>
+        {`you saw ${itemsVisibleOnPage} from ${totalItemsCount}`}
+      </p>
       <div className={styles.progressBar}>
         <div
           className={styles.progress}
-          style={{ width: `${(page / totalPage) * 100}%` }}
+          style={{ width: `${(page / totalPagesCount) * 100}%` }}
         ></div>
       </div>
       <nav aria-label="pagination" className={styles.buttonsContainer}>
@@ -24,17 +63,17 @@ const Pagination = ({ page, setPage, totalPage }: PaginationProps) => {
           variant="secondary"
           disabled={page === 1}
           className={styles.button}
-          onClick={() => console.log("previous")}
+          onClick={navigateToPrevious}
         ></Button>
         <span className={styles.pageNumberText}>
-          {`page ${page} from ${totalPage}`}
+          {`page ${page} from ${totalPagesCount}`}
         </span>
         <Button
           icon="functional.arrowrightDefaultWhite"
           variant="secondary"
-          disabled={page === totalPage}
+          disabled={page === totalPagesCount}
           className={styles.button}
-          onClick={() => console.log("next")}
+          onClick={navigateToNext}
         ></Button>
       </nav>
     </div>
