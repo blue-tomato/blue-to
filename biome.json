@@ -12,7 +12,8 @@
 			"all": true,
 			"a11y": {
 				"useAltText": "off",
-				"useButtonType": "off"
+				"useButtonType": "off",
+				"useKeyWithClickEvents": "off"
 			},
 			"correctness": {
 				"noNodejsModules": "off"
