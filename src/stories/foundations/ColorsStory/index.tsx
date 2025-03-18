@@ -147,9 +147,15 @@ const ColorsStory = () => (
 		</div>
 
 		<div className={styles.row}>
+			<ColorTile color="#c1d301" name="$lemon-lime-2" />
+			<ColorTile color="#e9f84e" name="$lemon-lime-3" />
+		</div>
+
+		<div className={styles.row}>
 			<ColorTile color="#8f8f8f" name="$grey-2" />
 			<ColorTile color="#cccccc" name="$grey-3" />
 		</div>
+
 	</div>
 );
 
