@@ -1,3 +1,5 @@
+look into pagination
+fix ranger slider
 add normalize to storybook
 storybook branden
 logos increase gap 48px
