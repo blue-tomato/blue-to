@@ -2,7 +2,9 @@ add Icon-Support-BellBlack and Icon-Support-BellFilled
 size button with icon
 button icons left or right
 look into pagination
+  make it flexible
 fix ranger slider
+add tooltip
 add normalize to storybook
 storybook branden
 logos increase gap 48px
