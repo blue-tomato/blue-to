@@ -1,0 +1,76 @@
+@use "@/index.module.scss" as *;
+
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-16;
+}
+
+.info-text {
+  @include font-12-sb($grey-2);
+  margin: 0;
+
+  @media (min-width: 768px) {
+    @include font-14-sb($grey-2);
+  }
+}
+
+.progress-bar {
+  width: 240px;
+  height: 3px;
+  background-color: $grey-3;
+  border-radius: 1px;
+  margin-bottom: $space-8;
+
+  @media (min-width: 768px) {
+    width: 320px;
+  }
+}
+
+.progress {
+  background-color: $blue-1;
+  height: 3px;
+}
+
+.page-number-text {
+  @include font-12-b($grey-1);
+
+  @media (min-width: 768px) {
+    @include font-14-b($grey-1);
+  }
+}
+
+.buttons-container {
+  display: flex;
+  align-items: center;
+  gap: $space-16;
+
+  @media (min-width: 768px) {
+    gap: $space-24;
+  }
+}
+
+.button {
+  position: relative;
+  width: 42px;
+  height: $space-32;
+  min-height: $space-32;
+  justify-content: center;
+  padding: 0;
+
+  & > img {
+    height: $space-16;
+  }
+
+  // to expand the clickable area
+  &::after {
+    content: "";
+    width: 44px;
+    height: 44px;
+    position: absolute;
+    top: -20%;
+    left: 0;
+  }
+}
