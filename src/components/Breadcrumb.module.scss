@@ -26,6 +26,10 @@
 
       @include font-14-sb($grey-1);
     }
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 }
 

@@ -1,4 +1,5 @@
 import amazonpay from "./amazonpay.svg";
+import amazonpaydefault from "./amazonpaydefault.svg";
 import americanexpress from "./americanexpress.svg";
 import bancaires from "./bancaires.svg";
 import bancaires2 from "./bancaires2.svg";
@@ -18,6 +19,7 @@ import maestro from "./maestro.svg";
 import mastercard from "./mastercard.svg";
 import mastercardsecure from "./mastercardsecure.svg";
 import paypal from "./paypal.svg";
+import paypaldefault from "./paypaldefault.svg";
 import paypalexpress from "./paypalexpress.svg";
 import prepaid from "./prepaid.svg";
 import sofort from "./sofort.svg";
@@ -27,6 +29,7 @@ import visa from "./visa.svg";
 
 const payment = {
 	amazonpay,
+	amazonpaydefault,
 	americanexpress,
 	bancaires2,
 	bancaires,
@@ -45,6 +48,7 @@ const payment = {
 	maestro,
 	mastercardsecure,
 	mastercard,
+	paypaldefault,
 	paypalexpress,
 	paypal,
 	prepaid,
