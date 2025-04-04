@@ -8,6 +8,8 @@ const Docs: StoryMeta<typeof SizeButton> = {
 		<div className={styles.wrapper}>
 			<SizeButton {...props} />
 			<SizeButton {...props} />
+			<SizeButton  {...props} />
+
 		</div>
 	),
 	args: {
@@ -25,5 +27,16 @@ const Docs: StoryMeta<typeof SizeButton> = {
 
 const Default: StoryMeta<typeof SizeButton> = {};
 
+const WithIconRight: StoryMeta<typeof SizeButton> = {
+  args: {
+    withIconRight: true,
+  },
+};
+
+const WithIconLeft: StoryMeta<typeof SizeButton> = {
+  args: {
+    WithIconLeft: true,
+  },
+};
 export default Docs;
-export { Default };
+export { Default , WithIconRight, WithIconLeft};

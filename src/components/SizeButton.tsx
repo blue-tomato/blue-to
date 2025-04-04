@@ -6,10 +6,12 @@ import styles from "./SizeButton.module.scss";
 type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 	active?: boolean;
 	disabled?: boolean;
+	withIconRight?: boolean;
+	WithIconLeft?: boolean;
 };
 
 const SizeButton = forwardRef<HTMLButtonElement, Props>(
-	({ active = false, className, disabled = false, ...props }, ref) => (
+	({ active = false, className, disabled = false, WithIconLeft = false, withIconRight = false, ...props }, ref) => (
 		<Button
 			ref={ref}
 			className={classNames(
@@ -20,6 +22,8 @@ const SizeButton = forwardRef<HTMLButtonElement, Props>(
 				disabled && styles.disabled,
 			)}
 			disabled={disabled}
+			iconRight={withIconRight ? "support.bellBlack" : undefined}
+			iconLeft={WithIconLeft ? "support.bellBlack" : undefined}
 			{...props}
 		/>
 	),

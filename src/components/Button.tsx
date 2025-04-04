@@ -5,7 +5,8 @@ import Icon from "./Icon";
 
 type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 	disabled?: boolean;
-	icon?: React.ComponentProps<typeof Icon>["icon"];
+	iconLeft?: React.ComponentProps<typeof Icon>["icon"];
+	iconRight?: React.ComponentProps<typeof Icon>["icon"];
 	loading?: boolean;
 	variant?:
 		| "primary"
@@ -21,7 +22,8 @@ const Button = forwardRef<HTMLButtonElement, Props>(
 			children,
 			className,
 			disabled = false,
-			icon,
+			iconLeft,
+			iconRight,
 			loading = false,
 			variant = "primary",
 			...props
@@ -48,8 +50,9 @@ const Button = forwardRef<HTMLButtonElement, Props>(
 					icon="functional.spinnerFilledWhite"
 				/>
 			)}
-			{icon && <Icon className={styles.icon} icon={icon} />}
+			{iconLeft && <Icon className={styles.icon} icon={iconLeft} />}
 			{children}
+			{iconRight && <Icon className={styles.icon} icon={iconRight} />}
 		</button>
 	),
 );

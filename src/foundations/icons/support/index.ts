@@ -1,6 +1,7 @@
 import arrowscribbleBlack from "./arrowscribble-black.svg";
 import avatarBlue from "./avatar-blue.svg";
 import bellBlack from "./bell-black.svg";
+import bellFilledBlack from "./bellfilled-black.svg";
 import benefitBlack from "./benefit-black.svg";
 import bestpriceBlack from "./bestprice-black.svg";
 import bundleGreen from "./bundle-green.svg";
@@ -78,6 +79,7 @@ const support = {
 	arrowscribbleBlack,
 	avatarBlue,
 	bellBlack,
+	bellFilledBlack,
 	benefitBlack,
 	bestpriceBlack,
 	bundleGreen,
