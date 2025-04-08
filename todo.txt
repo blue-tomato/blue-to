@@ -4,7 +4,6 @@ fix ranger slider
 add tooltip
 add normalize to storybook
 storybook branden
-logos increase gap 48px
 check font boldness
 left align fonts
 create 2 lines for fonts

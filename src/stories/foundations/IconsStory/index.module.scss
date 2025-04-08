@@ -4,9 +4,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 32px;
-  padding: 32px;
-  font-family: Open Sans, Helvetica, Arial, sans-serif;
+  gap: $space-48;
+  padding: $space-32;
+  font-family:
+    Open Sans,
+    Helvetica,
+    Arial,
+    sans-serif;
 }
 
 .icons-wrapper {

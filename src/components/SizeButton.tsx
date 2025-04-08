@@ -24,6 +24,7 @@ const SizeButton = forwardRef<HTMLButtonElement, Props>(
 			disabled={disabled}
 			iconRight={withIconRight ? "support.bellBlack" : undefined}
 			iconLeft={WithIconLeft ? "support.bellBlack" : undefined}
+			iconClassName={styles.icon}
 			{...props}
 		/>
 	),
