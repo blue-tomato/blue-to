@@ -8,14 +8,18 @@ const Docs: StoryMeta<typeof SizeButton> = {
 		<div className={styles.wrapper}>
 			<SizeButton {...props} />
 			<SizeButton {...props} />
-			<SizeButton  {...props} />
-
 		</div>
 	),
 	args: {
 		active: false,
 		children: "46",
 		disabled: false,
+		iconLeft: undefined,
+		iconRight: undefined,
+	},
+	argTypes: {
+		iconLeft: { control: "text" },
+		iconRight: { control: "text" },
 	},
 	parameters: {
 		links: {
@@ -27,16 +31,17 @@ const Docs: StoryMeta<typeof SizeButton> = {
 
 const Default: StoryMeta<typeof SizeButton> = {};
 
-const WithIconRight: StoryMeta<typeof SizeButton> = {
-  args: {
-    withIconRight: true,
-  },
+const WithIconLeft: StoryMeta<typeof SizeButton> = {
+	args: {
+		iconLeft: "support.bellBlack",
+	},
 };
 
-const WithIconLeft: StoryMeta<typeof SizeButton> = {
-  args: {
-    WithIconLeft: true,
-  },
+const WithIconRight: StoryMeta<typeof SizeButton> = {
+	args: {
+		iconRight: "support.bellBlack",
+	},
 };
+
 export default Docs;
-export { Default , WithIconRight, WithIconLeft};
+export { Default, WithIconLeft, WithIconRight };

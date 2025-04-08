@@ -46,6 +46,10 @@
   color: $grey-2;
 }
 
+.icon-disabled {
+  background: unset;
+}
+
 .icon {
-  width: $space-16;
+  max-width: $space-16;
 }
