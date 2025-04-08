@@ -3,9 +3,12 @@ import { forwardRef } from "react";
 import styles from "./Button.module.scss";
 import Icon from "./Icon";
 
+type IconProp = React.ComponentProps<typeof Icon>["icon"] | React.ReactElement;
+
 type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 	disabled?: boolean;
-	icon?: React.ComponentProps<typeof Icon>["icon"];
+	iconLeft?: IconProp;
+	iconRight?: IconProp;
 	loading?: boolean;
 	variant?:
 		| "primary"
@@ -21,7 +24,8 @@ const Button = forwardRef<HTMLButtonElement, Props>(
 			children,
 			className,
 			disabled = false,
-			icon,
+			iconLeft,
+			iconRight,
 			loading = false,
 			variant = "primary",
 			...props
@@ -48,8 +52,17 @@ const Button = forwardRef<HTMLButtonElement, Props>(
 					icon="functional.spinnerFilledWhite"
 				/>
 			)}
-			{icon && <Icon className={styles.icon} icon={icon} />}
+			{iconLeft && typeof iconLeft === "string" ? (
+				<Icon className={styles.icon} icon={iconLeft} />
+			) : (
+				iconLeft
+			)}
 			{children}
+			{iconRight && typeof iconRight === "string" ? (
+				<Icon className={styles.icon} icon={iconRight} />
+			) : (
+				iconRight
+			)}
 		</button>
 	),
 );

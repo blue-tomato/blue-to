@@ -23,7 +23,14 @@
 			},
 			"style": {
 				"noDefaultExport": "off",
-				"useBlockStatements": "off"
+				"useBlockStatements": "off",
+				"useFilenamingConvention": {
+					"level": "error",
+					"options": {
+						"filenameCases": ["camelCase", "export", "PascalCase"],
+						"requireAscii": true
+					}
+				}
 			}
 		}
 	},
