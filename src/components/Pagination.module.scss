@@ -66,5 +66,9 @@
 
 
 .main-text {
-  @include font-14-b;
+  @include font-12-b;
+
+  @media (min-width: 768px) {
+    @include font-14-b;
+  }
 }
