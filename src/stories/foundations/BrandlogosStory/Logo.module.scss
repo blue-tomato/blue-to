@@ -4,6 +4,12 @@
   width: 256px;
   padding: $space-16;
   border-radius: $space-16;
+
+  & img {
+    max-height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
 }
 
 .light {

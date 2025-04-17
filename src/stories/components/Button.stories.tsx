@@ -8,12 +8,14 @@ const Docs: StoryMeta<typeof Button> = {
 	args: {
 		children: "Button",
 		disabled: false,
-		icon: undefined,
+		iconLeft: undefined,
+		iconRight: undefined,
 		loading: false,
 		variant: "primary",
 	},
 	argTypes: {
-		icon: { control: "text" },
+		iconLeft: { control: "text" },
+		iconRight: { control: "text" },
 	},
 	parameters: {
 		links: {
@@ -25,9 +27,15 @@ const Docs: StoryMeta<typeof Button> = {
 
 const Default: StoryMeta<typeof Button> = {};
 
-const WithIcon: StoryMeta<typeof Button> = {
+const WithIconLeft: StoryMeta<typeof Button> = {
 	args: {
-		icon: "flag.at",
+		iconLeft: "flag.at",
+	},
+};
+
+const WithIconRight: StoryMeta<typeof Button> = {
+	args: {
+		iconRight: "flag.de",
 	},
 };
 
@@ -43,4 +51,4 @@ const WithLongText: StoryMeta<typeof Button> = {
 };
 
 export default Docs;
-export { Default, WithIcon, WithLongText };
+export { Default, WithIconLeft, WithIconRight, WithLongText };

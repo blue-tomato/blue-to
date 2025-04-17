@@ -1,102 +1,63 @@
 import Button from "@/components/Button";
+import { forwardRef } from "react";
 import styles from "./Pagination.module.scss";
-import { useState, useEffect } from "react";
 
-type PaginationProps = {
-  totalItemsCount: number;
-  itemsCountPerPage: number;
-  shouldShowProgressBar?: boolean;
-  shouldShowInfoText?: boolean;
+type Props = {
+	disableNextButton?: boolean;
+	disablePreviousButton?: boolean;
+	infoText?: React.ReactNode;
+	mainText?: React.ReactNode;
+	onNextButtonClick?: () => void;
+	onPreviousButtonClick?: () => void;
+	progressBar?: number;
 };
 
-const Pagination = ({
-  totalItemsCount,
-  itemsCountPerPage,
-  shouldShowInfoText,
-  shouldShowProgressBar,
-}: PaginationProps) => {
-  const currentPageSearchParam = new URLSearchParams(
-    window.location.search
-  ).get("page");
-
-  const [page, setPage] = useState(
-    currentPageSearchParam ? parseInt(currentPageSearchParam) : 1
-  );
-
-  const totalPagesCount = Math.ceil(totalItemsCount / itemsCountPerPage);
-
-  const handleNavigation = (page: number) => {
-    setPage(page);
-    const newUrlSearchParams = new URLSearchParams(window.location.search);
-    newUrlSearchParams.set("page", page.toString());
-    window.history.pushState(
-      {},
-      "",
-      `${window.location.pathname}?${newUrlSearchParams.toString()}`
-    );
-    window.scrollTo(0, 0);
-  };
-
-  const navigateToNext = () => {
-    if (page < totalPagesCount) {
-      handleNavigation(page + 1);
-    }
-  };
-
-  const navigateToPrevious = () => {
-    if (page > 1) {
-      handleNavigation(page - 1);
-    }
-  };
-
-  const handleKeyUp = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === "ArrowRight") {
-      navigateToNext();
-    } else if (event.key === "ArrowLeft") {
-      navigateToPrevious();
-    }
-  };
-
-  const itemsSeen = page * itemsCountPerPage;
-  const itemsVisibleOnPage =
-    itemsSeen > totalItemsCount ? totalItemsCount : itemsSeen;
-
-  return (
-    <div className={styles.wrapper} onKeyUp={handleKeyUp} tabIndex={0}>
-      {shouldShowInfoText ? (
-        <p className={styles.infoText}>
-          {`you saw ${itemsVisibleOnPage} from ${totalItemsCount}`}
-        </p>
-      ) : null}
-      {shouldShowProgressBar ? (
-        <div className={styles.progressBar}>
-          <div
-            className={styles.progress}
-            style={{ width: `${(page / totalPagesCount) * 100}%` }}
-          ></div>
-        </div>
-      ) : null}
-      <nav aria-label="pagination" className={styles.buttonsContainer}>
-        <Button
-          icon="functional.arrowleftDefaultWhite"
-          variant="secondary"
-          disabled={page === 1}
-          className={styles.button}
-          onClick={navigateToPrevious}
-        ></Button>
-        <span className={styles.pageNumberText}>
-          {`page ${page} from ${totalPagesCount}`}
-        </span>
-        <Button
-          icon="functional.arrowrightDefaultWhite"
-          variant="secondary"
-          disabled={page === totalPagesCount}
-          className={styles.button}
-          onClick={navigateToNext}
-        ></Button>
-      </nav>
-    </div>
-  );
-};
+const Pagination = forwardRef<HTMLDivElement, Props>(
+	(
+		{
+			disableNextButton = false,
+			disablePreviousButton = false,
+			infoText,
+			mainText,
+			onNextButtonClick,
+			onPreviousButtonClick,
+			progressBar,
+		},
+		ref,
+	) => (
+		<div ref={ref} className={styles.wrapper}>
+			{infoText && <div className={styles.infoText}>{infoText}</div>}
+			{progressBar !== undefined && (
+				<div className={styles.progressBar}>
+					<div
+						className={styles.progress}
+						style={{ width: `${progressBar * 100}%` }}
+					/>
+				</div>
+			)}
+			<nav aria-label="Pagination" className={styles.buttonsContainer}>
+				<Button
+					className={styles.button}
+					disabled={disablePreviousButton}
+					iconLeft="functional.arrowleftDefaultWhite"
+					onClick={() => onNextButtonClick?.()}
+					variant="secondary"
+				/>
+				{mainText && (
+					<span aria-current="page" className={styles.mainText}>
+						{mainText}
+					</span>
+				)}
+				<Button
+					className={styles.button}
+					disabled={disableNextButton}
+					iconLeft="functional.arrowrightDefaultWhite"
+					onClick={() => onPreviousButtonClick?.()}
+					variant="secondary"
+				/>
+			</nav>
+		</div>
+	),
+);
 
 export default Pagination;

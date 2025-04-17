@@ -1,7 +1,7 @@
 @use "@/index.module.scss" as *;
 
 .wrapper {
-  position: relative;
+  width: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,7 +10,6 @@
 
 .info-text {
   @include font-12-sb($grey-2);
-  margin: 0;
 
   @media (min-width: 768px) {
     @include font-14-sb($grey-2);
@@ -22,7 +21,7 @@
   height: 3px;
   background-color: $grey-3;
   border-radius: 1px;
-  margin-bottom: $space-8;
+  margin-bottom: 12px;
 
   @media (min-width: 768px) {
     width: 320px;
@@ -31,15 +30,7 @@
 
 .progress {
   background-color: $blue-1;
-  height: 3px;
-}
-
-.page-number-text {
-  @include font-12-b($grey-1);
-
-  @media (min-width: 768px) {
-    @include font-14-b($grey-1);
-  }
+  height: 100%;
 }
 
 .buttons-container {
@@ -64,13 +55,20 @@
     height: $space-16;
   }
 
-  // to expand the clickable area
+  // To expand the clickable area
   &::after {
     content: "";
     width: 44px;
     height: 44px;
     position: absolute;
-    top: -20%;
-    left: 0;
+  }
+}
+
+
+.main-text {
+  @include font-12-b;
+
+  @media (min-width: 768px) {
+    @include font-14-b;
   }
 }

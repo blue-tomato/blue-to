@@ -14,6 +14,12 @@ const Docs: StoryMeta<typeof SizeButton> = {
 		active: false,
 		children: "46",
 		disabled: false,
+		iconLeft: undefined,
+		iconRight: undefined,
+	},
+	argTypes: {
+		iconLeft: { control: "text" },
+		iconRight: { control: "text" },
 	},
 	parameters: {
 		links: {
@@ -25,5 +31,17 @@ const Docs: StoryMeta<typeof SizeButton> = {
 
 const Default: StoryMeta<typeof SizeButton> = {};
 
+const WithIconLeft: StoryMeta<typeof SizeButton> = {
+	args: {
+		iconLeft: "support.bellBlack",
+	},
+};
+
+const WithIconRight: StoryMeta<typeof SizeButton> = {
+	args: {
+		iconRight: "support.bellBlack",
+	},
+};
+
 export default Docs;
-export { Default };
+export { Default, WithIconLeft, WithIconRight };

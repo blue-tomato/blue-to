@@ -7,9 +7,6 @@ const Docs: StoryMeta<typeof Icon> = {
 	args: {
 		icon: "flag.at",
 	},
-	argTypes: {
-		icon: { control: "text" },
-	},
 	parameters: {
 		links: {
 			confluence: "AQBCHg",
