@@ -1,5 +1,3 @@
-look into pagination
-  make it flexible
 fix ranger slider
 add tooltip
 add normalize to storybook
