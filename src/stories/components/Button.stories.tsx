@@ -46,7 +46,7 @@ const WithLongText: StoryMeta<typeof Button> = {
 		</div>
 	),
 	args: {
-		children: "Button long text",
+		children: "Lorem ipsum dolor sit amet",
 	},
 };
 
