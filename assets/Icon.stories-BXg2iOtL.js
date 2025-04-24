@@ -1,1 +1,0 @@
-import{I as o}from"./SizeButton-YU6_FbgZ.js";import"./index-DUPTz3cJ.js";import"./index-RYns6xqu.js";const e={title:"BLUETO/components/Icon",component:o,args:{icon:"flag.at"},parameters:{links:{confluence:"AQBCHg",figma:"4BjT8a6YN5icL5bpEfsszx/Foundation?node-id=3-6"}}},s={},c=["Default"];export{s as Default,c as __namedExportsOrder,e as default};
