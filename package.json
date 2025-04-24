@@ -1,6 +1,6 @@
 {
 	"name": "@blue-tomato/blueto",
-	"version": "0.3.3",
+	"version": "0.3.4",
 	"license": "EUPL-1.2",
 	"description": "🪐 BLUETO - the design system of Blue Tomato",
 	"homepage": "https://blueto.blue-tomato.com",
@@ -17,6 +17,7 @@
 		"classnames": "^2.5.1",
 		"es-toolkit": "^1.27.0",
 		"modern-normalize": "^2.0.0",
+		"react-tooltip": "^5.28.1",
 		"type-fest": "^4.28.0"
 	},
 	"devDependencies": {

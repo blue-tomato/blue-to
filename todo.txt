@@ -1,8 +1,0 @@
-fix ranger slider
-add tooltip
-add normalize to storybook
-storybook branden
-check font boldness
-left align fonts
-create 2 lines for fonts
-add category and size button
