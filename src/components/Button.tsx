@@ -50,9 +50,11 @@ const Button = forwardRef<HTMLButtonElement, Props>(
 				<Icon
 					className={classNames(styles.icon, styles.loading)}
 					icon={
-						variant === "primary" || variant === "secondary"
-							? "functional.spinnerFilledWhite"
-							: "functional.spinnerFilledBlack"
+						variant === "secondary-white" ||
+						variant === "tertiary" ||
+						variant === "tertiary-transparent"
+							? "functional.spinnerFilledBlack"
+							: "functional.spinnerFilledWhite"
 					}
 				/>
 			)}
