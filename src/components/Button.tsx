@@ -49,7 +49,11 @@ const Button = forwardRef<HTMLButtonElement, Props>(
 			{loading && (
 				<Icon
 					className={classNames(styles.icon, styles.loading)}
-					icon="functional.spinnerFilledWhite"
+					icon={
+						variant === "primary" || variant === "secondary"
+							? "functional.spinnerFilledWhite"
+							: "functional.spinnerFilledBlack"
+					}
 				/>
 			)}
 			{iconLeft && typeof iconLeft === "string" ? (
