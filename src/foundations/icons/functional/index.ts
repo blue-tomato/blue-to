@@ -108,11 +108,13 @@ import smileyneutralOutlineBlue from "./smileyneutral-outline-blue.svg";
 import smileyunhappyFilledBlue from "./smileyunhappy-filled-blue.svg";
 import smileyunhappyOutlineBlue from "./smileyunhappy-outline-blue.svg";
 import sortDefaultBlack from "./sort-default-black.svg";
+import spinnerFilledBlack from "./spinner-filled-black.svg";
 import spinnerFilledWhite from "./spinner-filled-white.svg";
 import starFilledBlack from "./star-filled-black.svg";
 import starFilledBlue from "./star-filled-blue.svg";
 import starOutlineBlack from "./star-outline-black.svg";
 import starhalfFilledBlue from "./starhalf-filled-blue.svg";
+import supportFilledBlue from "./support-filled-blue.svg";
 import thumbsupDefaultBlack from "./thumbsup-default-black.svg";
 import thumbsupDefaultBlue from "./thumbsup-default-blue.svg";
 import uploadDefaultBlack from "./upload-default-black.svg";
@@ -233,11 +235,13 @@ const functional = {
 	smileyunhappyFilledBlue,
 	smileyunhappyOutlineBlue,
 	sortDefaultBlack,
+	spinnerFilledBlack,
 	spinnerFilledWhite,
 	starFilledBlack,
 	starFilledBlue,
 	starhalfFilledBlue,
 	starOutlineBlack,
+	supportFilledBlue,
 	thumbsupDefaultBlack,
 	thumbsupDefaultBlue,
 	uploadDefaultBlack,
