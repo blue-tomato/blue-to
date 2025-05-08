@@ -1,0 +1,13 @@
+@use "@/index.module.scss" as *;
+
+
+
+.background-yellow {
+    background-color: $yellow-3;
+    @include font-12($grey-1);
+  }
+  
+.background-black{
+    background-color: $white;
+    @include font-12($white);
+  }
