@@ -27,10 +27,12 @@ const Docs: StoryMeta<typeof Tooltip> = {
 
 const Default: StoryMeta<typeof Tooltip> = {};
 
-const WithLongText: StoryMeta<typeof Button> = {
+const WithLongText: StoryMeta<typeof Tooltip> = {
 	args: {
 		children:
 			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+		type: "yellow",
+		maxWidth: "375px",
 	},
 };
 
