@@ -24,6 +24,7 @@ const Default: StoryMeta<typeof Pagination> = {};
 const Minimum: StoryMeta<typeof Pagination> = {
 	args: {
 		infoText: undefined,
+		mainText: undefined,
 		progressBar: undefined,
 	},
 };

@@ -68,43 +68,34 @@ const InputWrapper = ({
 	);
 };
 
-interface Props extends React.HTMLAttributes<HTMLDivElement> {
-	symbol?: string;
-	min: number;
-	max: number;
-	autoFocusOnDesktop?: boolean;
-	range?: string;
-	placeholderMin?: string;
+type Props = React.HTMLAttributes<HTMLDivElement> & {
+	max?: number;
+	min?: number;
 	placeholderMax?: string;
-	tempValue?: number;
-	count?: number;
-	handleCountUpdate?: () => number;
-}
+	placeholderMin?: string;
+	rangeText?: React.ReactNode;
+	resultText?: React.ReactNode;
+	symbol?: string;
+};
 
 const RangeSlider = forwardRef<HTMLDivElement, Props>(
 	(
 		{
-			autoFocusOnDesktop,
 			className,
-			count,
-			handleCountUpdate,
-			max,
-			min,
-			placeholderMin,
+			max = 100,
+			min = 0,
 			placeholderMax,
-			range,
+			placeholderMin,
+			rangeText = "-",
+			resultText,
 			symbol,
-			tempValue,
 			...props
 		},
 		ref,
 	) => {
-		const isTouch = typeof window !== "undefined" && "ontouchstart" in window;
-		const inputRef = useRef<HTMLInputElement>(null);
 		const trackRef = useRef<HTMLDivElement>(null);
 		const thumbLeftRef = useRef<HTMLDivElement>(null);
 		const thumbRightRef = useRef<HTMLDivElement>(null);
-		const [newCount, setNewCount] = useState(count);
 
 		const [minValue, setMinValue] = useState(min);
 		const [maxValue, setMaxValue] = useState(max);
@@ -115,16 +106,12 @@ const RangeSlider = forwardRef<HTMLDivElement, Props>(
 		const minValueRef = useRef(min);
 		const maxValueRef = useRef(max);
 
+		// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 		useEffect(() => {
 			updateThumbs();
 		}, [minValue, maxValue]);
 
-		useEffect(() => {
-			if (autoFocusOnDesktop && !isTouch) {
-				inputRef.current?.focus();
-			}
-		}, [autoFocusOnDesktop, isTouch]);
-
+		// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 		const updateThumbs = useCallback(() => {
 			const minPercent = ((minValueRef.current - min) / (max - min)) * 100;
 			const maxPercent = ((maxValueRef.current - min) / (max - min)) * 100;
@@ -144,13 +131,11 @@ const RangeSlider = forwardRef<HTMLDivElement, Props>(
 		const handleMinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 			const newValue = clamp(Number(e.target.value), min, maxValue - 1);
 			setMinValue(newValue);
-			count && setNewCount(handleCountUpdate?.());
 		};
 
 		const handleMaxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 			const newValue = clamp(Number(e.target.value), minValue + 1, max);
 			setMaxValue(newValue);
-			count && setNewCount(handleCountUpdate?.());
 		};
 
 		const handleMouseMove = useCallback(
@@ -178,9 +163,8 @@ const RangeSlider = forwardRef<HTMLDivElement, Props>(
 						thumbRightRef.current.style.right = `${100 - ((clampedValue - min) / (max - min)) * 100}%`;
 					}
 				}
-				count && setNewCount(handleCountUpdate?.());
 			},
-			[activeThumb, min, max, count, handleCountUpdate],
+			[activeThumb, min, max],
 		);
 
 		const handleMouseUp = () => {
@@ -206,6 +190,7 @@ const RangeSlider = forwardRef<HTMLDivElement, Props>(
 				document.removeEventListener("mousemove", handleMouseMove);
 				document.removeEventListener("mouseup", handleMouseUp);
 			};
+			// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 		}, [activeThumb, handleMouseMove, handleMouseUp]);
 
 		const handleMinBlur = (value: number) => {
@@ -213,7 +198,6 @@ const RangeSlider = forwardRef<HTMLDivElement, Props>(
 			minValueRef.current = newValue;
 			setMinValue(newValue);
 			updateThumbs();
-			count && setNewCount(handleCountUpdate?.());
 		};
 
 		const handleMaxBlur = (value: number) => {
@@ -221,7 +205,6 @@ const RangeSlider = forwardRef<HTMLDivElement, Props>(
 			maxValueRef.current = newValue;
 			setMaxValue(newValue);
 			updateThumbs();
-			count && setNewCount(handleCountUpdate?.());
 		};
 
 		return (
@@ -241,7 +224,7 @@ const RangeSlider = forwardRef<HTMLDivElement, Props>(
 						onBlur={handleMinBlur}
 						aria-label="min"
 					/>
-					<span>{range ?? ""}</span>
+					<span>{rangeText}</span>
 					<InputWrapper
 						symbol={symbol}
 						value={maxValue}
@@ -294,10 +277,8 @@ const RangeSlider = forwardRef<HTMLDivElement, Props>(
 						/>
 					</div>
 				</div>
-				{newCount ? (
-					<p className={classNames(className, styles.infoText)}>
-						{`${newCount} Produkte`}
-					</p>
+				{resultText ? (
+					<p className={classNames(className, styles.infoText)}>{resultText}</p>
 				) : null}
 			</div>
 		);

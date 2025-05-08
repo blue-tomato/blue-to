@@ -5,13 +5,12 @@ const Docs: StoryMeta<typeof RangeSlider> = {
 	title: "BLUETO/components/RangeSlider",
 	component: RangeSlider,
 	args: {
-		count: 230,
-		handleCountUpdate: () => 160,
 		max: 200,
 		min: 10,
 		placeholderMax: "max",
 		placeholderMin: "min",
-		range: "to",
+		rangeText: "to",
+		resultText: "120 Products",
 		symbol: "€",
 	},
 	parameters: {
@@ -24,15 +23,17 @@ const Docs: StoryMeta<typeof RangeSlider> = {
 
 const Default: StoryMeta<typeof RangeSlider> = {};
 
-const Empty: StoryMeta<typeof RangeSlider> = {
+const Minimum: StoryMeta<typeof RangeSlider> = {
 	args: {
-		count: undefined,
-		handleCountUpdate: undefined,
 		max: undefined,
 		min: undefined,
+		placeholderMax: undefined,
+		placeholderMin: undefined,
+		rangeText: undefined,
+		resultText: undefined,
 		symbol: undefined,
 	},
 };
 
 export default Docs;
-export { Default, Empty };
+export { Default, Minimum };
