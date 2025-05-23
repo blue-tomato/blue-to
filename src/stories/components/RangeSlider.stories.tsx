@@ -1,9 +1,23 @@
 import { RangeSlider } from "@/components";
 import type { StoryMeta } from "@/types";
+import { useState } from "react";
 
 const Docs: StoryMeta<typeof RangeSlider> = {
 	title: "BLUETO/components/RangeSlider",
-	component: RangeSlider,
+	render: (props: React.ComponentProps<typeof RangeSlider>) => {
+		const [maxValue, setMaxValue] = useState(props.max);
+		const [minValue, setMinValue] = useState(props.min);
+
+		return (
+			<RangeSlider
+				maxValue={maxValue}
+				minValue={minValue}
+				onMaxValueChange={setMaxValue}
+				onMinValueChange={setMinValue}
+				{...props}
+			/>
+		);
+	},
 	args: {
 		max: 200,
 		min: 10,

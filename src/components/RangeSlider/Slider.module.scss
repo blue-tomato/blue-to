@@ -1,0 +1,63 @@
+@use "@/index.module.scss" as *;
+
+.wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: $space-32;
+  width: 100%;
+}
+
+.track {
+  position: absolute;
+  height: 3px;
+  width: calc(100% - $space-32);
+  background: $grey-3;
+  border-radius: $space-64;
+}
+
+.track-selected {
+  position: absolute;
+  height: 100%;
+  background: $blue-1;
+}
+
+.range {
+  position: absolute;
+  appearance: none;
+  margin: 0;
+  height: 0px;
+  width: 100%;
+  background: transparent;
+  pointer-events: none;
+
+  @mixin thumb {
+    appearance: none;
+    height: 30px;
+    width: 30px;
+    background: $white;
+    border: 1px solid $grey-3;
+    border-radius: $space-64;
+    cursor: grab;
+    pointer-events: auto;
+  }
+
+  &::-webkit-slider-thumb {
+    @include thumb;
+    height: 32px;
+    width: 32px;
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+
+  &::-moz-range-thumb {
+    @include thumb;
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+}
