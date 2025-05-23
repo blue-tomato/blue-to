@@ -1,8 +1,9 @@
 import Button from "@/components/Button";
+import classNames from "classnames";
 import { forwardRef } from "react";
 import styles from "./Pagination.module.scss";
 
-type Props = {
+type Props = React.HTMLAttributes<HTMLDivElement> & {
 	disableNextButton?: boolean;
 	disablePreviousButton?: boolean;
 	infoText?: React.ReactNode;
@@ -15,6 +16,7 @@ type Props = {
 const Pagination = forwardRef<HTMLDivElement, Props>(
 	(
 		{
+			className,
 			disableNextButton = false,
 			disablePreviousButton = false,
 			infoText,
@@ -25,7 +27,7 @@ const Pagination = forwardRef<HTMLDivElement, Props>(
 		},
 		ref,
 	) => (
-		<div ref={ref} className={styles.wrapper}>
+		<div ref={ref} className={classNames(className, styles.wrapper)}>
 			{infoText && <div className={styles.infoText}>{infoText}</div>}
 			{progressBar !== undefined && (
 				<div className={styles.progressBar}>
