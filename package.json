@@ -1,7 +1,7 @@
 {
 	"name": "@blue-tomato/blueto",
 	"type": "module",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"license": "EUPL-1.2",
 	"description": "🪐 BLUETO - the design system of Blue Tomato",
 	"homepage": "https://blueto.blue-tomato.com",
@@ -11,7 +11,9 @@
 	},
 	"main": "lib/blueto.js",
 	"types": "lib/index.d.ts",
-	"files": ["lib"],
+	"files": [
+		"lib"
+	],
 	"scripts": {
 		"build": "vite build",
 		"build:storybook": "storybook build",
@@ -19,6 +21,7 @@
 		"lint": "biome check --write"
 	},
 	"dependencies": {
+		"@blue-tomato/blueto": "^1.0.1",
 		"classnames": "^2.5.1",
 		"es-toolkit": "^1.38.0",
 		"modern-normalize": "^3.0.1",
