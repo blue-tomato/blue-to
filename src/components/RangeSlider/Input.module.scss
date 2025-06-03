@@ -1,0 +1,32 @@
+@use "@/index.module.scss" as *;
+
+.wrapper {
+  padding: 0 $space-16;
+  height: 42px;
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid $grey-3;
+  background-color: $white;
+  cursor: text;
+
+  @include font-14-b($grey-1);
+}
+
+.input {
+  padding: 0;
+  width: 100%;
+  border: none;
+  outline: none;
+  text-align: center;
+  background: transparent;
+
+  @include font-14-b($grey-1);
+}
+
+.symbol {
+  margin-left: $space-4;
+
+  @include font-14-b($grey-1);
+}

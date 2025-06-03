@@ -23,7 +23,7 @@ const Checkbox = forwardRef<HTMLDivElement, Props>(
 							className={classNames(
 								inputProps?.className,
 								styles.input,
-								error && styles.inputError,
+								!!error && styles.inputError,
 							)}
 							type={inputProps?.type ?? "checkbox"}
 						/>
