@@ -13,13 +13,6 @@ const config: UserConfig = {
 			"@": resolve(__dirname, "src"),
 		},
 	},
-	build: {
-		outDir: "lib",
-		lib: {
-			entry: resolve(__dirname, "src/index.ts"),
-			formats: ["es"],
-		},
-	},
 };
 
 export default defineConfig(
@@ -44,6 +37,13 @@ export default defineConfig(
 				],
 			}),
 		],
+		build: {
+			outDir: "lib",
+			lib: {
+				entry: resolve(__dirname, "src/index.ts"),
+				formats: ["es"],
+			},
+		},
 	}),
 );
 
