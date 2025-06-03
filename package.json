@@ -1,7 +1,7 @@
 {
 	"name": "@blue-tomato/blueto",
 	"type": "module",
-	"version": "1.0.3",
+	"version": "1.1.0",
 	"license": "EUPL-1.2",
 	"description": "🪐 BLUETO - the design system of Blue Tomato",
 	"homepage": "https://blueto.blue-tomato.com",
@@ -11,9 +11,7 @@
 	},
 	"main": "lib/blueto.js",
 	"types": "lib/index.d.ts",
-	"files": [
-		"lib"
-	],
+	"files": ["lib"],
 	"scripts": {
 		"build": "vite build",
 		"build:storybook": "storybook build",
