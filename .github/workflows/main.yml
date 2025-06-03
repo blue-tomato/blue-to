@@ -19,6 +19,8 @@ jobs:
           node-version: 20
       - name: NPM install
         run: npm ci
+      - name: Build
+        run: npm run build
       - name: Build Storybook
         run: npm run build:storybook
       - name: Deploy Storybook

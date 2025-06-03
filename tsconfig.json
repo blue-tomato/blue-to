@@ -1,9 +1,9 @@
 {
 	"compilerOptions": {
-		"target": "ESNext",
-		"module": "ESNext",
+		"target": "esnext",
+		"module": "esnext",
 		"lib": ["ESNext", "DOM"],
-		"moduleResolution": "Node",
+		"moduleResolution": "bundler",
 		"strict": true,
 		"resolveJsonModule": true,
 		"isolatedModules": true,
@@ -14,10 +14,9 @@
 		"noImplicitReturns": true,
 		"skipLibCheck": true,
 		"jsx": "react-jsx",
-		"baseUrl": "./src",
 		"paths": {
-			"@/*": ["./*"]
+			"@/*": ["./src/*"]
 		}
 	},
-	"include": ["src", "index.d.ts"]
+	"include": ["src/**/*", "index.d.ts"]
 }

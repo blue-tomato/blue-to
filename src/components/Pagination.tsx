@@ -1,6 +1,6 @@
-import Button from "@/components/Button";
 import classNames from "classnames";
 import { forwardRef } from "react";
+import Button from "./Button";
 import styles from "./Pagination.module.scss";
 
 type Props = React.HTMLAttributes<HTMLDivElement> & {
