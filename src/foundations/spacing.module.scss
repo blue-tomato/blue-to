@@ -1,0 +1,19 @@
+$space-4: 4px;
+$space-8: 8px;
+$space-16: 16px;
+$space-24: 24px;
+$space-32: 32px;
+$space-40: 40px;
+$space-48: 48px;
+$space-64: 64px;
+
+:export {
+  space4: $space-4;
+  space8: $space-8;
+  space16: $space-16;
+  space24: $space-24;
+  space32: $space-32;
+  space40: $space-40;
+  space48: $space-48;
+  space64: $space-64;
+}
