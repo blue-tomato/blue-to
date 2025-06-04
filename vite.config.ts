@@ -2,6 +2,7 @@ import { resolve } from "node:path";
 import libAssetsPlugin from "@laynezh/vite-plugin-lib-assets";
 import dts from "unplugin-dts/vite";
 import { type UserConfig, defineConfig, mergeConfig } from "vite";
+import { externalizeDeps } from "vite-plugin-externalize-deps";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 import tsconfigPaths from "vite-tsconfig-paths";
 
@@ -17,8 +18,16 @@ const config: UserConfig = {
 
 export default defineConfig(
 	mergeConfig(config, {
+		build: {
+			lib: {
+				entry: resolve(__dirname, "src/index.ts"),
+				formats: ["es"],
+			},
+			outDir: "lib",
+		},
 		plugins: [
 			dts({ bundleTypes: true }),
+			externalizeDeps({ deps: false }),
 			libAssetsPlugin(),
 			viteStaticCopy({
 				structured: true,
@@ -38,13 +47,6 @@ export default defineConfig(
 				],
 			}),
 		],
-		build: {
-			lib: {
-				entry: resolve(__dirname, "src/index.ts"),
-				formats: ["es"],
-			},
-			outDir: "lib",
-		},
 	}),
 );
 
