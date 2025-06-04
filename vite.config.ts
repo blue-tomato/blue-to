@@ -28,7 +28,15 @@ export default defineConfig(
 		plugins: [
 			dts({ bundleTypes: true }),
 			externalizeDeps({ deps: false }),
-			libAssetsPlugin(),
+			libAssetsPlugin({
+				outputPath: (_url, resourcePath) =>
+					`assets/${resourcePath
+						.replace(resolve(__dirname, "src"), "")
+						.slice(1)
+						.split("/")
+						.slice(0, -1)
+						.join("/")}`,
+			}),
 			viteStaticCopy({
 				structured: true,
 				targets: [
