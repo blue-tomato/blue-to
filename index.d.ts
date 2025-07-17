@@ -392,10 +392,9 @@ export declare const Pagination: ForwardRefExoticComponent<HTMLAttributes<HTMLDi
 } & RefAttributes<HTMLDivElement>>;
 
 declare type Props = {
-    children?: React.ReactNode;
     anchorSelect?: string;
-    maxWidth?: string;
-    type?: "yellow" | "black";
+    children?: React.ReactNode;
+    variant?: "black" | "yellow";
 };
 
 export declare const RadioButton: ForwardRefExoticComponent<HTMLAttributes<HTMLDivElement> & {
