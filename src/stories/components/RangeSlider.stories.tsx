@@ -1,6 +1,6 @@
+import { useState } from "react";
 import { RangeSlider } from "@/components";
 import type { StoryMeta } from "@/types";
-import { useState } from "react";
 
 const Docs: StoryMeta<typeof RangeSlider> = {
 	title: "BLUETO/components/RangeSlider",

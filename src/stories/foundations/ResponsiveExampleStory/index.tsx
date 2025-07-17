@@ -8,7 +8,7 @@ const ResponsiveExampleStory = () => (
 
 		<div className={styles.wrap}>
 			{Array.from({ length: 10 }).map((_, index) => (
-				// biome-ignore lint/suspicious/noArrayIndexKey:
+				// biome-ignore lint/suspicious/noArrayIndexKey: Static array
 				<div key={index} className={styles.item}>
 					Item {index}
 				</div>
@@ -19,7 +19,7 @@ const ResponsiveExampleStory = () => (
 
 		<div className={styles.slider}>
 			{Array.from({ length: 10 }).map((_, index) => (
-				// biome-ignore lint/suspicious/noArrayIndexKey:
+				// biome-ignore lint/suspicious/noArrayIndexKey: Static array
 				<div key={index} className={styles.item}>
 					Item {index}
 				</div>

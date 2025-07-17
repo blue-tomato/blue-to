@@ -1,8 +1,8 @@
-import icons from "@/foundations/icons";
 import classNames from "classnames";
 import { get } from "es-toolkit/compat";
 import { forwardRef } from "react";
 import type { Paths } from "type-fest";
+import icons from "@/foundations/icons";
 import styles from "./Icon.module.scss";
 
 type IconPath = Exclude<

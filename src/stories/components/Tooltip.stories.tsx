@@ -1,6 +1,6 @@
+import { useId } from "react";
 import { Button, Tooltip } from "@/components";
 import type { StoryMeta } from "@/types";
-import { useId } from "react";
 
 const Docs: StoryMeta<typeof Tooltip> = {
 	title: "BLUETO/components/Tooltip",

@@ -1,5 +1,17 @@
 {
-	"$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+	"$schema": "https://biomejs.dev/schemas/2.1.1/schema.json",
+	"assist": {
+		"actions": {
+			"recommended": true,
+			"source": {
+				"recommended": true,
+				"organizeImports": "on"
+			}
+		}
+	},
+	"files": {
+		"includes": ["**/*", "!lib/*"]
+	},
 	"formatter": {
 		"enabled": true
 	},
@@ -9,7 +21,7 @@
 	"linter": {
 		"enabled": true,
 		"rules": {
-			"all": true,
+			"recommended": true,
 			"a11y": {
 				"useAltText": "off",
 				"useButtonType": "off",
@@ -37,8 +49,5 @@
 				"noReactSpecificProps": "off"
 			}
 		}
-	},
-	"organizeImports": {
-		"enabled": true
 	}
 }

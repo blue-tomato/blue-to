@@ -11,7 +11,9 @@
 	},
 	"main": "lib/blueto.js",
 	"types": "lib/index.d.ts",
-	"files": ["lib"],
+	"files": [
+		"lib"
+	],
 	"scripts": {
 		"build": "vite build",
 		"build:analyze": "analyze",
@@ -26,7 +28,7 @@
 		"type-fest": "^4.41.0"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^1.9.4",
+		"@biomejs/biome": "^2.1.1",
 		"@laynezh/vite-plugin-lib-assets": "^1.1.0",
 		"@microsoft/api-extractor": "^7.52.8",
 		"@storybook/addon-essentials": "^8.6.14",
