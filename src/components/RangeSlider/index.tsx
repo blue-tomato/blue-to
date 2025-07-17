@@ -1,8 +1,8 @@
 import classNames from "classnames";
 import { forwardRef } from "react";
 import Input from "./Input";
-import Slider from "./Slider";
 import styles from "./index.module.scss";
+import Slider from "./Slider";
 
 type Props = React.HTMLAttributes<HTMLDivElement> & {
 	max?: number;

@@ -1,6 +1,6 @@
 import brandlogos from "@/foundations/brandlogos";
-import Logo from "./Logo";
 import styles from "./index.module.scss";
+import Logo from "./Logo";
 
 const BrandlogosStory = () => (
 	<div className={styles.wrapper}>

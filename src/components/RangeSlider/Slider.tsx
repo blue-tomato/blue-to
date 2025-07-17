@@ -1,6 +1,6 @@
-import { transformRange } from "@/utils";
 import classNames from "classnames";
 import { useRef } from "react";
+import { transformRange } from "@/utils";
 import styles from "./Slider.module.scss";
 
 type Props = React.HTMLAttributes<HTMLDivElement> & {

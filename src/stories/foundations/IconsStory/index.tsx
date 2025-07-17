@@ -1,5 +1,5 @@
-import icons from "@/foundations/icons";
 import { capitalize } from "es-toolkit";
+import icons from "@/foundations/icons";
 import Icon from "./Icon";
 import styles from "./index.module.scss";
 

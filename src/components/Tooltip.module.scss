@@ -1,13 +1,31 @@
 @use "@/index.module.scss" as *;
 
+// Override react-tooltip styles https://stackoverflow.com/a/74843635
+.wrapper.wrapper.wrapper {
+  .tooltip {
+    max-width: min(100vw, 343px);
+    width: unset;
+    padding: $space-8 $space-16;
+    border-radius: 0;
+    opacity: 1;
+    transition: none;
+  }
 
-
-.background-yellow {
+  .background-yellow {
     background-color: $yellow-3;
+
     @include font-12($grey-1);
   }
-  
-.background-black{
-    background-color: $white;
+
+  .background-black {
+    background-color: $grey-1;
+
     @include font-12($white);
   }
+
+  [class*='react-tooltip__place-top'],
+  [class*='react-tooltip__place-right'],
+  [class*='react-tooltip__place-bottom'] {
+    margin-right: $space-16;
+  }
+}
