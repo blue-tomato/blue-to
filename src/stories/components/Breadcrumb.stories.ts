@@ -7,10 +7,10 @@ const Docs: StoryMeta<typeof Breadcrumb> = {
 	args: {
 		breadcrumbs: [
 			{ href: "https://www.blue-tomato.com/en-AT/men/", text: "Men" },
-			{ href: "blue-tomato.com/test", text: "Patagonia" },
-			{ href: "blue-tomato.com/test/123", text: "Streetwear" },
-			{ href: "blue-tomato.com/test/123/456", text: "T-Shirt" },
-			{ href: "blue-tomato.com/test/123/456/789", text: "New" },
+			{ href: "https://www.blue-tomato.com/test", text: "Patagonia" },
+			{ href: "https://www.blue-tomato.com/test/123", text: "Streetwear" },
+			{ href: "https://www.blue-tomato.com/test/123/456", text: "T-Shirt" },
+			{ href: "https://www.blue-tomato.com/test/123/456/789", text: "New" },
 		],
 	},
 	parameters: {
@@ -27,19 +27,22 @@ const Wrapped: StoryMeta<typeof Breadcrumb> = {
 	args: {
 		breadcrumbs: [
 			{ href: "https://www.blue-tomato.com/en-AT/women/", text: "Women" },
-			{ href: "blue-tomato.com/test", text: "Patagonia" },
-			{ href: "blue-tomato.com/test/1", text: "Snowboard" },
-			{ href: "blue-tomato.com/test/123", text: "Snowboard Shop" },
-			{ href: "blue-tomato.com/test/123", text: "Snowboard Equipment" },
+			{ href: "https://www.blue-tomato.com/test", text: "Patagonia" },
+			{ href: "https://www.blue-tomato.com/test/1", text: "Snowboard" },
+			{ href: "https://www.blue-tomato.com/test/123", text: "Snowboard Shop" },
 			{
-				href: "blue-tomato.com/test/123/456",
+				href: "https://www.blue-tomato.com/test/123",
+				text: "Snowboard Equipment",
+			},
+			{
+				href: "https://www.blue-tomato.com/test/123/456",
 				text: "Avalanche Safety Equipment",
 			},
 			{
-				href: "blue-tomato.com/test/123/456/789",
+				href: "https://www.blue-tomato.com/test/123/456/789",
 				text: "Avalanche Transceivers",
 			},
-			{ href: "blue-tomato.com/test/123/456/789/999", text: "New" },
+			{ href: "https://www.blue-tomato.com/test/123/456/789/999", text: "New" },
 		],
 	},
 };
