@@ -22,6 +22,7 @@ const Tooltip = forwardRef<TooltipRefProps, Props>(
 			const tooltipObserver = new MutationObserver(([{ target }]) => {
 				const tooltip = target as HTMLElement;
 
+				// Only do this for top and bottom placemnets
 				if (
 					!tooltip.classList.contains("react-tooltip__place-top") &&
 					!tooltip.classList.contains("react-tooltip__place-bottom")
@@ -31,8 +32,10 @@ const Tooltip = forwardRef<TooltipRefProps, Props>(
 					return;
 				}
 
+				// Get the left style
 				const left = Number(tooltip.style.left?.slice(0, -2) || 0);
 
+				// Add left margin if the left property is lower than 16px
 				if (left < 16) {
 					tooltip.style.left = "0";
 					tooltip.style.marginLeft = "16px";
