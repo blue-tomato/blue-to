@@ -1,0 +1,44 @@
+@use "@/index.module.scss" as *;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+  max-width: 343px;
+  cursor: text;
+
+  @media (min-width: 768px) {
+    max-width: 570px;
+  }
+}
+
+.labelWrapper {
+  display: flex;
+  gap: $space-4;
+}
+
+.label {
+  @include font-14-b;
+}
+
+.optionalText {
+  @include font-14-b($color: $grey-2);
+}
+
+.input {
+  appearance: none;
+  padding: 0 $space-16;
+  height: 42px;
+  border: 1px solid $grey-3;
+
+  @include font-16;
+
+  &:focus {
+    outline: 0;
+    border-color: $grey-1;
+  }
+
+  &::placeholder {
+    @include font-16($color: $grey-2);
+  }
+}
