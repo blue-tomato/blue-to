@@ -7,4 +7,5 @@ export { default as Pagination } from "./Pagination";
 export { default as RadioButton } from "./RadioButton";
 export { default as RangeSlider } from "./RangeSlider";
 export { default as SizeButton } from "./SizeButton";
+export { default as TextField } from "./TextField";
 export { default as Tooltip } from "./Tooltip";
