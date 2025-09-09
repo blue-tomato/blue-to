@@ -1,0 +1,140 @@
+@use "@/index.module.scss" as *;
+
+
+$cell-height: 66px;
+$color-highlight-light: $grey-4;
+$color-highlight-dark: $grey-3;
+
+.table-wrapper {
+    position: relative;
+    box-sizing: border-box;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    border: 1px solid $grey-3;
+    margin-top: $space-16;
+
+    table {
+        box-sizing: border-box;
+        border-collapse: separate;
+        white-space: wrap;
+        border-spacing: 0;
+        overflow-y: hidden;
+        position: relative;
+        z-index: 1;
+        background-color: $white;
+        width: 100%;
+        table-layout: auto;
+        border: none;
+
+        td,
+        th {
+            box-sizing: border-box;
+            position: relative;
+            width: 105px;
+            min-width: 105px;
+            height: $cell-height;
+            border-bottom: 1px solid $grey-3;
+            padding: $space-8;
+            text-align: center;
+            @include font-12;
+        }
+
+        th {
+            font-weight: bold;
+        }
+
+
+        th:first-child,
+        td:first-child {
+            position: sticky;
+            left: 0;
+            top: 0;
+            width: 133px;
+            min-width: 133px;
+            text-align: left;
+            box-shadow: 2px 2px 4px 0 rgb(51 51 51 / 20%);
+            background-color: $white;
+            border-right: 1px solid $blue-4;
+            z-index: 2;
+        }
+
+        tr:hover>td,
+        tbody tr:hover,
+        th:hover {
+            background-color: $color-highlight-light;
+        }
+
+        //FIXME:
+        tbody tr:first-of-type th {
+            border-bottom: 1px solid $grey-2;
+        }
+
+        tbody tr:last-of-type td {
+            border-bottom: unset;
+        }
+
+        tbody tr:last-of-type th {
+            border-bottom: 1px solid $blue-4;
+        }
+
+        thead tr:hover>th,
+        tbody tr:hover,
+        tbody tr:hover>th {
+            background-color: $color-highlight-light;
+        }
+
+        td:hover:not(:first-child)::after,
+        th:hover:not(:first-child)::after {
+            content: "";
+            position: absolute;
+            background-color: $color-highlight-light;
+            left: 0;
+            top: -5000px;
+            height: 10000px;
+            width: 100%;
+            z-index: -1;
+        }
+
+        tr:hover>td:hover:not(:first-child),
+        tr:hover>th:hover:not(:first-child) {
+            background-color: $color-highlight-dark;
+        }
+
+        th:hover:first-child::after {
+            background-color: unset;
+        }
+    }
+}
+
+.caption-wrapper {
+    box-sizing: border-box;
+    background-color: $grey-1;
+    height: 54px;
+    z-index: 1;
+    position: relative;
+}
+
+.caption-text {
+    box-sizing: border-box;
+    padding: $space-16 $space-8;
+    position: sticky;
+    top: 0;
+    left: 0;
+    float: left;
+    height: 100%;
+    color: $white;
+    @include font-14-b($white);
+
+}
+
+.info-text {
+    margin: $space-8 0;
+    padding-right: $space-16;
+    @include font-10;
+
+    @media (min-width: 768px) {
+        margin: $space-16 0;
+        padding-right: 0;
+    }
+}
