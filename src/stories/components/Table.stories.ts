@@ -1,5 +1,7 @@
 import {Table} from "@/components";
 import type { StoryMeta } from "@/types";
+import styles from "./Table.stories.module.scss";
+
 
 const Docs: StoryMeta<typeof Table> = {
     title: "BLUETO/components/Table",
@@ -31,4 +33,27 @@ const Default: StoryMeta<typeof Table> = {
     },
 };
 
-export { Default };
+  const captionShort = "Snowboardjacke";
+  const headersShort = ["UK Size", "XS", "S", "M"];
+  const rowsShort = [
+    ["Hüfte (cm)", 67, 67, 67],
+    ["Taille (cm)", 80, 95, 80],
+    ["Schrittlänge bei Produkten in Short Ausführung", 77, 77, 77],
+    ["Beinlänge (cm)", 130, 140, 130],
+  ];
+
+  const ShmallTable: StoryMeta<typeof Table> = {
+    // render: (props) => (
+    //   <div className={styles.wrapper}>
+    //     <Table {...props} />
+    //   </div>
+    // ),  
+    args: {
+      caption: captionShort,
+      headers: headersShort,
+      rows: rowsShort,
+    },
+  };
+
+  export { Default };
+export { ShmallTable };

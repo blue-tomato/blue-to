@@ -1,64 +1,71 @@
-
 import styles from "./index.module.scss";
-import { FC, useMemo } from "react";
+import { useMemo, forwardRef, useImperativeHandle } from "react";
 import Caption from "./Caption";
 import TableScrollText from "./TableScrollText";
 import TableWrapper from "./TableWrapper";
 import useTable from "./useTable";
 
-export interface TableProps extends React.HTMLAttributes<HTMLDivElement> {
+export type TableProps = {
   caption: string;
   headers: string[];
   rows: (string | number)[][];
-}
+} & React.HTMLAttributes<HTMLDivElement>;
 
-const Table: FC<TableProps> = ({ caption, headers, rows }) => {
-  const { ref, shouldShowScrollText } = useTable();
+const Table = forwardRef<HTMLDivElement, TableProps>(
+  ({ caption, headers, rows, ...props }, forwardedRef) => {
+    const { ref: internalRef, shouldShowScrollText } = useTable();
 
-  if (!headers || !rows) return null;
+    useImperativeHandle(forwardedRef, () => internalRef.current!, [
+      internalRef,
+    ]);
 
-  const tableHeaders = useMemo(
-    () =>
-      headers.map((header, index) => (
-        <th key={`header-${index}`} scope="col">
-          {header}
-        </th>
-      )),
-    [headers]
-  );
+    if (!headers || !rows) return null;
 
-  const tableRows = useMemo(
-    () =>
-      rows.map((row, rowIndex) => (
-        <tr key={`row-${rowIndex}`} className={styles.row}>
-          {row.map((cell, cellIndex) =>
-            cellIndex === 0 ? (
-              <th key={`cell-${rowIndex}-${cellIndex}`} scope="row">
-                {cell}
-              </th>
-            ) : (
-              <td key={`cell-${rowIndex}-${cellIndex}`}>{cell}</td>
-            )
-          )}
-        </tr>
-      )),
-    [rows]
-  );
+    const tableHeaders = useMemo(
+      () =>
+        headers.map((header, index) => (
+          <th key={`header-${index}`} scope="col">
+            {header}
+          </th>
+        )),
+      [headers]
+    );
 
-  return (
-    <>
-      <TableWrapper className={styles.sizeChartWrapper} data-testid="table" ref={ref}>
-        <table>
-          <Caption testid="table-headline">{caption}</Caption>
-          <thead>
-            <tr>{tableHeaders}</tr>
-          </thead>
-          <tbody>{tableRows}</tbody>
-        </table>
-      </TableWrapper>
-      {shouldShowScrollText && <TableScrollText />}
-    </>
-  );
-};
+    const tableRows = useMemo(
+      () =>
+        rows.map((row, rowIndex) => (
+          <tr key={`row-${rowIndex}`} className={styles.row}>
+            {row.map((cell, cellIndex) =>
+              cellIndex === 0 ? (
+                <th key={`cell-${rowIndex}-${cellIndex}`} scope="row">
+                  {cell}
+                </th>
+              ) : (
+                <td key={`cell-${rowIndex}-${cellIndex}`}>{cell}</td>
+              )
+            )}
+          </tr>
+        )),
+      [rows]
+    );
+
+    return (
+      <>
+        <TableWrapper {...props} ref={internalRef}>
+          <table>
+            <Caption>{caption}</Caption>
+            <thead>
+              <tr>{tableHeaders}</tr>
+            </thead>
+            <tbody>{tableRows}</tbody>
+          </table>
+        </TableWrapper>
+        {shouldShowScrollText ? <TableScrollText /> : null}
+      </>
+    );
+  }
+);
+
+Table.displayName = "Table";
 
 export default Table;
