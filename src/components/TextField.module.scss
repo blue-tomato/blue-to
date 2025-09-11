@@ -25,20 +25,59 @@
   @include font-14-b($color: $grey-2);
 }
 
-.input {
-  appearance: none;
-  padding: 0 $space-16;
-  height: 42px;
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  background-color: $white;
   border: 1px solid $grey-3;
 
-  @include font-16;
-
-  &:focus {
-    outline: 0;
+  &:focus-within {
     border-color: $grey-1;
   }
+}
+
+.inputWrapperError {
+  border: 1px solid $red-1;
+}
+
+.input {
+  appearance: none;
+  margin: 0 $space-16;
+  padding: 0;
+  height: 42px;
+  width: 100%;
+  border: none;
+  outline: none;
+
+  @include font-16;
 
   &::placeholder {
     @include font-16($color: $grey-2);
   }
+}
+
+.icon {
+  height: $space-16;
+  width: $space-16;
+}
+
+.inputIcon {
+  @extend .icon;
+
+  margin-right: $space-16;
+  cursor: pointer;
+}
+
+.helperText {
+  display: flex;
+  align-items: center;
+  gap: $space-4;
+
+  @include font-12;
+}
+
+.errorText {
+  @extend .helperText;
+
+  @include font-12($color: $red-1);
 }
