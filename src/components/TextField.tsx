@@ -4,7 +4,7 @@ import Icon from "./Icon";
 import styles from "./TextField.module.scss";
 import Tooltip from "./Tooltip";
 
-type Props = React.HTMLAttributes<HTMLLabelElement> & {
+type Props = React.InputHTMLAttributes<HTMLInputElement> & {
 	error?: {
 		enable?: boolean;
 		text?: string;
@@ -13,18 +13,30 @@ type Props = React.HTMLAttributes<HTMLLabelElement> & {
 	label?: string;
 	optionalText?: string;
 	placeholder?: string;
+	slots?: {
+		afterInput?: React.ReactNode;
+	};
 	tooltip?: string;
 };
 
 const TextField = forwardRef<HTMLLabelElement, Props>(
 	(
-		{ error, helperText, label, optionalText, placeholder, tooltip, ...props },
+		{
+			error,
+			helperText,
+			label,
+			optionalText,
+			placeholder,
+			slots,
+			tooltip,
+			...props
+		},
 		ref,
 	) => {
 		const tooltipId = useId().slice(1, -1);
 
 		return (
-			<label ref={ref} className={styles.wrapper} {...props}>
+			<label ref={ref} className={styles.wrapper}>
 				<div className={styles.labelWrapper}>
 					{label && <span className={styles.label}>{label}</span>}
 					{optionalText && (
@@ -38,7 +50,13 @@ const TextField = forwardRef<HTMLLabelElement, Props>(
 						error?.enable && styles.inputWrapperError,
 					)}
 				>
-					<input className={styles.input} placeholder={placeholder} />
+					<input
+						className={styles.input}
+						placeholder={placeholder}
+						{...props}
+					/>
+
+					{slots?.afterInput}
 
 					{tooltip && (
 						<>

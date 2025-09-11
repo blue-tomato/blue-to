@@ -15,6 +15,9 @@ const Docs: StoryMeta<typeof TextField> = {
 		placeholder: "Placeholder",
 		tooltip: "Tooltip",
 	},
+	argTypes: {
+		slots: { table: { disable: true } },
+	},
 	parameters: {
 		links: {
 			confluence: "jQDiNQ",
