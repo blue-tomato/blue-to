@@ -14,12 +14,19 @@ $color-highlight-dark: $grey-3;
     border: 1px solid $grey-3;
     margin-top: $space-16;
 
+    &.smallTable {
+        max-width: 359px;
+
+        @media (max-width: 767px) {
+            width: 100%;
+        }
+    }
+
     table {
         box-sizing: border-box;
         border-collapse: separate;
         white-space: wrap;
         border-spacing: 0;
-        overflow-y: hidden;
         position: relative;
         z-index: 1;
         background-color: $white;
@@ -34,16 +41,24 @@ $color-highlight-dark: $grey-3;
             width: 105px;
             min-width: 105px;
             height: $cell-height;
-            border-bottom: 1px solid $grey-3;
             padding: $space-8;
             text-align: center;
             @include font-12;
+            border-bottom: 1px solid $grey-3;
         }
 
         th {
             font-weight: bold;
         }
 
+        thead th {
+            border-bottom: 1px solid $grey-2;
+        }
+
+        tbody tr:last-of-type td,
+        tbody tr:last-of-type th {
+            border-bottom: none;
+        }
 
         th:first-child,
         td:first-child {
@@ -59,33 +74,44 @@ $color-highlight-dark: $grey-3;
             z-index: 2;
         }
 
-        tr:hover>td,
-        tbody tr:hover,
-        th:hover {
-            background-color: $color-highlight-light;
+        &.no-first-column-style {
+
+            th:first-child,
+            td:first-child {
+                position: static;
+                box-shadow: none;
+                border-right: none;
+                width: 105px;
+                min-width: 105px;
+                text-align: center;
+            }
         }
 
-        //FIXME:
-        tbody tr:first-of-type th {
-            border-bottom: 1px solid $grey-2;
+        &.no-shadow {
+
+            th:first-child,
+            td:first-child {
+                box-shadow: none;
+            }
         }
 
-        tbody tr:last-of-type td {
-            border-bottom: unset;
+        &.center-first-column {
+
+            th:first-child,
+            td:first-child {
+                text-align: center;
+            }
         }
 
-        tbody tr:last-of-type th {
-            border-bottom: 1px solid $blue-4;
+        &.normal-first-column-font {
+            tbody th:first-child {
+                font-weight: normal;
+            }
         }
 
-        thead tr:hover>th,
-        tbody tr:hover,
-        tbody tr:hover>th {
-            background-color: $color-highlight-light;
-        }
 
         td:hover:not(:first-child)::after,
-        th:hover:not(:first-child)::after {
+        thead th:hover:not(:first-child)::after {
             content: "";
             position: absolute;
             background-color: $color-highlight-light;
@@ -96,13 +122,19 @@ $color-highlight-dark: $grey-3;
             z-index: -1;
         }
 
-        tr:hover>td:hover:not(:first-child),
-        tr:hover>th:hover:not(:first-child) {
-            background-color: $color-highlight-dark;
+        tbody tr:hover>td,
+        tbody tr:hover>th {
+            background-color: $color-highlight-light;
         }
 
-        th:hover:first-child::after {
-            background-color: unset;
+        thead tr:hover>th {
+            background-color: $color-highlight-light;
+        }
+
+        tbody tr:hover>td:hover,
+        tbody tr:hover>th:hover:not(:first-child),
+        thead tr:hover>th:hover {
+            background-color: $color-highlight-dark;
         }
     }
 }

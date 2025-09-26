@@ -5,16 +5,14 @@ import styles from "./TextField.module.scss";
 import Tooltip from "./Tooltip";
 
 type Props = React.InputHTMLAttributes<HTMLInputElement> & {
-	error?: {
-		enable?: boolean;
-		text?: string;
-	};
+	error?: boolean | string;
 	helperText?: string;
 	label?: string;
 	optionalText?: string;
 	placeholder?: string;
 	slots?: {
 		afterInput?: React.ReactNode;
+		input?: React.ReactNode;
 	};
 	tooltip?: string;
 };
@@ -47,14 +45,16 @@ const TextField = forwardRef<HTMLLabelElement, Props>(
 				<div
 					className={classNames(
 						styles.inputWrapper,
-						error?.enable && styles.inputWrapperError,
+						error && styles.inputWrapperError,
 					)}
 				>
-					<input
-						className={styles.input}
-						placeholder={placeholder}
-						{...props}
-					/>
+					{slots?.input ?? (
+						<input
+							className={styles.input}
+							placeholder={placeholder}
+							{...props}
+						/>
+					)}
 
 					{slots?.afterInput}
 
@@ -78,13 +78,13 @@ const TextField = forwardRef<HTMLLabelElement, Props>(
 						{helperText}
 					</div>
 				)}
-				{error?.enable && error.text && (
+				{error && typeof error === "string" && (
 					<div className={styles.errorText}>
 						<Icon
 							className={styles.icon}
 							icon="functional.attentionFilledRed"
 						/>
-						{error.text}
+						{error}
 					</div>
 				)}
 			</label>
