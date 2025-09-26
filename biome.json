@@ -24,6 +24,7 @@
 		"rules": {
 			"recommended": true,
 			"a11y": {
+				"noLabelWithoutControl": "off",
 				"useAltText": "off",
 				"useButtonType": "off",
 				"useKeyWithClickEvents": "off"

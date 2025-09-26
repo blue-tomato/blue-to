@@ -1,0 +1,18 @@
+@use "@/index.module.scss" as *;
+
+.textarea {
+  appearance: none;
+  margin: 0 $space-16;
+  padding: $space-8 0;
+  height: 170px;
+  width: 100%;
+  border: none;
+  outline: none;
+  resize: none;
+
+  @include font-16;
+
+  &::placeholder {
+    @include font-16($color: $grey-2);
+  }
+}

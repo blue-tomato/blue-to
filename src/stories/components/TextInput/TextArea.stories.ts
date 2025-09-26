@@ -1,20 +1,18 @@
-import { TextField } from "@/components";
+import { TextArea } from "@/components";
 import type { StoryMeta } from "@/types";
 
-const Docs: StoryMeta<typeof TextField> = {
-	title: "BLUETO/components/TextInput/TextField",
-	component: TextField,
+const Docs: StoryMeta<typeof TextArea> = {
+	title: "BLUETO/components/TextInput/TextArea",
+	component: TextArea,
 	args: {
 		error: undefined,
 		helperText: "This is a helper text",
 		label: "Label",
 		optionalText: "(optional)",
 		placeholder: "Placeholder",
-		tooltip: "Tooltip",
 	},
 	argTypes: {
 		error: { control: "text" },
-		slots: { table: { disable: true } },
 	},
 	parameters: {
 		links: {
@@ -24,15 +22,15 @@ const Docs: StoryMeta<typeof TextField> = {
 	},
 };
 
-const Default: StoryMeta<typeof TextField> = {};
+const Default: StoryMeta<typeof TextArea> = {};
 
-const WithError: StoryMeta<typeof TextField> = {
+const WithError: StoryMeta<typeof TextArea> = {
 	args: {
 		error: "This is a error text",
 	},
 };
 
-const WithErrorAndNoText: StoryMeta<typeof TextField> = {
+const WithErrorAndNoText: StoryMeta<typeof TextArea> = {
 	args: {
 		error: true,
 	},
