@@ -194,9 +194,10 @@ lib/                 # Build output (gitignored, published to npm)
 
 Run in this order to fail fast:
 
-1. **Biome linting** must pass (`npm run lint`)
-2. **Project must build** successfully (`npm run build`)
-3. **Storybook must run** without errors (`npm run dev`)
+1. **TypeScript compilation** must succeed with no errors (`npm run typecheck`)
+2. **Biome linting** must pass (`npm run lint`)
+3. **Project must build** successfully (`npm run build`)
+4. **Storybook must run** without errors (`npm run dev`)
 
 ## Version Control
 - **NEVER do ANY git operation without explicit user permission** - This includes: commit, push, stage, unstage, branch operations, merges, rebases, etc.
@@ -233,4 +234,5 @@ Run in this order to fail fast:
 - **Build Analysis**: `npm run build:analyze` (analyze bundle size)
 - **Dev**: `npm run dev` (start Storybook on port 6006)
 - **Lint**: `npm run lint` (run Biome linter with auto-fix)
+- **Typecheck**: `npm run typecheck` (run TypeScript type checking)
 - **Build Storybook**: `npm run build:storybook` (static Storybook build)

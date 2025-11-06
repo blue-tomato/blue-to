@@ -19,7 +19,8 @@
 		"build:analyze": "analyze",
 		"build:storybook": "storybook build",
 		"dev": "storybook dev -p 6006",
-		"lint": "biome check --write"
+		"lint": "biome check --write",
+		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
 		"classnames": "^2.5.1",

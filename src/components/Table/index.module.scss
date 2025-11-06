@@ -1,26 +1,25 @@
 @use "@/index.module.scss" as *;
 
-
 $cell-height: 66px;
 $color-highlight-light: $grey-4;
 $color-highlight-dark: $grey-3;
 
-.table-wrapper {
-    position: relative;
-    box-sizing: border-box;
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
-    border: 1px solid $grey-3;
-    margin-top: $space-16;
+.tableWrapper {
+	position: relative;
+	box-sizing: border-box;
+	overflow-x: auto;
+	overflow-y: hidden;
+	white-space: nowrap;
+	border: 1px solid $grey-3;
+	margin-top: $space-16;
 
-    &.smallTable {
-        max-width: 359px;
+	&.smallTable {
+		max-width: 359px;
 
-        @media (max-width: 767px) {
-            width: 100%;
-        }
-    }
+		@media (max-width: 767px) {
+			width: 100%;
+		}
+	}
 
     table {
         box-sizing: border-box;
@@ -74,7 +73,7 @@ $color-highlight-dark: $grey-3;
             z-index: 2;
         }
 
-        &.no-first-column-style {
+        &.noFirstColumnStyle {
 
             th:first-child,
             td:first-child {
@@ -87,7 +86,7 @@ $color-highlight-dark: $grey-3;
             }
         }
 
-        &.no-shadow {
+        &.noShadow {
 
             th:first-child,
             td:first-child {
@@ -95,7 +94,7 @@ $color-highlight-dark: $grey-3;
             }
         }
 
-        &.center-first-column {
+        &.centerFirstColumn {
 
             th:first-child,
             td:first-child {
@@ -103,7 +102,7 @@ $color-highlight-dark: $grey-3;
             }
         }
 
-        &.normal-first-column-font {
+        &.normalFirstColumnFont {
             tbody th:first-child {
                 font-weight: normal;
             }
@@ -139,34 +138,13 @@ $color-highlight-dark: $grey-3;
     }
 }
 
-.caption-wrapper {
-    box-sizing: border-box;
-    background-color: $grey-1;
-    height: 54px;
-    z-index: 1;
-    position: relative;
-}
+.infoText {
+	margin: $space-8 0;
+	padding-right: $space-16;
+	@include font-10;
 
-.caption-text {
-    box-sizing: border-box;
-    padding: $space-16 $space-8;
-    position: sticky;
-    top: 0;
-    left: 0;
-    float: left;
-    height: 100%;
-    color: $white;
-    @include font-14-b($white);
-
-}
-
-.info-text {
-    margin: $space-8 0;
-    padding-right: $space-16;
-    @include font-10;
-
-    @media (min-width: 768px) {
-        margin: $space-16 0;
-        padding-right: 0;
-    }
+	@media (min-width: 768px) {
+		margin: $space-16 0;
+		padding-right: 0;
+	}
 }

@@ -1,106 +1,117 @@
 import classNames from "classnames";
-import { forwardRef, useImperativeHandle, useMemo } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
 import Caption from "./Caption";
 import styles from "./index.module.scss";
-import TableScrollText from "./TableScrollText";
-import TableWrapper from "./TableWrapper";
-import useTable from "./useTable";
 
-export type TableProps = {
+type Props = {
 	caption?: string;
-	headers: string[];
-	rows: (string | number)[][];
-	isSmall?: boolean;
+	firstColumnFontWeight?: "bold" | "normal";
+	firstColumnTextAlign?: "center" | "left" | "right";
 	hasRowHeaders?: boolean;
+	headers: string[];
+	isSmall?: boolean;
 	noFirstColumnStyle?: boolean;
 	noShadow?: boolean;
-	firstColumnTextAlign?: "left" | "center" | "right";
-	firstColumnFontWeight?: "normal" | "bold";
+	rows: (number | string)[][];
 } & React.HTMLAttributes<HTMLDivElement>;
 
-const Table = forwardRef<HTMLDivElement, TableProps>(
+const getWidth = (el: HTMLElement) => el.getBoundingClientRect().width;
+
+const Table = forwardRef<HTMLDivElement, Props>(
 	(
 		{
 			caption,
-			headers,
-			rows,
-			isSmall,
+			className,
+			firstColumnFontWeight,
+			firstColumnTextAlign,
 			hasRowHeaders = true,
+			headers,
+			isSmall,
 			noFirstColumnStyle,
 			noShadow,
-			firstColumnTextAlign,
-			firstColumnFontWeight,
-			className,
+			rows,
 			...props
 		},
-		forwardedRef,
+		ref,
 	) => {
-		const { ref: internalRef, shouldShowScrollText } = useTable();
+		const [shouldShowScrollText, setShouldShowScrollText] = useState(false);
+		const internalRef = useRef<HTMLDivElement>(null);
 
-		useImperativeHandle(forwardedRef, () => internalRef.current!, [
-			internalRef,
-		]);
+		useEffect(() => {
+			const container = internalRef.current;
+			const table = container?.querySelector("table");
+
+			if (!container || !table) return;
+
+			const handleResize = () => {
+				if (getWidth(container) < getWidth(table)) {
+					setShouldShowScrollText(true);
+				} else {
+					setShouldShowScrollText(false);
+				}
+			};
+
+			handleResize();
+
+			window.addEventListener("resize", handleResize);
+
+			return () => {
+				window.removeEventListener("resize", handleResize);
+			};
+		}, []);
 
 		if (!headers || !rows) return null;
-
-		const tableHeaders = useMemo(
-			() =>
-				headers.map((header, index) => (
-					<th key={`header-${index}`} scope="col">
-						{header}
-					</th>
-				)),
-			[headers],
-		);
-
-		const tableRows = useMemo(
-			() =>
-				rows.map((row, rowIndex) => (
-					<tr key={`row-${rowIndex}`} className={styles.row}>
-						{row.map((cell, cellIndex) =>
-							hasRowHeaders && cellIndex === 0 ? (
-								<th key={`cell-${rowIndex}-${cellIndex}`} scope="row">
-									{cell}
-								</th>
-							) : (
-								<td key={`cell-${rowIndex}-${cellIndex}`}>{cell}</td>
-							),
-						)}
-					</tr>
-				)),
-			[rows, hasRowHeaders],
-		);
 
 		const wrapperClasses = classNames(className, {
 			[styles.smallTable]: isSmall,
 		});
 
 		const tableClasses = classNames({
+			[styles.centerFirstColumn]: firstColumnTextAlign === "center",
 			[styles.noFirstColumnStyle]: noFirstColumnStyle || !hasRowHeaders,
 			[styles.noShadow]: noShadow,
-			[styles.centerFirstColumn]: firstColumnTextAlign === "center",
 			[styles.normalFirstColumnFont]: firstColumnFontWeight === "normal",
 		});
 
 		return (
-			<>
-				<TableWrapper {...props} ref={internalRef} className={wrapperClasses}>
+			<div ref={ref || internalRef} {...props}>
+				<div className={classNames(styles.tableWrapper, wrapperClasses)}>
 					<table className={tableClasses}>
 						{caption && <Caption>{caption}</Caption>}
 						<thead>
-							<tr>{tableHeaders}</tr>
+							<tr>
+								{headers.map((header, index) => (
+									<th key={`header-${index}`} scope="col">
+										{header}
+									</th>
+								))}
+							</tr>
 						</thead>
-						<tbody>{tableRows}</tbody>
+						<tbody>
+							{rows.map((row, rowIndex) => (
+								<tr key={`row-${rowIndex}`} className={styles.row}>
+									{row.map((cell, cellIndex) =>
+										hasRowHeaders && cellIndex === 0 ? (
+											<th key={`cell-${rowIndex}-${cellIndex}`} scope="row">
+												{cell}
+											</th>
+										) : (
+											<td key={`cell-${rowIndex}-${cellIndex}`}>{cell}</td>
+										),
+									)}
+								</tr>
+							))}
+						</tbody>
 					</table>
-				</TableWrapper>
+				</div>
 				{shouldShowScrollText && hasRowHeaders && !noFirstColumnStyle ? (
-					<TableScrollText />
+					<div className={styles.infoText}>
+						Scroll horizontal, um mehr zu sehen
+					</div>
 				) : null}
-			</>
+			</div>
 		);
 	},
 );
-
-Table.displayName = "Table";
 
 export default Table;

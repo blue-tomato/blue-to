@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { forwardRef, type HTMLAttributes } from "react";
-import styles from "./index.module.scss";
+import styles from "./Caption.module.scss";
 
 type Props = HTMLAttributes<HTMLTableCaptionElement>;
 
@@ -15,7 +15,5 @@ const Caption = forwardRef<HTMLTableCaptionElement, Props>(
 		</caption>
 	),
 );
-
-Caption.displayName = "Caption";
 
 export default Caption;

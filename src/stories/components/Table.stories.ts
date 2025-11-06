@@ -1,6 +1,5 @@
 import { Table } from "@/components";
 import type { StoryMeta } from "@/types";
-import styles from "./Table.stories.module.scss";
 
 const Docs: StoryMeta<typeof Table> = {
 	title: "BLUETO/components/Table",
@@ -40,18 +39,14 @@ const rowsShort = [
 	["Beinlänge (cm)", 130, 140, 130],
 ];
 
-const ShmallTable: StoryMeta<typeof Table> = {
-	// render: (props) => (
-	//   <div className={styles.wrapper}>
-	//     <Table {...props} />
-	//   </div>
-	// ),
+const SmallTable: StoryMeta<typeof Table> = {
 	args: {
 		caption: captionShort,
 		headers: headersShort,
+		isSmall: true,
 		rows: rowsShort,
 	},
 };
 
 export { Default };
-export { ShmallTable };
+export { SmallTable };
