@@ -5,6 +5,7 @@ export { default as Checkbox } from "./Checkbox";
 export { default as Icon } from "./Icon";
 export { default as Pagination } from "./Pagination";
 export { default as PasswordField } from "./PasswordField";
+export { default as ProductTile } from "./ProductTile/ProductTile";
 export { default as RadioButton } from "./RadioButton";
 export { default as RangeSlider } from "./RangeSlider";
 export { default as SizeButton } from "./SizeButton";

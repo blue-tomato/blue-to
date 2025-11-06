@@ -1,0 +1,22 @@
+@use "@/index.module.scss" as *;
+
+.swatch {
+    width: $space-24;
+    height: $space-24;
+    border-radius: 50%;
+    border: 1px solid $grey-3;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+
+    &:hover {
+        border-color: $grey-1;
+    }
+}
+
+//TODO: extra div for active state
+
+.active {
+    border: 2px solid $grey-1;
+    transform: scale(1.1);
+}
