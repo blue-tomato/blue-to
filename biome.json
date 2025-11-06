@@ -11,7 +11,7 @@
 		}
 	},
 	"files": {
-		"includes": ["**/*", "!lib/*"]
+		"includes": ["**/*", "!lib/*", "!node_modules/*", "!storybook-static/*"]
 	},
 	"formatter": {
 		"enabled": true

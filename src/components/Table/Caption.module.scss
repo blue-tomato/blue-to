@@ -1,0 +1,21 @@
+@use "@/index.module.scss" as *;
+
+.captionWrapper {
+	box-sizing: border-box;
+	background-color: $grey-1;
+	height: 54px;
+	z-index: 1;
+	position: relative;
+}
+
+.captionText {
+	box-sizing: border-box;
+	padding: $space-16 $space-8;
+	position: sticky;
+	top: 0;
+	left: 0;
+	float: left;
+	height: 100%;
+	color: $white;
+	@include font-14-b($white);
+}

@@ -1,0 +1,28 @@
+@use "@/index.module.scss" as *;
+
+.banner {
+    display: inline-flex;
+    padding: $space-16;
+    min-width: 343px;
+
+    @include font-14-sb($grey-1);
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    margin-right: $space-8;
+    flex-shrink: 0;
+}
+
+.error {
+    background-color: $red-2;
+}
+
+.information {
+    background-color: $yellow-3;
+}
+
+.success {
+    background-color: $green-2;
+}
