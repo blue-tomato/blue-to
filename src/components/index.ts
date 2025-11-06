@@ -3,6 +3,7 @@ export { default as Button } from "./Button";
 export { default as CategoryButton } from "./CategoryButton";
 export { default as Checkbox } from "./Checkbox";
 export { default as Icon } from "./Icon";
+export { default as NotificationBanner } from "./NotificationBanner";
 export { default as Pagination } from "./Pagination";
 export { default as PasswordField } from "./PasswordField";
 export { default as RadioButton } from "./RadioButton";

@@ -1,0 +1,62 @@
+@use "@/index.module.scss" as *;
+
+.container {
+    @media (max-width: 768px) {
+        position: relative;
+        top: 150px;
+    }
+}
+
+.text {
+    @include font-16-b;
+}
+
+
+.description {
+    @include font-14;
+    color: $grey-2;
+    margin-bottom: $space-16;
+    max-width: 450px;
+}
+
+.component {
+    max-width: 450px;
+    border: 1px solid $grey-4;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.content {
+    padding: $space-16 $space-24;
+    background-color: $white;
+}
+
+.title {
+    @include font-16-b;
+    margin: 0 0 $space-16 0;
+}
+
+.item,
+.total {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: $space-8;
+    @include font-14;
+}
+
+.item,
+.total {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: $space-8;
+    @include font-14;
+}
+
+.total {
+    @include font-14-b;
+}
+
+.divider {
+    border: none;
+    border-top: 1px solid $grey-4;
+    margin: $space-16 0;
+}
