@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { forwardRef } from "react";
 import Button from "@/components/Button";
 import Icon from "@/components/Icon";
-import styles from "./ProductTile.module.scss";
+import styles from "./ProductTileVertical.module.scss";
 import Color from "@/components/ProductTile/Color";
 
 type Color = {
@@ -23,7 +23,7 @@ type Flag = {
 	type: "default" | "sale" | "special";
 };
 
-type Props = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+export type Props = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
 	brandName: string;
 	productName: string;
 	price: number;
@@ -38,7 +38,7 @@ type Props = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
 	className?: string;
 };
 
-const ProductTile = forwardRef<HTMLAnchorElement, Props>(
+const ProductTileVertical = forwardRef<HTMLAnchorElement, Props>(
 	(
 		{
 			brandName,
@@ -155,4 +155,4 @@ const ProductTile = forwardRef<HTMLAnchorElement, Props>(
 	},
 );
 
-export default ProductTile;
+export default ProductTileVertical;
