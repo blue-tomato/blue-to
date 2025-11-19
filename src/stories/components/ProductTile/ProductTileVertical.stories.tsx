@@ -15,7 +15,7 @@ const Docs: StoryMeta<typeof ProductTileVertical> = {
 		brandName: "Patagonia",
 		productName: "P-6 Logo Responsibili T-Shirt",
 		price: 80.95,
-		imageUrl: "https://images.blue-tomato.com/is/image/bluetomato/304865621_front.jpg-df9XFiJLasGIipVIDyAJhE5_nt0/304865621+front+jpg.jpg?$tsl$&wid=330&hei=440&fit=crop%2C1",
+		imageUrl: "https://images.blue-tomato.com/is/image/bluetomato/305499878_front.jpg-D72T_m4XYvxrHJ86-ueTb6DnUss/305499878+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
 		imageAlt: "A man wearing a light green Patagonia t-shirt",
 		href: "#",
 	},
@@ -43,25 +43,35 @@ export const WithColors: StoryMeta<typeof ProductTileVertical> = {
 		salePrice: 70.95,
 		flag: { label: "-12%", type: "sale" },
 		colors: [
-			{ color: "#d82c2c" },
-			{ color: "#333333" },
-			{ color: "#ffffff" },
-			{ color: "#b9e2c7", active: true },
-			{ color: "#4caf50" },
-			{ color: "#ffeb3b" },
-			{ color: "#2196f3" },
-			{ color: "#9c27b0" },
-			{ color: "#ff9800" },
-			{ color: "#ffc107" },
-			{ color: "#795548" },
-			{ color: "#607d8b" },
+			{
+				color: "#d82c2c",
+				imageUrl: "https://images.blue-tomato.com/is/image/bluetomato/305499893_front.jpg-_qLzp3poLa1PJumH0qlPu758kpM/305499893+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
+			},
+			{
+				color: "#333333",
+				imageUrl: "https://images.blue-tomato.com/is/image/bluetomato/305499878_front.jpg-D72T_m4XYvxrHJ86-ueTb6DnUss/305499878+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
+			},
+			{
+				color: "#ffffff",
+				imageUrl: "https://images.blue-tomato.com/is/image/bluetomato/305499888_front.jpg-GbAxvgmiMiE3lxT-EuzKswZjQpg/305499888+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
+			},
+			{
+				color: "#b9e2c7",
+				active: true,
+				imageUrl: "https://images.blue-tomato.com/is/image/bluetomato/305499883_front.jpg-1AnoaRYeyR_DN2YL2w8iDGPNCA4/305499883+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
+			},
 		],
 	},
 	render: (args) => {
 		const [colors, setColors] = useState(args.colors || []);
+		const [currentImageUrl, setCurrentImageUrl] = useState(args.imageUrl);
 
 		useEffect(() => {
 			setColors(args.colors || []);
+			const activeColor = args.colors?.find(c => c.active);
+			if (activeColor) {
+				setCurrentImageUrl(activeColor.imageUrl);
+			}
 		}, [args.colors]);
 
 		const handleColorClick = (clickedIndex: number) => {
@@ -70,6 +80,7 @@ export const WithColors: StoryMeta<typeof ProductTileVertical> = {
 				active: index === clickedIndex,
 			}));
 			setColors(newColors);
+			setCurrentImageUrl(colors[clickedIndex].imageUrl);
 		};
 
 		const colorsWithHandlers = colors.map((c, i) => ({
@@ -79,7 +90,11 @@ export const WithColors: StoryMeta<typeof ProductTileVertical> = {
 
 		return (
 			<div className={styles.wrapper}>
-				<ProductTileVertical {...args} colors={colorsWithHandlers} />
+				<ProductTileVertical
+					{...args}
+					imageUrl={currentImageUrl}
+					colors={colorsWithHandlers}
+				/>
 			</div>
 		);
 	},
@@ -90,7 +105,7 @@ export const WithSizes: StoryMeta<typeof ProductTileVertical> = {
 		brandName: "Santa Cruz",
 		productName: "Jordan Small Pro 2023 Snowboard",
 		price: 569.95,
-		imageUrl: "https://images.blue-tomato.com/is/image/bluetomato/304397354_front.jpg-zUy7abQXTsFfwzjkw0TzCydGmEg/304397354+front+jpg.jpg?$tsl$&wid=330&hei=440&fit=crop%2C1",
+		imageUrl: "https://images.blue-tomato.com/is/image/bluetomato/305499878_front.jpg-D72T_m4XYvxrHJ86-ueTb6DnUss/305499878+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
 		imageAlt: "A Santa Cruz snowboard with custom graphics",
 		sizes: [
 			{ label: "145" },

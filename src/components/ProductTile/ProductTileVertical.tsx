@@ -9,6 +9,7 @@ type Color = {
 	color: string;
 	active?: boolean;
 	onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+	imageUrl: string; 
 };
 
 type Size = {

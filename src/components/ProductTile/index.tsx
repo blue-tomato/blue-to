@@ -1,15 +1,10 @@
 import { forwardRef } from "react";
-import ProductTileHorizontal from "@/components/ProductTile/ProductTileHorizontal";
-import  ProductTileVertical from "@/components/ProductTile/ProductTileVertical";
-import type { Props as VerticalProps } from "./ProductTileVertical";
-
-type HorizontalProps = {
-    // e.g., description?: string;
-};
+import ProductTileHorizontal, { Props as HorizontalProps } from "./ProductTileHorizontal";
+import ProductTileVertical, { Props as VerticalProps } from "./ProductTileVertical";
 
 type Props = {
     variant?: "vertical" | "horizontal";
-} & VerticalProps & HorizontalProps;
+} & (VerticalProps | HorizontalProps);
 
 const ProductTile = forwardRef<HTMLAnchorElement | HTMLDivElement, Props>((props, ref) => {
     const { variant = "vertical", ...rest } = props;
