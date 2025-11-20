@@ -1,0 +1,125 @@
+@use "@/index.module.scss" as *;
+
+.tile {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    text-decoration: none;
+    color: $grey-1;
+    width: 100%;
+    padding: 0 $space-16 0 0;
+    position: relative;
+    background-color: $white;
+    max-width: 351px;
+
+    @media (min-width: 768px) {
+        max-width: 686px;
+    }
+}
+
+.product-image {
+    width: 80px;
+    height: 100px;
+    object-fit: cover;
+
+    @media (min-width: 768px) {
+        width: 120px;
+        height: 150px;
+    }
+}
+
+.info-container {
+    display: flex;
+    flex-direction: column;
+    padding: $space-4 $space-16 $space-16 $space-16;
+    gap: $space-8;
+    flex: 1;
+    min-width: 0;
+
+    @media (min-width: 768px) {
+        justify-content: space-between;
+    }
+}
+
+.product-details {
+    display: flex;
+    flex-direction: column;
+    @include font-14;
+    min-width: 0;
+
+
+    @media (min-width: 768px) {
+        @include font-16;
+    }
+}
+
+.product-name {
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.brand-name {
+    @include font-14-b;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    @media (min-width: 768px) {
+        @include font-16-b;
+    }
+}
+
+.attributes {
+    display: flex;
+    flex-direction: column;
+    gap: $space-4;
+}
+
+.actions-container {
+    display: flex;
+    flex-direction: column;
+    gap: $space-8;
+
+    @media (min-width: 768px) {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: $space-16;
+    }
+}
+
+.actions {
+    margin: $space-16 0;
+}
+
+.price-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: $space-8;
+    @include font-12-b;
+    align-self: flex-start;
+
+    @media (min-width: 768px) {
+        align-self: flex-end;
+        @include font-14-b;
+    }
+}
+
+//TODO: review styles
+.remove-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    padding: $space-8 0 $space-8 $space-8;
+    top: 0;
+    right: $space-8;
+
+    >img {
+        width: 12px;
+    }
+}
