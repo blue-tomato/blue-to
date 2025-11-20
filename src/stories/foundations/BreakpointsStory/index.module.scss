@@ -20,11 +20,11 @@
   cursor: pointer;
 }
 
-.breakpoint-value {
+.breakpointValue {
   margin: 16px;
 }
 
-.breakpoint-xs {
+.breakpointXS {
   max-width: 767px;
 
   @media (max-width: 767px) {
@@ -32,25 +32,25 @@
   }
 }
 
-.breakpoint-s {
+.breakpointS {
   @media (min-width: 768px) {
     background-color: $green-1;
   }
 }
 
-.breakpoint-m {
+.breakpointM {
   @media (min-width: 1024px) {
     background-color: $green-1;
   }
 }
 
-.breakpoint-l {
+.breakpointL {
   @media (min-width: 1200px) {
     background-color: $green-1;
   }
 }
 
-.breakpoint-xl {
+.breakpointXL {
   @media (min-width: 1400px) {
     background-color: $green-1;
   }

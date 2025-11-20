@@ -35,7 +35,7 @@
   }
 }
 
-.active-disabled {
+.activeDisabled {
   background: linear-gradient(
     to bottom right,
     hsla(0, 0%, 100%, 0) calc(50% - 1px),
@@ -46,7 +46,7 @@
   color: $grey-2;
 }
 
-.icon-disabled {
+.iconDisabled {
   background: unset;
 }
 

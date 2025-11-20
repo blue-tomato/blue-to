@@ -11,13 +11,13 @@
     transition: none;
   }
 
-  .background-yellow {
+  .backgroundYellow {
     background-color: $yellow-3;
 
     @include font-12($grey-1);
   }
 
-  .background-black {
+  .backgroundBlack {
     background-color: $grey-1;
 
     @include font-12($white);

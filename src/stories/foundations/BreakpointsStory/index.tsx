@@ -11,7 +11,7 @@ const BreakpointsStory = () => (
 		<div className={styles.header}>Breakpoints (click to copy)</div>
 
 		<button
-			className={classNames(styles.breakpoint, styles.breakpointXs)}
+			className={classNames(styles.breakpoint, styles.breakpointXS)}
 			onClick={() => writeMediaQueryToClipboard("xs")}
 		>
 			<div className={styles.breakpointValue}>xs (&lt; 768px)</div>
@@ -35,7 +35,7 @@ const BreakpointsStory = () => (
 			<div className={styles.breakpointValue}>l (&gt;= 1200px)</div>
 		</button>
 		<button
-			className={classNames(styles.breakpoint, styles.breakpointXl)}
+			className={classNames(styles.breakpoint, styles.breakpointXL)}
 			onClick={() => writeMediaQueryToClipboard("xl")}
 		>
 			<div className={styles.breakpointValue}>xl (&gt;= 1400px)</div>

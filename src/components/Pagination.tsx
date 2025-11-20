@@ -31,10 +31,7 @@ const Pagination = forwardRef<HTMLDivElement, Props>(
 			{infoText && <div className={styles.infoText}>{infoText}</div>}
 			{progressBar !== undefined && (
 				<div className={styles.progressBar}>
-					<div
-						className={styles.progress}
-						style={{ width: `${progressBar * 100}%` }}
-					/>
+					<div className={styles.progress} style={{ width: `${progressBar * 100}%` }} />
 				</div>
 			)}
 			<nav aria-label="Pagination" className={styles.buttonsContainer}>

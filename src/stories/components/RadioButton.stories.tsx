@@ -6,14 +6,8 @@ const Docs: StoryMeta<typeof RadioButton> = {
 	title: "BLUETO/components/RadioButton",
 	render: (props: React.ComponentProps<typeof RadioButton>) => (
 		<form className={styles.wrapper}>
-			<RadioButton
-				inputProps={{ name: "radio-button", value: "1" }}
-				{...props}
-			/>
-			<RadioButton
-				inputProps={{ name: "radio-button", value: "2" }}
-				{...props}
-			/>
+			<RadioButton inputProps={{ name: "radio-button", value: "1" }} {...props} />
+			<RadioButton inputProps={{ name: "radio-button", value: "2" }} {...props} />
 		</form>
 	),
 	args: {

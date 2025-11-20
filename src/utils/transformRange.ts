@@ -1,10 +1,4 @@
-const transformRange = (
-	oldMin: number,
-	oldMax: number,
-	newMin: number,
-	newMax: number,
-	value: number,
-) => {
+const transformRange = (oldMin: number, oldMax: number, newMin: number, newMax: number, value: number) => {
 	const oldRange = oldMax - oldMin;
 	const newRange = newMax - newMin;
 

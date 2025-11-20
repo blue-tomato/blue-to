@@ -7,20 +7,14 @@ type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 	active?: boolean;
 };
 
-const Color = forwardRef<HTMLButtonElement, Props>(
-	({ color, active = false, className, ...props }, ref) => (
-		<button
-			ref={ref}
-			className={classNames(
-				styles.swatch,
-				className,
-				active && styles.active,
-			)}
-			style={{ backgroundColor: color }}
-			aria-label={`Color option: ${color}`}
-			{...props}
-		/>
-	),
-);
+const Color = forwardRef<HTMLButtonElement, Props>(({ color, active = false, className, ...props }, ref) => (
+	<button
+		ref={ref}
+		className={classNames(styles.swatch, className, active && styles.active)}
+		style={{ backgroundColor: color }}
+		aria-label={`Color option: ${color}`}
+		{...props}
+	/>
+));
 
 export default Color;

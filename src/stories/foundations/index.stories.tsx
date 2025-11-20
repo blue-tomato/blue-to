@@ -76,12 +76,4 @@ const Typography: StoryMeta<typeof TypographyStory> = {
 };
 
 export default Docs;
-export {
-	Brandlogos,
-	Breakpoints,
-	Colors,
-	Icons,
-	ResponsiveExample,
-	Spacing,
-	Typography,
-};
+export { Brandlogos, Breakpoints, Colors, Icons, ResponsiveExample, Spacing, Typography };

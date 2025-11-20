@@ -41,11 +41,7 @@ const ProductTileHorizontal = forwardRef<HTMLDivElement, Props>(
 		}));
 
 		return (
-			<div
-				ref={ref}
-				className={classNames(styles.tile, className)}
-				{...props}
-			>
+			<div ref={ref} className={classNames(styles.tile, className)} {...props}>
 				<img src={imageUrl} alt={imageAlt} className={styles.productImage} />
 
 				<div className={styles.infoContainer}>
@@ -59,20 +55,15 @@ const ProductTileHorizontal = forwardRef<HTMLDivElement, Props>(
 					</div>
 					<div className={styles.actionsContainer}>
 						<div className={styles.actions}>
-							<select
-								value={quantity}
-								onChange={(e) => onQuantityChange?.(Number(e.target.value))}
-							>
-								{quantityOptions.map(option => (
+							<select value={quantity} onChange={(e) => onQuantityChange?.(Number(e.target.value))}>
+								{quantityOptions.map((option) => (
 									<option key={option.value} value={option.value}>
 										{option.label}
 									</option>
 								))}
 							</select>
 						</div>
-						<div className={styles.priceContainer}>
-							€ {price.toFixed(2).replace(".", ",")}
-						</div>
+						<div className={styles.priceContainer}>€ {price.toFixed(2).replace(".", ",")}</div>
 					</div>
 
 					{onRemove && (
@@ -81,8 +72,6 @@ const ProductTileHorizontal = forwardRef<HTMLDivElement, Props>(
 						</button>
 					)}
 				</div>
-
-
 			</div>
 		);
 	},

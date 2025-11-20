@@ -1,7 +1,7 @@
-import type { StoryMeta } from "@/types";
 import { useEffect, useState } from "react";
-import styles from "./ProductTileVertical.stories.module.scss";
 import ProductTileVertical from "@/components/ProductTile/ProductTileVertical";
+import type { StoryMeta } from "@/types";
+import styles from "./ProductTileVertical.stories.module.scss";
 
 const Docs: StoryMeta<typeof ProductTileVertical> = {
 	title: "BLUETO/components/ProductTile/Vertical",
@@ -15,7 +15,8 @@ const Docs: StoryMeta<typeof ProductTileVertical> = {
 		brandName: "Patagonia",
 		productName: "P-6 Logo Responsibili T-Shirt",
 		price: 80.95,
-		imageUrl: "https://images.blue-tomato.com/is/image/bluetomato/305499878_front.jpg-D72T_m4XYvxrHJ86-ueTb6DnUss/305499878+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
+		imageUrl:
+			"https://images.blue-tomato.com/is/image/bluetomato/305499878_front.jpg-D72T_m4XYvxrHJ86-ueTb6DnUss/305499878+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
 		imageAlt: "A man wearing a light green Patagonia t-shirt",
 		href: "#",
 	},
@@ -45,20 +46,24 @@ export const WithColors: StoryMeta<typeof ProductTileVertical> = {
 		colors: [
 			{
 				color: "#d82c2c",
-				imageUrl: "https://images.blue-tomato.com/is/image/bluetomato/305499893_front.jpg-_qLzp3poLa1PJumH0qlPu758kpM/305499893+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
+				imageUrl:
+					"https://images.blue-tomato.com/is/image/bluetomato/305499893_front.jpg-_qLzp3poLa1PJumH0qlPu758kpM/305499893+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
 			},
 			{
 				color: "#333333",
-				imageUrl: "https://images.blue-tomato.com/is/image/bluetomato/305499878_front.jpg-D72T_m4XYvxrHJ86-ueTb6DnUss/305499878+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
+				imageUrl:
+					"https://images.blue-tomato.com/is/image/bluetomato/305499878_front.jpg-D72T_m4XYvxrHJ86-ueTb6DnUss/305499878+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
 			},
 			{
 				color: "#ffffff",
-				imageUrl: "https://images.blue-tomato.com/is/image/bluetomato/305499888_front.jpg-GbAxvgmiMiE3lxT-EuzKswZjQpg/305499888+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
+				imageUrl:
+					"https://images.blue-tomato.com/is/image/bluetomato/305499888_front.jpg-GbAxvgmiMiE3lxT-EuzKswZjQpg/305499888+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
 			},
 			{
 				color: "#b9e2c7",
 				active: true,
-				imageUrl: "https://images.blue-tomato.com/is/image/bluetomato/305499883_front.jpg-1AnoaRYeyR_DN2YL2w8iDGPNCA4/305499883+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
+				imageUrl:
+					"https://images.blue-tomato.com/is/image/bluetomato/305499883_front.jpg-1AnoaRYeyR_DN2YL2w8iDGPNCA4/305499883+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
 			},
 		],
 	},
@@ -68,7 +73,7 @@ export const WithColors: StoryMeta<typeof ProductTileVertical> = {
 
 		useEffect(() => {
 			setColors(args.colors || []);
-			const activeColor = args.colors?.find(c => c.active);
+			const activeColor = args.colors?.find((c) => c.active);
 			if (activeColor) {
 				setCurrentImageUrl(activeColor.imageUrl);
 			}
@@ -90,11 +95,7 @@ export const WithColors: StoryMeta<typeof ProductTileVertical> = {
 
 		return (
 			<div className={styles.wrapper}>
-				<ProductTileVertical
-					{...args}
-					imageUrl={currentImageUrl}
-					colors={colorsWithHandlers}
-				/>
+				<ProductTileVertical {...args} imageUrl={currentImageUrl} colors={colorsWithHandlers} />
 			</div>
 		);
 	},
@@ -105,7 +106,8 @@ export const WithSizes: StoryMeta<typeof ProductTileVertical> = {
 		brandName: "Santa Cruz",
 		productName: "Jordan Small Pro 2023 Snowboard",
 		price: 569.95,
-		imageUrl: "https://images.blue-tomato.com/is/image/bluetomato/305499878_front.jpg-D72T_m4XYvxrHJ86-ueTb6DnUss/305499878+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
+		imageUrl:
+			"https://images.blue-tomato.com/is/image/bluetomato/305499878_front.jpg-D72T_m4XYvxrHJ86-ueTb6DnUss/305499878+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
 		imageAlt: "A Santa Cruz snowboard with custom graphics",
 		sizes: [
 			{ label: "145" },
@@ -161,11 +163,7 @@ export const Wishlist: StoryMeta<typeof ProductTileVertical> = {
 
 		return (
 			<div className={styles.wrapper}>
-				<ProductTileVertical
-					{...args}
-					wishlistActive={isActive}
-					onWishlistClick={() => setIsActive((prev) => !prev)}
-				/>
+				<ProductTileVertical {...args} wishlistActive={isActive} onWishlistClick={() => setIsActive((prev) => !prev)} />
 			</div>
 		);
 	},

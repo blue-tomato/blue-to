@@ -8,12 +8,7 @@ type Props = {
 };
 
 const Icon = ({ background = "light", src }: Props) => (
-	<div
-		className={classNames(
-			styles.wrapper,
-			background === "light" ? styles.light : styles.dark,
-		)}
-	>
+	<div className={classNames(styles.wrapper, background === "light" ? styles.light : styles.dark)}>
 		<img src={src} />
 	</div>
 );

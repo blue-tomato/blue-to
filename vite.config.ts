@@ -30,12 +30,7 @@ export default defineConfig(
 			externalizeDeps({ deps: false }),
 			libAssetsPlugin({
 				outputPath: (_url, resourcePath) =>
-					`assets/${resourcePath
-						.replace(resolve(__dirname, "src"), "")
-						.slice(1)
-						.split("/")
-						.slice(0, -1)
-						.join("/")}`,
+					`assets/${resourcePath.replace(resolve(__dirname, "src"), "").slice(1).split("/").slice(0, -1).join("/")}`,
 			}),
 			viteStaticCopy({
 				structured: true,

@@ -11,20 +11,9 @@ type Props = React.LabelHTMLAttributes<HTMLLabelElement> & {
 	value?: number;
 };
 
-const Input = ({
-	max = 100,
-	min = 0,
-	onValueChange,
-	placeholder,
-	symbol,
-	value,
-	...props
-}: Props) => {
+const Input = ({ max = 100, min = 0, onValueChange, placeholder, symbol, value, ...props }: Props) => {
 	const [tempValue, setTempValue] = useState<number | "">(value ?? "");
-	const clampValue = useCallback(
-		(newTempValue: number | "") => clamp(newTempValue || 0, min, max),
-		[max, min],
-	);
+	const clampValue = useCallback((newTempValue: number | "") => clamp(newTempValue || 0, min, max), [max, min]);
 
 	useEffect(() => {
 		setTempValue(clampValue(value ?? ""));
@@ -49,9 +38,7 @@ const Input = ({
 				placeholder={placeholder}
 			/>
 
-			{!!symbol && !isNil(tempValue) ? (
-				<span className={styles.symbol}>{symbol ?? ""}</span>
-			) : null}
+			{!!symbol && !isNil(tempValue) ? <span className={styles.symbol}>{symbol ?? ""}</span> : null}
 		</label>
 	);
 };

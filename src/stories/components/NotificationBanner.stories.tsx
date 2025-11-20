@@ -18,7 +18,7 @@ const Docs: StoryMeta<typeof NotificationBanner> = {
 	},
 	parameters: {
 		links: {
-			confluence: "PQAAXw", 
+			confluence: "PQAAXw",
 			figma: "rUIq4O2W7nCzofq3nFoURP/BLUETO-Components?node-id=2018-144&t=BfSej1K6bcRmrlfU-0",
 		},
 	},
@@ -38,12 +38,10 @@ const Success: StoryMeta<typeof NotificationBanner> = {
 	},
 };
 
-const Error: StoryMeta<typeof NotificationBanner> = {
+const WithError: StoryMeta<typeof NotificationBanner> = {
 	render: (props) => (
 		<div className={styles.container}>
-			<p className={styles.description}>
-				Das Banner wird inline angezeigt.
-			</p>
+			<p className={styles.description}>Das Banner wird inline angezeigt.</p>
 			<div className={styles.component}>
 				<NotificationBanner {...props} />
 				<div className={styles.content}>
@@ -72,4 +70,4 @@ const Error: StoryMeta<typeof NotificationBanner> = {
 };
 
 export default Docs;
-export { Information, Success, Error };
+export { Information, Success, WithError };

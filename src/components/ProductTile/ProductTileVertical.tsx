@@ -2,14 +2,14 @@ import classNames from "classnames";
 import { forwardRef } from "react";
 import Button from "@/components/Button";
 import Icon from "@/components/Icon";
-import styles from "./ProductTileVertical.module.scss";
 import Color from "@/components/ProductTile/Color";
+import styles from "./ProductTileVertical.module.scss";
 
 type Color = {
 	color: string;
 	active?: boolean;
 	onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
-	imageUrl: string; 
+	imageUrl: string;
 };
 
 type Size = {
@@ -65,7 +65,6 @@ const ProductTileVertical = forwardRef<HTMLAnchorElement, Props>(
 			onWishlistClick?.(e);
 		};
 
-
 		return (
 			<a
 				ref={ref}
@@ -77,20 +76,14 @@ const ProductTileVertical = forwardRef<HTMLAnchorElement, Props>(
 				<div className={styles.imageContainer}>
 					<img src={imageUrl} alt={imageAlt} className={styles.productImage} />
 
-					{flag && (
-						<div className={classNames(styles.flag, styles[flag.type])}>
-							{flag.label}
-						</div>
-					)}
+					{flag && <div className={classNames(styles.flag, styles[flag.type])}>{flag.label}</div>}
 
 					{onWishlistClick && (
 						<Button
 							variant="secondary-white"
 							className={styles.wishlistButton}
 							onClick={handleWishlistClick}
-							aria-label={
-								wishlistActive ? "Remove from wishlist" : "Add to wishlist"
-							}
+							aria-label={wishlistActive ? "Remove from wishlist" : "Add to wishlist"}
 						>
 							<Icon icon={wishlistActive ? "functional.heartFilledBlue" : "functional.heartFilledGrey"} />
 						</Button>
@@ -100,24 +93,14 @@ const ProductTileVertical = forwardRef<HTMLAnchorElement, Props>(
 				<div className={styles.infoContainer}>
 					<span className={styles.brandName}>{brandName}</span>
 					<h3 className={styles.productName}>{productName}</h3>
-					{
-						(salePrice && salePrice < price) ? (
-							<div className={styles.priceContainer}>
-								<span className={styles.priceOriginal}>
-									€ {price.toFixed(2).replace(".", ",")}
-								</span>
-							<span className={styles.salePrice}>
-								€ {salePrice.toFixed(2).replace(".", ",")}
-							</span>
+					{salePrice && salePrice < price ? (
+						<div className={styles.priceContainer}>
+							<span className={styles.priceOriginal}>€ {price.toFixed(2).replace(".", ",")}</span>
+							<span className={styles.salePrice}>€ {salePrice.toFixed(2).replace(".", ",")}</span>
 						</div>
-					)
-				
-				: (
-					<div className={styles.priceContainer}>
-						€ {price.toFixed(2).replace(".", ",")}
-					</div>
-				)
-			}
+					) : (
+						<div className={styles.priceContainer}>€ {price.toFixed(2).replace(".", ",")}</div>
+					)}
 
 					{colors && colors.length > 0 && (
 						<div className={styles.swatchContainer}>
@@ -140,11 +123,7 @@ const ProductTileVertical = forwardRef<HTMLAnchorElement, Props>(
 					{sizes && sizes.length > 0 && (
 						<div className={styles.swatchContainer}>
 							{sizes.map((s, index) => (
-								<Button
-									variant="tertiary-grey"
-									className={styles.sizeButton}
-									key={index}
-								>
+								<Button variant="tertiary-grey" className={styles.sizeButton} key={index}>
 									{s.label}
 								</Button>
 							))}

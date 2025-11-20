@@ -14,11 +14,11 @@
     }
 }
 
-.image-container {
+.imageContainer {
     position: relative;
     width: 100%;
 
-    .product-image {
+    .productImage {
         display: block;
         width: 100%;
         height: auto;
@@ -26,7 +26,7 @@
     }
 }
 
-.wishlist-button {
+.wishlistButton {
     position: absolute;
     right: 0;
     top: 0;
@@ -49,7 +49,7 @@
     }
 }
 
-.size-button {
+.sizeButton {
     @include font-10;
     height: 30px;
     min-height: 30px;
@@ -68,7 +68,7 @@
 
 // TODO: add more flags
 
-// .flags-container {
+// .flagsContainer {
 //     position: absolute;
 //     top: $space-8;
 //     left: 0;
@@ -103,7 +103,7 @@
     }
 }
 
-.info-container {
+.infoContainer {
     display: flex;
     flex-direction: column;
     padding: $space-8 $space-8 $space-16 $space-8;
@@ -113,7 +113,7 @@
     }
 }
 
-.brand-name {
+.brandName {
     @include font-12-b;
 
     @media (min-width: 768px) {
@@ -121,7 +121,7 @@
     }
 }
 
-.product-name {
+.productName {
     @include font-12;
     margin: 0;
 
@@ -130,7 +130,7 @@
     }
 }
 
-.price-container {
+.priceContainer {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -143,15 +143,15 @@
 
 }
 
-.price-original {
+.priceOriginal {
     text-decoration-line: line-through;
 }
 
-.sale-price {
+.salePrice {
     color: $red-1;
 }
 
-.swatch-container {
+.swatchContainer {
     display: flex;
     flex-wrap: wrap;
     gap: $space-8;

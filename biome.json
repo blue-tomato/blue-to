@@ -14,7 +14,8 @@
 		"includes": ["**/*", "!lib/*", "!node_modules/*", "!storybook-static/*"]
 	},
 	"formatter": {
-		"enabled": true
+		"enabled": true,
+		"lineWidth": 120
 	},
 	"javascript": {
 		"globals": ["React", "StoryMeta"]

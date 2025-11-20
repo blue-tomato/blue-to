@@ -1,40 +1,23 @@
 import classNames from "classnames";
+import { debounce } from "es-toolkit";
 import { forwardRef, useEffect, useRef, useState } from "react";
 import Caption from "./Caption";
 import styles from "./index.module.scss";
 
-type Props = {
+type Props = React.HTMLAttributes<HTMLDivElement> & {
 	caption?: string;
-	firstColumnFontWeight?: "bold" | "normal";
-	firstColumnTextAlign?: "center" | "left" | "right";
-	hasRowHeaders?: boolean;
-	headers: string[];
-	isSmall?: boolean;
-	noFirstColumnStyle?: boolean;
-	noShadow?: boolean;
-	rows: (number | string)[][];
-} & React.HTMLAttributes<HTMLDivElement>;
+	firstColumnSticky?: boolean;
+	header?: boolean;
+	rows?: string[][];
+	scrollText?: string;
+};
 
-const getWidth = (el: HTMLElement) => el.getBoundingClientRect().width;
+const getWidth = (element: HTMLElement) => element.getBoundingClientRect().width;
 
 const Table = forwardRef<HTMLDivElement, Props>(
-	(
-		{
-			caption,
-			className,
-			firstColumnFontWeight,
-			firstColumnTextAlign,
-			hasRowHeaders = true,
-			headers,
-			isSmall,
-			noFirstColumnStyle,
-			noShadow,
-			rows,
-			...props
-		},
-		ref,
-	) => {
+	({ caption, className, firstColumnSticky = false, header = true, rows, scrollText, ...props }, ref) => {
 		const [shouldShowScrollText, setShouldShowScrollText] = useState(false);
+		const [hoveredCell, setHoveredCell] = useState<[number, number]>();
 		const internalRef = useRef<HTMLDivElement>(null);
 
 		useEffect(() => {
@@ -43,13 +26,13 @@ const Table = forwardRef<HTMLDivElement, Props>(
 
 			if (!container || !table) return;
 
-			const handleResize = () => {
+			const handleResize = debounce(() => {
 				if (getWidth(container) < getWidth(table)) {
 					setShouldShowScrollText(true);
 				} else {
 					setShouldShowScrollText(false);
 				}
-			};
+			}, 200);
 
 			handleResize();
 
@@ -60,55 +43,46 @@ const Table = forwardRef<HTMLDivElement, Props>(
 			};
 		}, []);
 
-		if (!headers || !rows) return null;
-
-		const wrapperClasses = classNames(className, {
-			[styles.smallTable]: isSmall,
-		});
-
-		const tableClasses = classNames({
-			[styles.centerFirstColumn]: firstColumnTextAlign === "center",
-			[styles.noFirstColumnStyle]: noFirstColumnStyle || !hasRowHeaders,
-			[styles.noShadow]: noShadow,
-			[styles.normalFirstColumnFont]: firstColumnFontWeight === "normal",
-		});
-
 		return (
-			<div ref={ref || internalRef} {...props}>
-				<div className={classNames(styles.tableWrapper, wrapperClasses)}>
-					<table className={tableClasses}>
+			<div ref={ref} className={className} {...props}>
+				<div ref={internalRef} className={styles.tableWrapper}>
+					<table className={classNames(styles.table, !firstColumnSticky && styles.firstColumnRegular)}>
 						{caption && <Caption>{caption}</Caption>}
-						<thead>
-							<tr>
-								{headers.map((header, index) => (
-									<th key={`header-${index}`} scope="col">
-										{header}
-									</th>
-								))}
-							</tr>
-						</thead>
+
 						<tbody>
-							{rows.map((row, rowIndex) => (
-								<tr key={`row-${rowIndex}`} className={styles.row}>
-									{row.map((cell, cellIndex) =>
-										hasRowHeaders && cellIndex === 0 ? (
-											<th key={`cell-${rowIndex}-${cellIndex}`} scope="row">
+							{rows?.map((row, rowIndex) => (
+								// biome-ignore lint/suspicious/noArrayIndexKey: needed because rows can be identical
+								<tr key={rowIndex + row.join("")}>
+									{row.map((cell, cellIndex) => {
+										const isFirstCellDisabled = firstColumnSticky && cellIndex === 0;
+
+										return (
+											<td
+												key={cellIndex + cell}
+												className={classNames(
+													styles.cell,
+													!isFirstCellDisabled && styles.cellHover,
+													header && rowIndex === 0 && styles.cellHeader,
+													firstColumnSticky && cellIndex === 0 && styles.cellSticky,
+													hoveredCell &&
+														(hoveredCell[0] === rowIndex || (!isFirstCellDisabled && hoveredCell[1] === cellIndex)) &&
+														styles.cellHighlight,
+													rowIndex === rows.length - 1 && styles.cellLastRow,
+												)}
+												onMouseEnter={() => setHoveredCell([rowIndex, cellIndex])}
+												onMouseLeave={() => setHoveredCell(undefined)}
+											>
 												{cell}
-											</th>
-										) : (
-											<td key={`cell-${rowIndex}-${cellIndex}`}>{cell}</td>
-										),
-									)}
+											</td>
+										);
+									})}
 								</tr>
 							))}
 						</tbody>
 					</table>
 				</div>
-				{shouldShowScrollText && hasRowHeaders && !noFirstColumnStyle ? (
-					<div className={styles.infoText}>
-						Scroll horizontal, um mehr zu sehen
-					</div>
-				) : null}
+
+				{shouldShowScrollText && scrollText && <div className={styles.infoText}>{scrollText}</div>}
 			</div>
 		);
 	},
