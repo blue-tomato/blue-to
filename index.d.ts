@@ -18,7 +18,7 @@ export declare const Button: ForwardRefExoticComponent<ButtonHTMLAttributes<HTML
     iconLeft?: IconProp;
     iconRight?: IconProp;
     loading?: boolean;
-    variant?: "primary" | "secondary" | "secondary-white" | "tertiary" | "tertiary-transparent";
+    variant?: "primary" | "secondary" | "secondary-white" | "tertiary" | "tertiary-transparent" | "tertiary-grey";
 } & RefAttributes<HTMLButtonElement>>;
 
 export declare const CategoryButton: ForwardRefExoticComponent<ButtonHTMLAttributes<HTMLButtonElement> & {
