@@ -15,7 +15,8 @@ type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 		| "secondary"
 		| "secondary-white"
 		| "tertiary"
-		| "tertiary-transparent";
+		| "tertiary-transparent" 
+		| "tertiary-grey";
 };
 
 const Button = forwardRef<HTMLButtonElement, Props>(
@@ -41,6 +42,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(
 				variant === "secondary-white" && styles.secondaryWhite,
 				variant === "tertiary" && styles.tertiary,
 				variant === "tertiary-transparent" && styles.tertiaryTransparent,
+				variant === "tertiary-grey" && styles.tertiaryGrey,
 				disabled && styles.disabled,
 			)}
 			disabled={disabled}

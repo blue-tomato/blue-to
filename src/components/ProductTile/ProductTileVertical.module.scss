@@ -1,0 +1,159 @@
+@use "@/index.module.scss" as *;
+
+.tile {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: $grey-1;
+    width: 100%;
+    max-width: 100%;
+    background-color: $white;
+
+    @media (min-width: 768px) {
+        max-width: 450px;
+    }
+}
+
+.image-container {
+    position: relative;
+    width: 100%;
+
+    .product-image {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 3/4;
+    }
+}
+
+.wishlist-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 2;
+    min-height: auto;
+    padding: $space-8;
+    background-color: transparent;
+
+    @media (min-width: 768px) {
+        top: $space-8;
+        right: $space-8;
+    }
+
+    >img {
+        width: $space-16;
+
+        @media (min-width: 768px) {
+            width: 19px;
+        }
+    }
+}
+
+.size-button {
+    @include font-10;
+    height: 30px;
+    min-height: 30px;
+    ;
+    gap: 8px;
+    padding: 0 8px;
+
+    &:hover {
+        opacity: 1;
+    }
+
+    @media (min-width: 768px) {
+        @include font-12;
+    }
+}
+
+// TODO: add more flags
+
+// .flags-container {
+//     position: absolute;
+//     top: $space-8;
+//     left: 0;
+//     display: flex;
+//     flex-direction: column;
+//     gap: $space-4;
+//     z-index: 1;
+
+//     @media (min-width: 768px) {
+//         top: $space-16;
+//         left: $space-16;
+//     }
+// }
+
+.flag {
+    position: absolute;
+    bottom: $space-8;
+    left: 0;
+    padding: $space-4 $space-8;
+    background-color: $white;
+    color: $grey-1;
+    z-index: 1;
+
+    @include font-12-b;
+
+    &.sale {
+        color: $red-1;
+    }
+
+    &.special {
+        color: $blue-1;
+    }
+}
+
+.info-container {
+    display: flex;
+    flex-direction: column;
+    padding: $space-8 $space-8 $space-16 $space-8;
+
+    @media (min-width: 768px) {
+        padding: $space-8 $space-8 $space-32 $space-8;
+    }
+}
+
+.brand-name {
+    @include font-12-b;
+
+    @media (min-width: 768px) {
+        @include font-14-b;
+    }
+}
+
+.product-name {
+    @include font-12;
+    margin: 0;
+
+    @media (min-width: 768px) {
+        @include font-14;
+    }
+}
+
+.price-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: $space-8;
+    @include font-12-b;
+
+    @media (min-width: 768px) {
+        @include font-14-b;
+    }
+
+}
+
+.price-original {
+    text-decoration-line: line-through;
+}
+
+.sale-price {
+    color: $red-1;
+}
+
+.swatch-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-8;
+    margin-top: $space-8;
+}
