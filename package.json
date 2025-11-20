@@ -1,7 +1,7 @@
 {
 	"name": "@blue-tomato/blueto",
 	"type": "module",
-	"version": "1.5.0",
+	"version": "1.6.0",
 	"license": "EUPL-1.2",
 	"description": "🪐 BLUETO - the design system of Blue Tomato",
 	"homepage": "https://blueto.blue-tomato.com",
