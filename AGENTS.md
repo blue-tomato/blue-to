@@ -2,6 +2,7 @@
 
 ## General Principles
 - **Strictness**: ALWAYS/NEVER = strict rules. Prefer/Avoid = strong defaults with exceptions allowed
+- **Git Operations**: NEVER EVER do ANY git operation (`git add`, `git stage`, `git restore --staged`, `git commit`, `git push`, `git checkout`, `git branch`, `git merge`, `git rebase`, etc.) without EXPLICIT user permission. This is an absolute rule with ZERO exceptions. Only the user initiates git operations
 - **Verify Before Implementing**: ALWAYS verify APIs, library features, and configurations using Context7 or official documentation before implementation. NEVER assume attributes, methods, or behavior exist without verification
 - **Ask Questions**: ALWAYS ask if unclear. NEVER assume. STOP and ask before proceeding if ANY of:
   - Multiple valid approaches exist
@@ -11,17 +12,19 @@
   - Trade-offs exist between options
   - Scope is ambiguous (what's in/out, how deep to go)
 
-## Workflow
+## Feature Workflow
 1. **Research**: Understand the codebase, requirements, and constraints before making changes
    - Check existing patterns and implementations for similar functionality
    - Review related Storybook stories to understand expected behavior
    - Identify dependencies and potential side effects
 2. **Plan**: Create an initial plan breaking down the task into clear, actionable steps
-   - For complex features (significant architectural changes, 3+ files affected, new external integrations), create a markdown plan file named `FEATURE_NAME_PLAN.md` (e.g., `TABLE_COMPONENT_PLAN.md`)
-   - Plan files are temporary working documents - do NOT commit them to version control
-   - NEVER delete plan files - leave them for the user to manage
-   - For simpler tasks, a clear written plan in the conversation is sufficient
-3. **Present Summary**: Present a brief plan summary to the user, allowing early feedback on approach, scope, or direction
+   - Create a markdown feature file in `docs/features/` named `YYYY-MM-DD-HHMM_FEATURE_NAME.md`
+   - Use `date +%Y-%m-%d-%H%M` to get the timestamp (e.g., `docs/features/2025-11-26-1530_AUTHENTICATION.md`)
+3. **Present Summary**: Present a brief plan summary to the user
+   - Display: "Type `y` to go to clarifying"
+   - If user adds context/feedback: immediately update the feature file
+   - Continue showing the prompt until user types `y`
+   - Only proceed to step 4 (Clarify) after user confirmation
 4. **Clarify**: Ask questions to ensure complete understanding. REQUIRED before implementation if ANY ambiguity exists
    - Ask ONE question at a time, wait for answer, then ask the next question
    - Use previous answers to inform subsequent questions
@@ -32,7 +35,7 @@
      (2) [option]
      ```
      Mention that text answers are welcome (pick number, add context, or free-form text). Don't include "text answer" as a numbered option
-   - Update plan with each Q&A after answering (in plan file if created, or in conversation)
+   - Update the feature file with each Q&A after answering
    - Continue until ALL ambiguities resolved - don't stop after pre-written questions. Proactively identify new ambiguities and ask follow-ups. Don't ask permission to continue
    - Know when to stop: architecture, file structure, user-facing changes, breaking changes, major patterns - NOT minor implementation details
    - After all questions: comprehensively update plan with all decisions
@@ -71,85 +74,66 @@
 
 ## Project Structure
 
-```
-src/
-  components/        # Reusable UI components (Button, Table, TextField, etc.)
-  foundations/       # Design system primitives
-    brandlogos/      # Blue Tomato brand logos in various formats
-    icons/           # Icon sets (functional, social, payment, support, flags, carriers)
-    colors.module.scss
-    typography.module.scss
-    spacing.module.scss
-  stories/           # Storybook documentation and examples
-    components/      # Component stories
-    foundations/     # Foundation stories
-  utils/             # Shared utilities and helpers
-  types.ts           # Shared TypeScript types
-  index.ts           # Public API exports
-  index.module.scss  # Global styles
-.storybook/          # Storybook configuration
-lib/                 # Build output (gitignored, published to npm)
-```
+Key directories:
+- `.storybook/` - Storybook configuration
+- `src/components/` - Reusable UI components (Button, Table, TextField, etc.)
+- `src/foundations/` - Design system primitives (colors, typography, spacing, icons, logos)
+- `src/stories/` - Storybook documentation and examples
+- `src/utils/` - Shared utilities and helpers
+- `src/index.ts` - Public API exports
+- `lib/` - Build output (gitignored, published to npm)
 
 ## Code Style
 
 ### General Principles
-- **Simplicity**: Prefer straightforward solutions. Eliminate unnecessary intermediate variables - directly invoke/access when only used once
-- **Paradigm**: Functional programming only - pure functions, immutability, no classes/mutations
-- **Duplicate Code**: Extract repeated patterns into reusable helpers
-- **Dependencies**: Check if existing dependencies solve the problem before adding new ones. Prefer well-maintained libraries. Document rationale for major dependencies
+- **Simplicity**: Straightforward solutions. No unnecessary intermediate variables—directly invoke/access if used once
+- **Paradigm**: Functional only—pure functions, immutability, no classes/mutations
+- **Duplicate Code**: Extract to reusable helpers
+- **Dependencies**: Check existing before adding new. Prefer well-maintained. Document rationale for major ones
 
 ### Style & Formatting
-- **Formatting**: Biome (tabs for indentation, auto-organize imports), empty line at end of files, whitespace between logical blocks
+- **Formatting**: Biome (tabs, 120 line width, auto-organize imports), empty line at end of files, whitespace between logical blocks
 - **Property Ordering**: Alphabetical by default unless another ordering makes better sense. For mixed objects: primitives first, then nested (both alphabetically)
 
 ### Imports & Exports
 - **Imports**: `@/` for src/, `./` for same directory only
-- **Exports**: At end of files. Only export what's used elsewhere. Export shared types. Do not export unused code
+- **Exports**: ALWAYS at end of file (EOF). Only export what's used elsewhere. Export shared types. Do not export unused code
+  - Use inline `type` keyword in export statements: `export { functionName, type TypeName }`
+  - Alphabetical ordering for exports (case-insensitive)
+- **Default exports preferred**: Nearly every file has default export named as file
+  - Named exports only for: types, constants alongside default, or utilities grouping together (rare)
+  - Barrel files (index.ts): Only re-export actual consumer imports—remove unused
+- **File Organization**: Remove folder if only index file—move up and rename to folder name. No `types.ts` files. Files named as default export
+- **Type Location**: Define types in the module where they're **primarily used**, export for other modules to import
 - **Component Exports**: Export components and their types from `src/components/index.ts`
 
 ### Naming Conventions
-- **Types/Interfaces**: PascalCase (e.g., `ButtonProps`, `TooltipPlacement`)
-- **Functions/Variables/Constants**: camelCase (e.g., `transformRange`, `maxRetries`)
+- **PascalCase**: Types/Interfaces/Classes (`OrderEvent`, `UserConfig`)
+- **camelCase**: Functions/Variables/Constants (`processOrder`, `maxRetries`)
+- **Descriptive Names**: Full names, not abbreviations—especially parameters. Exceptions: `i` (index), `error` (catch), single-letter generics (`T`, `K`, `V`)
 - **Components**: PascalCase matching filename (e.g., `Button.tsx` exports `Button`)
-- **Files**: Named as the default export. Component files use PascalCase, utility files use camelCase
+- **Files**: Named as default export. Component files use PascalCase, utility files use camelCase
 - **SCSS Modules**: Component-specific styles named `ComponentName.module.scss`
 
 ### TypeScript Practices
-- **Types**: Strict TypeScript, never `any` - use `unknown` or proper types
-  - Prefer `type` over `interface`
-  - Let TypeScript infer types when obvious
-  - Don't duplicate type definitions
-  - Define component prop types inline unless shared
-- **Variables**: Prefer `const` over `let`
-  - Only use `let` for: singletons with lazy init, error handling/cleanup reassignments, loop counters, complex state management
+- **Types**: Strict, never `any` (use `unknown`). Prefer `type` over `interface`. Infer when obvious. No `types.ts` files—define inline, co-located with primary implementation
+- **Type Assertions**: Prefer `satisfies` over `as`. Use type predicates for filters: `items.filter((item): item is NonNullable<typeof item> => item !== null)`
+- **Variables**: Prefer `const`. Use `let` only for: lazy init singletons, error cleanup, loop counters, complex state
+- **Inline Constants**: Inline strings/numbers used 2-3 times in one module. Extract only when cross-module, complex, or likely to change
 
 ### Functions & Control Flow
-- **Functions**: Arrow functions preferred. Use implicit returns when possible
-- **Callback Wrappers**: Pass function references directly when signatures match
-  ```ts
-  // Good
-  onChange(handleChange)
-  // Bad
-  onChange={(e) => handleChange(e)}
-  ```
-- **Async**: Prefer async/await over callbacks/promises
-- **Redundant Async**: Only use async/await when adding error handling or sequencing logic
-- **Conditional Logic**: Combine related conditions - reduce nesting. Prefer single-line statements for simple conditions
-  ```ts
-  // Good for simple cases
-  if (!value) throw new Error('Value required');
-  ```
+- **Functions**: Arrow functions, implicit returns when possible
+- **Callbacks**: Pass references directly if signatures match: `process.on("SIGINT", shutdown)`
+- **Wrapper Functions**: Don't create functions called once at startup—execute at module scope. Don't wrap array functions—use single-item arrays
+- **Async**: Prefer async/await
+- **Loops**: Prefer functional (map, filter, reduce) over imperative (for, while)
+- **Conditionals**: Combine related, reduce nesting. Single-line for simple cases
 
 ### Object & Data Handling
-- **Object Construction**: Generally spread dynamic properties FIRST, explicit properties LAST (unless intentionally allowing overrides)
-  ```ts
-  // Preferred: explicit properties override spreads
-  const props = { ...dynamicProps, className: styles.button, disabled }
-  ```
-- **Redundant Variables**: Don't create multiple variables holding same value
-- **String Building**: Use array join for conditional concatenation instead of `+=`
-- **Method Chaining**: Chain directly instead of storing intermediate results (unless needed for clarity/reuse)
+- **Object Construction**: Spread dynamic FIRST, explicit LAST (explicit overrides): `{ ...dynamicProps, id: 123 }`
+- **Redundant Variables**: Don't create multiple holding same value
+- **String Building**: Array join for conditional concat (not `+=`)
+- **Method Chaining**: Chain directly unless needed for clarity
 
 ### Component Patterns
 - **Component Structure**: Functional components only, no class components
@@ -181,9 +165,9 @@ lib/                 # Build output (gitignored, published to npm)
 - **Structure**: Component root class first, modifiers/variants next, nested elements last
 
 ### Comments & Documentation
-- **When to Comment**: Explain "why" not "what" - document business logic, design decisions, accessibility considerations
-- **Avoid**: Redundant comments that restate code
-- **TODOs**: Use `// TODO:` with context and optionally a ticket reference
+- **When**: Explain "why" not "what"—business logic, workarounds, non-obvious decisions
+- **Avoid**: NEVER restate code. If self-explanatory, no comment needed
+- **TODOs**: `// TODO:` with context (optional ticket ref)
 
 ### Error Handling
 - **Validation**: Validate component props when necessary, provide clear error messages
@@ -194,28 +178,39 @@ lib/                 # Build output (gitignored, published to npm)
 
 Run in this order to fail fast:
 
-1. **TypeScript compilation** must succeed with no errors (`npm run typecheck`)
-2. **Biome linting** must pass (`npm run lint`)
-3. **Project must build** successfully (`npm run build`)
-4. **Storybook must run** without errors (`npm run dev`)
+1. TypeScript compilation must succeed with no errors (`npm run typecheck`)
+2. Biome linting must pass (`npm run lint`)
+3. Project must build successfully (`npm run build`)
+4. Storybook must run without errors (`npm run dev`)
 
 ## Version Control
+
+### CRITICAL: Explicit Permission Required
 - **NEVER do ANY git operation without explicit user permission** - This includes: commit, push, stage, unstage, branch operations, merges, rebases, etc.
-- **Commit Workflow**: NEVER commit automatically. Only ask when logical
-  - Before asking: check staged files (`git status`, `git diff --staged`)
-  - Display: files to unstage (if any), additional files to stage (if any), proposed commit message (conventional format describing ALL changes), horizontal rule (`---`)
-  - Display options based on staging needs:
-    - If staging changes needed (files to unstage or additional files to stage): `s` to stage | `c` to stage and commit | `p` to stage, commit and push
-    - If no staging changes needed: `c` to commit | `p` to commit and push
-  - On `s`: unstage specified files, stage additional files, show staged changes, prompt with `c`/`p` options
-  - On `c`/`p`: perform staging changes if needed, then commit (and push if `p`)
-  - On other response: treat as instruction (modify message, change files, make more changes, etc.)
-  - If file changes made relevant to current commit: restart entire workflow from beginning
-- **When to Ask About Committing**: Ask when task complete AND no clear indication more changes coming
+- **ALWAYS wait for user to type `y`, `c`, or `p`** before executing ANY git command
+- **Even if quality gates pass, even if the user said "commit" earlier in the conversation, even if it seems obvious** - STOP and ask for confirmation with the exact options below
+- **No exceptions. No shortcuts. No assuming intent.**
+
+### Quality Gates & Timing
+- **Quality Gates Required**: Run ALL quality gates before ANY git operation. If any gate fails, inform the user and stop
+- **When to Ask About Committing**: Ask when you feel like it makes sense
   - Logical unit complete (feature/bugfix/refactor/task finished)
   - Quality gates pass (or minimally, changes validated)
   - Before significantly different task
   - **Key principle**: When in doubt, ask. Only skip if certain larger commit coming
+- **Commit Workflow**: NEVER commit automatically. Only ask when logical
+  - Ask: "Type `y` to start committing"
+  - If "y": Run quality gates first. If any gate fails, inform the user and stop. Then proceed with commit workflow:
+    - Check staged files (`git status`, `git diff --staged`)
+    - Display: files to unstage (if any), additional files to stage (if any), proposed commit message (conventional format describing ALL changes), horizontal rule (`---`)
+    - Display options based on staging needs:
+      - If staging changes needed (files to unstage or additional files to stage): Type `s` to stage | `c` to stage and commit | `p` to stage, commit and push
+      - If no staging changes needed: Type `c` to commit | `p` to commit and push
+    - On `s`: unstage specified files, stage additional files, show staged changes, prompt with `c`/`p` options
+    - On `c`/`p`: perform staging changes if needed, then commit (and push if `p`)
+    - On other response: treat as instruction (modify message, change files, make more changes, etc.)
+    - If file changes made relevant to current commit: restart entire workflow from beginning
+  - On other response: treat as instruction (don't start commit workflow)
 - **Commit Message Format**: `emoji type(scope): description`
   - Examples: `✨ feat(button): add loading state` | `🐛 fix(table): handle empty data` | `♻️ refactor(tooltip): simplify positioning logic`
   - **Body**: Keep simple and concise. Skip body for obvious changes. Use bullet list only for meaningful details (key architectural decisions, breaking changes, important context). Avoid exhaustive change lists
