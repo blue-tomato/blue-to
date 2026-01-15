@@ -35,43 +35,54 @@ export const Default: StoryMeta<typeof ProductTileVertical> = {};
 export const WithSale: StoryMeta<typeof ProductTileVertical> = {
   args: {
     salePrice: 70.95,
-    flag: { label: "-12%", type: "sale" },
+    flags: [{ label: "-12%", type: "sale" }],
+  },
+};
+
+export const WithFlags: StoryMeta<typeof ProductTileVertical> = {
+  args: {
+    flags: [
+      { label: "Neu", type: "default" },
+      { label: "-20%", type: "sale" },
+      { label: "Special Edition", type: "special" },
+    ],
   },
 };
 
 export const WithColors: StoryMeta<typeof ProductTileVertical> = {
   args: {
     salePrice: 70.95,
-    flag: { label: "-12%", type: "sale" },
-	colors: [
-			{
-				color: "#d82c2c",
-				imageUrl:
-					"https://images.blue-tomato.com/is/image/bluetomato/305499893_front.jpg-_qLzp3poLa1PJumH0qlPu758kpM/305499893+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
-			},
-			{
-				color: "#333333",
-				imageUrl:
-					"https://images.blue-tomato.com/is/image/bluetomato/305499878_front.jpg-D72T_m4XYvxrHJ86-ueTb6DnUss/305499878+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
-			},
-			{
-				color: "#ffffff",
-				imageUrl:
-					"https://images.blue-tomato.com/is/image/bluetomato/305499888_front.jpg-GbAxvgmiMiE3lxT-EuzKswZjQpg/305499888+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
-			},
-			{
-				color: "#b9e2c7",
-				active: true,
-				imageUrl:
-					"https://images.blue-tomato.com/is/image/bluetomato/305499883_front.jpg-1AnoaRYeyR_DN2YL2w8iDGPNCA4/305499883+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
-			},
-		],
+    flags: [{ label: "-12%", type: "sale" }],
+    colors: [
+      {
+        color: "#d82c2c",
+        imageUrl:
+          "https://images.blue-tomato.com/is/image/bluetomato/305499893_front.jpg-_qLzp3poLa1PJumH0qlPu758kpM/305499893+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
+      },
+      {
+        color: "#333333",
+        imageUrl:
+          "https://images.blue-tomato.com/is/image/bluetomato/305499878_front.jpg-D72T_m4XYvxrHJ86-ueTb6DnUss/305499878+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
+      },
+      {
+        color: "#ffffff",
+        imageUrl:
+          "https://images.blue-tomato.com/is/image/bluetomato/305499888_front.jpg-GbAxvgmiMiE3lxT-EuzKswZjQpg/305499888+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
+      },
+      {
+        color: "#b9e2c7",
+        active: true,
+        imageUrl:
+          "https://images.blue-tomato.com/is/image/bluetomato/305499883_front.jpg-1AnoaRYeyR_DN2YL2w8iDGPNCA4/305499883+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
+      },
+      { color: "#000", imageUrl: "https://images.blue-tomato.com/is/image/bluetomato/305499878_front.jpg" },
+      { color: "#555", imageUrl: "https://images.blue-tomato.com/is/image/bluetomato/305499878_front.jpg" },
+      { color: "#aaa", imageUrl: "https://images.blue-tomato.com/is/image/bluetomato/305499878_front.jpg" },
+    ],
   },
   render: (args) => {
     const [colors, setColors] = useState<ColorOption[]>(args.colors || []);
-
     const initialImage = colors.find((c) => c.active)?.imageUrl ?? args.imageUrl;
-
     const [currentImageUrl, setCurrentImageUrl] = useState<string>(initialImage);
 
     const handleColorClick = (clickedIndex: number) => {
@@ -99,9 +110,6 @@ export const WithColors: StoryMeta<typeof ProductTileVertical> = {
     );
   },
 };
-
-
-
 
 export const WithSizes: StoryMeta<typeof ProductTileVertical> = {
   args: {

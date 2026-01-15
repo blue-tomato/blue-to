@@ -1,10 +1,12 @@
 import classNames from "classnames";
-import { forwardRef } from "react";
+import { forwardRef, useState } from "react";
 import Color from "./shared/Color";
 import WishlistButton from "./shared/WishlistButton";
 import Price from "./shared/Price";
 import styles from "./ProductTileVertical.module.scss";
 import Button from "@/components/Button";
+
+const MAX_VISIBLE = 5;
 
 export type ColorOption = {
   color: string;
@@ -36,7 +38,7 @@ export type Props = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
   onWishlistClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   colors?: ColorOption[];
   sizes?: SizeOption[];
-  flag?: Flag;
+  flags?: Flag[];
   className?: string;
 };
 
@@ -51,20 +53,29 @@ const ProductTileVertical = forwardRef<HTMLAnchorElement, Props>(
       imageAlt,
       wishlistActive = false,
       onWishlistClick,
-      colors,
-      sizes,
-      flag,
+      colors = [],
+      sizes = [],
+      flags = [],
       className,
       href,
       ...props
     },
     ref,
   ) => {
+    const [isColorsExpanded, setIsColorsExpanded] = useState(false);
+    const [isSizesExpanded, setIsSizesExpanded] = useState(false);
+
     const handleWishlistClick = (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
       e.stopPropagation();
       onWishlistClick?.(e);
     };
+
+    const visibleColors = isColorsExpanded ? colors : colors.slice(0, MAX_VISIBLE);
+    const remainingColors = colors.length - MAX_VISIBLE;
+
+    const visibleSizes = isSizesExpanded ? sizes : sizes.slice(0, MAX_VISIBLE);
+    const remainingSizes = sizes.length - MAX_VISIBLE;
 
     return (
       <a
@@ -76,30 +87,30 @@ const ProductTileVertical = forwardRef<HTMLAnchorElement, Props>(
       >
         <div className={styles.imageContainer}>
           <img src={imageUrl} alt={imageAlt} className={styles.productImage} />
-
-          {flag && (
-            <div className={classNames(styles.flag, styles[flag.type])}>
-              {flag.label}
+          
+          {flags.length > 0 && (
+            <div className={styles.flagsContainer}>
+              {flags.map((f, index) => (
+                <div key={index} className={classNames(styles.flag, styles[f.type])}>
+                  {f.label}
+                </div>
+              ))}
             </div>
           )}
 
           {onWishlistClick && (
-            <WishlistButton
-              active={wishlistActive}
-              onClick={handleWishlistClick}
-            />
+            <WishlistButton active={wishlistActive} onClick={handleWishlistClick} />
           )}
         </div>
 
         <div className={styles.infoContainer}>
           <span className={styles.brandName}>{brandName}</span>
           <h3 className={styles.productName}>{productName}</h3>
-
           <Price price={price} salePrice={salePrice} />
 
-          {colors && colors.length > 0 && (
-            <div className={styles.swatchContainer}>
-              {colors.map((c, index) => (
+          {colors.length > 0 && (
+            <div className={classNames(styles.swatchContainer, { [styles.expanded]: isColorsExpanded })}>
+              {visibleColors.map((c, index) => (
                 <Color
                   key={index}
                   color={c.color}
@@ -111,19 +122,51 @@ const ProductTileVertical = forwardRef<HTMLAnchorElement, Props>(
                   }}
                 />
               ))}
+              {!isColorsExpanded && remainingColors > 0 && (
+                <button
+                  type="button"
+                  className={styles.moreLabel}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setIsColorsExpanded(true);
+                  }}
+                >
+                  +{remainingColors} more
+                </button>
+              )}
             </div>
           )}
 
-					{/* TODO: +4 if to much to be visible in one line */}
-
-          {sizes && sizes.length > 0 && (
-            <div className={styles.swatchContainer}>
-           	{sizes.map((s, index) => (
-				<Button variant="tertiary-grey" className={styles.sizeButton} key={index}>
-					{s.label}
-				</Button>
-			))}
-
+          {sizes.length > 0 && (
+            <div className={classNames(styles.swatchContainer, { [styles.expanded]: isSizesExpanded })}>
+              {visibleSizes.map((s, index) => (
+                <Button 
+                  variant="tertiary-grey" 
+                  className={styles.sizeButton} 
+                  key={index}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    s.onClick?.(e);
+                  }}
+                >
+                  {s.label}
+                </Button>
+              ))}
+              {!isSizesExpanded && remainingSizes > 0 && (
+                <button
+                  type="button"
+                  className={styles.moreLabel}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setIsSizesExpanded(true);
+                  }}
+                >
+                  +{remainingSizes} more
+                </button>
+              )}
             </div>
           )}
         </div>
