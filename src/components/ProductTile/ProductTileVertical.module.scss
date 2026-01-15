@@ -14,7 +14,7 @@
     }
 }
 
-.imageContainer {
+.image-container {
     position: relative;
     width: 100%;
 
@@ -26,29 +26,42 @@
     }
 }
 
-.sizeButton {
+.size-button {
     @include font-10;
     min-width: auto;
-    height: 30px;
-    min-height: 30px;
-    gap: $space-8;
+    height: 26px;
+    min-height: 26px;
+    gap: $space-4;
     padding: 0 $space-8;
+
+    @media (min-width: 768px) {
+        @include font-12;
+        height: 30px;
+        min-height: 30px;
+        gap: $space-8;
+    }
 }
 
-.swatchContainer {
+.swatch-container {
     display: flex;
     align-items: center;
-    gap: $space-8;
-    margin-top: 12px;
-    flex-wrap: nowrap;
+    gap: $space-4;
+    margin-top: $space-16;
+    padding: 1px;
     overflow: hidden;
+    flex-wrap: wrap;
 
     &.expanded {
         flex-wrap: wrap;
     }
+
+    @media (min-width: 768px) {
+        gap: $space-8;
+    }
 }
 
-.moreLabel {
+
+.more-label {
     background: none;
     border: none;
     padding: 0;
@@ -68,13 +81,13 @@
     }
 }
 
-.flagsContainer {
+.flags-container {
     position: absolute;
     bottom: $space-8;
     left: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: $space-8;
+    gap: $space-4;
     z-index: 1;
 
     @media (min-width: 768px) {
@@ -100,7 +113,7 @@
     }
 }
 
-.infoContainer {
+.info-container {
     display: flex;
     flex-direction: column;
     padding: $space-8 $space-8 $space-16 $space-8;
@@ -110,7 +123,7 @@
     }
 }
 
-.brandName {
+.brand-name {
     @include font-12-b;
 
     @media (min-width: 768px) {
@@ -118,18 +131,11 @@
     }
 }
 
-.productName {
+.product-name {
     @include font-12;
     margin: 0;
 
     @media (min-width: 768px) {
         @include font-14;
     }
-}
-
-.swatchContainer {
-    display: flex;
-    flex-wrap: wrap;
-    gap: $space-8;
-    margin-top: $space-8;
 }

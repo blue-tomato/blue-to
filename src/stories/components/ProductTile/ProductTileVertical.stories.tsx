@@ -195,18 +195,34 @@ export const MultipleProductsGrid: StoryMeta<typeof ProductTileVertical> = {
     };
 
     const [tile2Colors, setTile2Colors] = useState<ColorOption[]>([
-      { color: "#333", imageUrl: args.imageUrl, active: true },
-      { color: "#d82c2c", imageUrl: "https://images.blue-tomato.com/is/image/bluetomato/305499893_front.jpg" },
-      { color: "#fff", imageUrl: "https://images.blue-tomato.com/is/image/bluetomato/305499888_front.jpg" },
-      { color: "#b9e2c7", imageUrl: "https://images.blue-tomato.com/is/image/bluetomato/305499883_front.jpg" },
-      { color: "#000", imageUrl: args.imageUrl },
-      { color: "#555", imageUrl: args.imageUrl },
+      {
+        color: "#333333",
+        imageUrl: "https://images.blue-tomato.com/is/image/bluetomato/305499878_front.jpg-D72T_m4XYvxrHJ86-ueTb6DnUss/305499878+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
+        active: true,
+      },
+      {
+        color: "#d82c2c",
+        imageUrl: "https://images.blue-tomato.com/is/image/bluetomato/305499893_front.jpg-_qLzp3poLa1PJumH0qlPu758kpM/305499893+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
+      },
+      {
+        color: "#ffffff",
+        imageUrl: "https://images.blue-tomato.com/is/image/bluetomato/305499888_front.jpg-GbAxvgmiMiE3lxT-EuzKswZjQpg/305499888+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
+      },
+      {
+        color: "#b9e2c7",
+        imageUrl: "https://images.blue-tomato.com/is/image/bluetomato/305499883_front.jpg-1AnoaRYeyR_DN2YL2w8iDGPNCA4/305499883+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
+      },
     ]);
-    const [tile2Image, setTile2Image] = useState(args.imageUrl);
+    
+    const [tile2Image, setTile2Image] = useState(tile2Colors.find(c => c.active)?.imageUrl ?? args.imageUrl);
 
-    const handleColorClick = (idx: number) => {
-      setTile2Colors(tile2Colors.map((c, i) => ({ ...c, active: i === idx })));
-      setTile2Image(tile2Colors[idx].imageUrl);
+    const handleColorClick = (clickedIndex: number) => {
+      const updatedColors = tile2Colors.map((color, index) => ({
+        ...color,
+        active: index === clickedIndex,
+      }));
+      setTile2Colors(updatedColors);
+      setTile2Image(updatedColors[clickedIndex].imageUrl);
     };
 
     const [tile3Sizes, setTile3Sizes] = useState([
@@ -223,7 +239,11 @@ export const MultipleProductsGrid: StoryMeta<typeof ProductTileVertical> = {
           {...args}
           brandName="Carhartt WIP"
           productName="Chase T-Shirt"
-          flags={[{ label: "Neu", type: "default" }, { label: "-10%", type: "sale" }, { label: "Special Edition", type: "special" }]}
+          flags={[
+            { label: "New", type: "default" },
+            { label: "-10%", type: "sale" },
+            { label: "Special Edition", type: "special" }
+          ]}
           wishlistActive={wishlist[0]}
           onWishlistClick={() => toggleWishlist(0)}
         />
@@ -233,6 +253,10 @@ export const MultipleProductsGrid: StoryMeta<typeof ProductTileVertical> = {
           imageUrl={tile2Image}
           brandName="Patagonia"
           productName="Responsibili-Tee"
+          flags={[
+            { label: "New", type: "default" },
+            { label: "Special Edition", type: "special" }
+          ]}
           colors={tile2Colors.map((c, i) => ({ ...c, onClick: () => handleColorClick(i) }))}
           wishlistActive={wishlist[1]}
           onWishlistClick={() => toggleWishlist(1)}
