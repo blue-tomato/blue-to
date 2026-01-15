@@ -26,29 +26,6 @@
     }
 }
 
-.wishlistButton {
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: 2;
-    min-height: auto;
-    padding: $space-8;
-    background-color: transparent;
-
-    @media (min-width: 768px) {
-        top: $space-8;
-        right: $space-8;
-    }
-
-    >img {
-        width: $space-16;
-
-        @media (min-width: 768px) {
-            width: 19px;
-        }
-    }
-}
-
 .sizeButton {
     @include font-10;
     height: 30px;
@@ -128,27 +105,6 @@
     @media (min-width: 768px) {
         @include font-14;
     }
-}
-
-.priceContainer {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: $space-8;
-    @include font-12-b;
-
-    @media (min-width: 768px) {
-        @include font-14-b;
-    }
-
-}
-
-.priceOriginal {
-    text-decoration-line: line-through;
-}
-
-.salePrice {
-    color: $red-1;
 }
 
 .swatchContainer {
