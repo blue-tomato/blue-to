@@ -44,6 +44,7 @@ export const WithFlags: StoryMeta<typeof ProductTileVertical> = {
     flags: [
       { label: "Neu", type: "default" },
       { label: "-20%", type: "sale" },
+      { label: "Flag with long text test", type: "special" },
       { label: "Special Edition", type: "special" },
     ],
   },
@@ -178,6 +179,80 @@ export const Wishlist: StoryMeta<typeof ProductTileVertical> = {
           {...args}
           wishlistActive={isActive}
           onWishlistClick={() => setIsActive((prev) => !prev)}
+        />
+      </div>
+    );
+  },
+};
+
+export const MultipleProductsGrid: StoryMeta<typeof ProductTileVertical> = {
+  render: (args) => {
+    const [wishlist, setWishlist] = useState([false, true, false, false]);
+    const toggleWishlist = (idx: number) => {
+      const next = [...wishlist];
+      next[idx] = !next[idx];
+      setWishlist(next);
+    };
+
+    const [tile2Colors, setTile2Colors] = useState<ColorOption[]>([
+      { color: "#333", imageUrl: args.imageUrl, active: true },
+      { color: "#d82c2c", imageUrl: "https://images.blue-tomato.com/is/image/bluetomato/305499893_front.jpg" },
+      { color: "#fff", imageUrl: "https://images.blue-tomato.com/is/image/bluetomato/305499888_front.jpg" },
+      { color: "#b9e2c7", imageUrl: "https://images.blue-tomato.com/is/image/bluetomato/305499883_front.jpg" },
+      { color: "#000", imageUrl: args.imageUrl },
+      { color: "#555", imageUrl: args.imageUrl },
+    ]);
+    const [tile2Image, setTile2Image] = useState(args.imageUrl);
+
+    const handleColorClick = (idx: number) => {
+      setTile2Colors(tile2Colors.map((c, i) => ({ ...c, active: i === idx })));
+      setTile2Image(tile2Colors[idx].imageUrl);
+    };
+
+    const [tile3Sizes, setTile3Sizes] = useState([
+      { label: "S" }, { label: "M", active: true }, { label: "L" }, { label: "XL" }, { label: "XXL" }, { label: "3XL" }
+    ]);
+
+    const handleSizeClick = (idx: number) => {
+      setTile3Sizes(tile3Sizes.map((s, i) => ({ ...s, active: i === idx })));
+    };
+
+    return (
+      <div className={styles.gridContainer}>
+        <ProductTileVertical
+          {...args}
+          brandName="Carhartt WIP"
+          productName="Chase T-Shirt"
+          flags={[{ label: "Neu", type: "default" }, { label: "-10%", type: "sale" }, { label: "Special Edition", type: "special" }]}
+          wishlistActive={wishlist[0]}
+          onWishlistClick={() => toggleWishlist(0)}
+        />
+
+        <ProductTileVertical
+          {...args}
+          imageUrl={tile2Image}
+          brandName="Patagonia"
+          productName="Responsibili-Tee"
+          colors={tile2Colors.map((c, i) => ({ ...c, onClick: () => handleColorClick(i) }))}
+          wishlistActive={wishlist[1]}
+          onWishlistClick={() => toggleWishlist(1)}
+        />
+
+        <ProductTileVertical
+          {...args}
+          brandName="Santa Cruz"
+          productName="Classic Dot Tee"
+          sizes={tile3Sizes.map((s, i) => ({ ...s, onClick: () => handleSizeClick(i) }))}
+          wishlistActive={wishlist[2]}
+          onWishlistClick={() => toggleWishlist(2)}
+        />
+
+        <ProductTileVertical
+          {...args}
+          brandName="Vans"
+          productName="Off The Wall Tee"
+          wishlistActive={wishlist[3]}
+          onWishlistClick={() => toggleWishlist(3)}
         />
       </div>
     );

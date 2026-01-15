@@ -11,3 +11,18 @@
         top: 0
     }
 }
+
+.gridContainer {
+    position: relative;
+    top: 130px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $space-16;
+    width: 100%;
+    box-sizing: border-box;
+
+    @media (min-width: 1024px) {
+        grid-template-columns: repeat(4, 1fr);
+        gap: $space-24;
+    }
+}
