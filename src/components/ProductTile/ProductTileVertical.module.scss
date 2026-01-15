@@ -26,36 +26,38 @@
     }
 }
 
-.wishlistButton {
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: 2;
-    min-height: auto;
-    padding: $space-8;
-    background-color: transparent;
+.sizeButton {
+    @include font-10;
+    min-width: auto;
+    height: 30px;
+    min-height: 30px;
+    gap: $space-8;
+    padding: 0 $space-8;
+}
 
-    @media (min-width: 768px) {
-        top: $space-8;
-        right: $space-8;
-    }
+.swatchContainer {
+    display: flex;
+    align-items: center;
+    gap: $space-8;
+    margin-top: 12px;
+    flex-wrap: nowrap;
+    overflow: hidden;
 
-    >img {
-        width: $space-16;
-
-        @media (min-width: 768px) {
-            width: 19px;
-        }
+    &.expanded {
+        flex-wrap: wrap;
     }
 }
 
-.sizeButton {
+.moreLabel {
+    background: none;
+    border: none;
+    padding: 0;
     @include font-10;
-    height: 30px;
-    min-height: 30px;
-    ;
-    gap: 8px;
-    padding: 0 8px;
+    text-decoration: underline;
+    white-space: nowrap;
+    cursor: pointer;
+    margin-left: $space-4;
+    font-family: inherit;
 
     &:hover {
         opacity: 1;
@@ -66,31 +68,25 @@
     }
 }
 
-// TODO: add more flags
-
-// .flagsContainer {
-//     position: absolute;
-//     top: $space-8;
-//     left: 0;
-//     display: flex;
-//     flex-direction: column;
-//     gap: $space-4;
-//     z-index: 1;
-
-//     @media (min-width: 768px) {
-//         top: $space-16;
-//         left: $space-16;
-//     }
-// }
-
-.flag {
+.flagsContainer {
     position: absolute;
     bottom: $space-8;
     left: 0;
+    display: flex;
+    gap: $space-8;
+    z-index: 1;
+
+    @media (min-width: 768px) {
+        bottom: $space-16;
+        left: $space-16;
+    }
+}
+
+.flag {
     padding: $space-4 $space-8;
     background-color: $white;
     color: $grey-1;
-    z-index: 1;
+    width: fit-content;
 
     @include font-12-b;
 
@@ -128,27 +124,6 @@
     @media (min-width: 768px) {
         @include font-14;
     }
-}
-
-.priceContainer {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: $space-8;
-    @include font-12-b;
-
-    @media (min-width: 768px) {
-        @include font-14-b;
-    }
-
-}
-
-.priceOriginal {
-    text-decoration-line: line-through;
-}
-
-.salePrice {
-    color: $red-1;
 }
 
 .swatchContainer {

@@ -1,0 +1,24 @@
+@use "@/index.module.scss" as *;
+
+.wishlistButton {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 2;
+    min-height: auto;
+    padding: $space-8;
+    background-color: transparent;
+
+    @media (min-width: 768px) {
+        top: $space-8;
+        right: $space-8;
+    }
+
+    >img {
+        width: $space-16;
+
+        @media (min-width: 768px) {
+            width: 19px;
+        }
+    }
+}

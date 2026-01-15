@@ -1,0 +1,22 @@
+@use "@/index.module.scss" as *;
+
+.priceContainer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: $space-8;
+
+    @include font-12-b;
+
+    @media (min-width: 768px) {
+        @include font-14-b;
+    }
+}
+
+.priceOriginal {
+    text-decoration-line: line-through;
+}
+
+.salePrice {
+    color: $red-1;
+}
