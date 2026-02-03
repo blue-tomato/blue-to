@@ -20,9 +20,10 @@
     gap: $space-16;
     width: 100%;
     box-sizing: border-box;
+    max-width: 640px;
 
-    @media (min-width: 1024px) {
+    @media (min-width: 768px) {
         grid-template-columns: repeat(4, 1fr);
-        gap: $space-24;
+        gap: $space-48 $space-16;
     }
 }

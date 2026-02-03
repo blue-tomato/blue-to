@@ -278,6 +278,37 @@ export const MultipleProductsGrid: StoryMeta<typeof ProductTileVertical> = {
           wishlistActive={wishlist[3]}
           onWishlistClick={() => toggleWishlist(3)}
         />
+          <ProductTileVertical
+          {...args}
+          imageUrl={tile2Image}
+          brandName="Patagonia"
+          productName="Responsibili-Tee"
+          flags={[
+            { label: "New", type: "default" },
+            { label: "Special Edition", type: "special" }
+          ]}
+          colors={tile2Colors.map((c, i) => ({ ...c, onClick: () => handleColorClick(i) }))}
+          wishlistActive={wishlist[1]}
+          onWishlistClick={() => toggleWishlist(1)}
+        />
+
+        <ProductTileVertical
+          {...args}
+          brandName="Santa Cruz"
+          productName="Classic Dot Tee"
+          sizes={tile3Sizes.map((s, i) => ({ ...s, onClick: () => handleSizeClick(i) }))}
+          wishlistActive={wishlist[2]}
+          onWishlistClick={() => toggleWishlist(2)}
+          salePrice={70.95}
+        />
+           <ProductTileVertical
+          {...args}
+          brandName="Santa Cruz"
+          productName="Classic Dot Tee"
+          wishlistActive={wishlist[3]}
+          onWishlistClick={() => toggleWishlist(3)}
+          salePrice={70.95}
+        />
       </div>
     );
   },
