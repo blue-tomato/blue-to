@@ -212,6 +212,19 @@ export const MultipleProductsGrid: StoryMeta<typeof ProductTileVertical> = {
         color: "#b9e2c7",
         imageUrl: "https://images.blue-tomato.com/is/image/bluetomato/305499883_front.jpg-1AnoaRYeyR_DN2YL2w8iDGPNCA4/305499883+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
       },
+      { color: "#555", imageUrl: "https://images.blue-tomato.com/is/image/bluetomato/305499878_front.jpg" },
+      {
+        color: "#ffffff",
+        imageUrl: "https://images.blue-tomato.com/is/image/bluetomato/305499888_front.jpg-GbAxvgmiMiE3lxT-EuzKswZjQpg/305499888+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
+      },
+      {
+        color: "#b9e2c7",
+        imageUrl: "https://images.blue-tomato.com/is/image/bluetomato/305499883_front.jpg-1AnoaRYeyR_DN2YL2w8iDGPNCA4/305499883+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
+      },
+      {
+        color: "#d82c2c",
+        imageUrl: "https://images.blue-tomato.com/is/image/bluetomato/305499893_front.jpg-_qLzp3poLa1PJumH0qlPu758kpM/305499893+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
+      },
     ]);
     
     const [tile2Image, setTile2Image] = useState(tile2Colors.find(c => c.active)?.imageUrl ?? args.imageUrl);

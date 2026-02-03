@@ -48,11 +48,13 @@
     gap: $space-4;
     margin-top: $space-16;
     padding: 1px;
-    overflow: hidden;
     flex-wrap: wrap;
+    overflow: hidden;
+    max-height: $space-32;
 
     &.expanded {
-        flex-wrap: wrap;
+        max-height: none;
+        overflow: visible;
     }
 
     @media (min-width: 768px) {
@@ -65,11 +67,11 @@
     background: none;
     border: none;
     padding: 0;
-    @include font-10;
+    @include font-8;
     text-decoration: underline;
     white-space: nowrap;
     cursor: pointer;
-    margin-left: $space-4;
+    margin-left: auto;
     font-family: inherit;
 
     &:hover {
@@ -77,7 +79,7 @@
     }
 
     @media (min-width: 768px) {
-        @include font-12;
+        @include font-10;
     }
 }
 
