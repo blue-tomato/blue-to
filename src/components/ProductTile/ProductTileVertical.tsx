@@ -1,12 +1,17 @@
 import classNames from "classnames";
-import { forwardRef, useState } from "react";
+import {
+  forwardRef,
+  useState,
+  useRef,
+  useLayoutEffect,
+  useCallback,
+} from "react";
 import Color from "./shared/Color";
 import WishlistButton from "./shared/WishlistButton";
 import Price from "./shared/Price";
 import styles from "./ProductTileVertical.module.scss";
 import Button from "@/components/Button";
 
-const MAX_VISIBLE = 5;
 
 export type ColorOption = {
   color: string;
@@ -42,6 +47,57 @@ export type Props = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
   className?: string;
 };
 
+
+function useVisibleFirstRow(
+  containerRef: React.RefObject<HTMLDivElement | null>,
+  itemsCount: number,
+  expanded: boolean
+) {
+  const [visibleCount, setVisibleCount] = useState(itemsCount);
+
+  const calculate = useCallback(() => {
+    const container = containerRef.current;
+    if (!container || expanded || itemsCount === 0) {
+      setVisibleCount(itemsCount);
+      return;
+    }
+
+    const children = Array.from(container.children) as HTMLElement[];
+    if (children.length === 0) return;
+
+    const firstItemTop = children[0].offsetTop;
+    let countInFirstRow = 0;
+
+    for (const child of children) {
+      if (child.hasAttribute("data-more")) continue;
+      if (child.offsetTop > firstItemTop) break;
+      countInFirstRow++;
+    }
+
+    if (countInFirstRow < itemsCount) {
+      setVisibleCount(Math.max(0, countInFirstRow -1));
+    } else {
+      setVisibleCount(itemsCount);
+    }
+  }, [itemsCount, expanded]);
+
+  useLayoutEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    calculate();
+
+    const observer = new ResizeObserver(() => {
+      requestAnimationFrame(calculate);
+    });
+
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, [calculate, itemsCount]);
+
+  return visibleCount;
+}
+
 const ProductTileVertical = forwardRef<HTMLAnchorElement, Props>(
   (
     {
@@ -60,22 +116,25 @@ const ProductTileVertical = forwardRef<HTMLAnchorElement, Props>(
       href,
       ...props
     },
-    ref,
+    ref
   ) => {
     const [isColorsExpanded, setIsColorsExpanded] = useState(false);
     const [isSizesExpanded, setIsSizesExpanded] = useState(false);
+
+    const colorsRef = useRef<HTMLDivElement>(null);
+    const sizesRef = useRef<HTMLDivElement>(null);
+
+    const visibleColorsCount = useVisibleFirstRow(colorsRef, colors.length, isColorsExpanded);
+    const visibleSizesCount = useVisibleFirstRow(sizesRef, sizes.length, isSizesExpanded);
+
+    const remainingColors = colors.length - visibleColorsCount;
+    const remainingSizes = sizes.length - visibleSizesCount;
 
     const handleWishlistClick = (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
       e.stopPropagation();
       onWishlistClick?.(e);
     };
-
-    const visibleColors = isColorsExpanded ? colors : colors.slice(0, MAX_VISIBLE);
-    const remainingColors = colors.length - MAX_VISIBLE;
-
-    const visibleSizes = isSizesExpanded ? sizes : sizes.slice(0, MAX_VISIBLE);
-    const remainingSizes = sizes.length - MAX_VISIBLE;
 
     return (
       <a
@@ -87,7 +146,7 @@ const ProductTileVertical = forwardRef<HTMLAnchorElement, Props>(
       >
         <div className={styles.imageContainer}>
           <img src={imageUrl} alt={imageAlt} className={styles.productImage} />
-          
+
           {flags.length > 0 && (
             <div className={styles.flagsContainer}>
               {flags.map((f, index) => (
@@ -109,8 +168,11 @@ const ProductTileVertical = forwardRef<HTMLAnchorElement, Props>(
           <Price price={price} salePrice={salePrice} />
 
           {colors.length > 0 && (
-            <div className={classNames(styles.swatchContainer, { [styles.expanded]: isColorsExpanded })}>
-              {visibleColors.map((c, index) => (
+            <div
+              ref={colorsRef}
+              className={classNames(styles.swatchContainer, { [styles.expanded]: isColorsExpanded })}
+            >
+              {(isColorsExpanded ? colors : colors.slice(0, visibleColorsCount)).map((c, index) => (
                 <Color
                   key={index}
                   color={c.color}
@@ -124,6 +186,7 @@ const ProductTileVertical = forwardRef<HTMLAnchorElement, Props>(
               ))}
               {!isColorsExpanded && remainingColors > 0 && (
                 <button
+                  data-more
                   type="button"
                   className={styles.moreLabel}
                   onClick={(e) => {
@@ -139,11 +202,14 @@ const ProductTileVertical = forwardRef<HTMLAnchorElement, Props>(
           )}
 
           {sizes.length > 0 && (
-            <div className={classNames(styles.swatchContainer, { [styles.expanded]: isSizesExpanded })}>
-              {visibleSizes.map((s, index) => (
-                <Button 
-                  variant="tertiary-grey" 
-                  className={styles.sizeButton} 
+            <div
+              ref={sizesRef}
+              className={classNames(styles.swatchContainer, { [styles.expanded]: isSizesExpanded })}
+            >
+              {(isSizesExpanded ? sizes : sizes.slice(0, visibleSizesCount)).map((s, index) => (
+                <Button
+                  variant="tertiary-grey"
+                  className={styles.sizeButton}
                   key={index}
                   onClick={(e) => {
                     e.preventDefault();
@@ -156,6 +222,7 @@ const ProductTileVertical = forwardRef<HTMLAnchorElement, Props>(
               ))}
               {!isSizesExpanded && remainingSizes > 0 && (
                 <button
+                  data-more
                   type="button"
                   className={styles.moreLabel}
                   onClick={(e) => {
@@ -172,7 +239,7 @@ const ProductTileVertical = forwardRef<HTMLAnchorElement, Props>(
         </div>
       </a>
     );
-  },
+  }
 );
 
 export default ProductTileVertical;

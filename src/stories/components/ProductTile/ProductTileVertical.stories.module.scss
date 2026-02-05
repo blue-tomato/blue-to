@@ -11,3 +11,19 @@
         top: 0
     }
 }
+
+.gridContainer {
+    position: relative;
+    top: 130px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $space-16;
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 1280px;
+
+    @media (min-width: 768px) {
+        grid-template-columns: repeat(4, 1fr);
+        gap: $space-48 $space-16;
+    }
+}

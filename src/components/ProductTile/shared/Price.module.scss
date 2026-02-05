@@ -1,6 +1,6 @@
 @use "@/index.module.scss" as *;
 
-.priceContainer {
+.price-container {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -13,10 +13,10 @@
     }
 }
 
-.priceOriginal {
+.price-original {
     text-decoration-line: line-through;
 }
 
-.salePrice {
+.sale-price {
     color: $red-1;
 }
