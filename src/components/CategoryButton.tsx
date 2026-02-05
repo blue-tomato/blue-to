@@ -10,10 +10,7 @@ type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 const CategoryButton = forwardRef<HTMLButtonElement, Props>(
-	(
-		{ active = false, className, color = "white", size = "large", ...props },
-		ref,
-	) => (
+	({ active = false, className, color = "white", size = "large", ...props }, ref) => (
 		<Button
 			ref={ref}
 			className={classNames(

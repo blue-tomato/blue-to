@@ -13,41 +13,21 @@ const TypographyStory = () => (
 
 		{sizes.map((size) => (
 			<div key={size} className={styles.fontsWrapper}>
-				<button
-					className={styles.fontButton}
-					onClick={() => writeIncludeToClipboard(size)}
-				>
+				<button className={styles.fontButton} onClick={() => writeIncludeToClipboard(size)}>
 					<div className={styles.subtitle}>Font {size}</div>
-					<div className={styles[`font${size}`]}>
-						The quick brown fox jumps over the lazy dog.
-					</div>
+					<div className={styles[`font${size}`]}>The quick brown fox jumps over the lazy dog.</div>
 				</button>
-				<button
-					className={styles.fontButton}
-					onClick={() => writeIncludeToClipboard(`${size}-sb`)}
-				>
+				<button className={styles.fontButton} onClick={() => writeIncludeToClipboard(`${size}-sb`)}>
 					<div className={styles.subtitle}>Font {size} semibold</div>
-					<div className={styles[`font${size}Sb`]}>
-						The quick brown fox jumps over the lazy dog.
-					</div>
+					<div className={styles[`font${size}SB`]}>The quick brown fox jumps over the lazy dog.</div>
 				</button>
-				<button
-					className={styles.fontButton}
-					onClick={() => writeIncludeToClipboard(`${size}-b`)}
-				>
+				<button className={styles.fontButton} onClick={() => writeIncludeToClipboard(`${size}-b`)}>
 					<div className={styles.subtitle}>Font {size} bold</div>
-					<div className={styles[`font${size}B`]}>
-						The quick brown fox jumps over the lazy dog.
-					</div>
+					<div className={styles[`font${size}B`]}>The quick brown fox jumps over the lazy dog.</div>
 				</button>
-				<button
-					className={styles.fontButton}
-					onClick={() => writeIncludeToClipboard(`${size}-eb`)}
-				>
+				<button className={styles.fontButton} onClick={() => writeIncludeToClipboard(`${size}-eb`)}>
 					<div className={styles.subtitle}>Font {size} extrabold</div>
-					<div className={styles[`font${size}Eb`]}>
-						The quick brown fox jumps over the lazy dog.
-					</div>
+					<div className={styles[`font${size}EB`]}>The quick brown fox jumps over the lazy dog.</div>
 				</button>
 			</div>
 		))}

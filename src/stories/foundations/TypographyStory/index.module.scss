@@ -13,12 +13,12 @@
   font-size: 20px;
 }
 
-.fonts-wrapper {
+.fontsWrapper {
   display: flex;
   flex-direction: column;
 }
 
-.font-button {
+.fontButton {
   margin-top: $space-8;
   border: 0;
   text-align: left;
@@ -30,146 +30,146 @@
   @include font-16;
 }
 
-.font-10 {
+.font10 {
   @include font-10;
 }
 
-.font-10-sb {
+.font10SB {
   @include font-10-sb;
 }
 
-.font-10-b {
+.font10B {
   @include font-10-b;
 }
 
-.font-10-eb {
+.font10EB {
   @include font-10-eb;
 }
 
-.font-12 {
+.font12 {
   @include font-12;
 }
 
-.font-12-sb {
+.font12SB {
   @include font-12-sb;
 }
 
-.font-12-b {
+.font12B {
   @include font-12-b;
 }
 
-.font-12-eb {
+.font12EB {
   @include font-12-eb;
 }
 
-.font-14 {
+.font14 {
   @include font-14;
 }
 
-.font-14-sb {
+.font14SB {
   @include font-14-sb;
 }
 
-.font-14-b {
+.font14B {
   @include font-14-b;
 }
 
-.font-14-eb {
+.font14EB {
   @include font-14-eb;
 }
 
-.font-16 {
+.font16 {
   @include font-16;
 }
 
-.font-16-sb {
+.font16SB {
   @include font-16-sb;
 }
 
-.font-16-b {
+.font16B {
   @include font-16-b;
 }
 
-.font-16-eb {
+.font16EB {
   @include font-16-eb;
 }
 
-.font-20 {
+.font20 {
   @include font-20;
 }
 
-.font-20-sb {
+.font20SB {
   @include font-20-sb;
 }
 
-.font-20-b {
+.font20B {
   @include font-20-b;
 }
 
-.font-20-eb {
+.font20EB {
   @include font-20-eb;
 }
 
-.font-24 {
+.font24 {
   @include font-24;
 }
 
-.font-24-sb {
+.font24SB {
   @include font-24-sb;
 }
 
-.font-24-b {
+.font24B {
   @include font-24-b;
 }
 
-.font-24-eb {
+.font24EB {
   @include font-24-eb;
 }
 
-.font-32 {
+.font32 {
   @include font-32;
 }
 
-.font-32-sb {
+.font32SB {
   @include font-32-sb;
 }
 
-.font-32-b {
+.font32B {
   @include font-32-b;
 }
 
-.font-32-eb {
+.font32EB {
   @include font-32-eb;
 }
 
-.font-40 {
+.font40 {
   @include font-40;
 }
 
-.font-40-sb {
+.font40SB {
   @include font-40-sb;
 }
 
-.font-40-b {
+.font40B {
   @include font-40-b;
 }
 
-.font-40-eb {
+.font40EB {
   @include font-40-eb;
 }
 
-.font-60 {
+.font60 {
   @include font-60;
 }
 
-.font-60-sb {
+.font60SB {
   @include font-60-sb;
 }
 
-.font-60-b {
+.font60B {
   @include font-60-b;
 }
 
-.font-60-eb {
+.font60EB {
   @include font-60-eb;
 }

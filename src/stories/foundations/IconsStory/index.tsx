@@ -15,9 +15,7 @@ const IconsStory = () => (
 					{Object.entries(values).map(([name, src]) => (
 						<Icon
 							key={name}
-							background={
-								name.toLowerCase().includes("white") ? "dark" : "light"
-							}
+							background={name.toLowerCase().includes("white") ? "dark" : "light"}
 							name={name}
 							src={src}
 						/>

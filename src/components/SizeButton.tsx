@@ -14,17 +14,7 @@ type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 const SizeButton = forwardRef<HTMLButtonElement, Props>(
-	(
-		{
-			active = false,
-			className,
-			disabled = false,
-			iconLeft,
-			iconRight,
-			...props
-		},
-		ref,
-	) => (
+	({ active = false, className, disabled = false, iconLeft, iconRight, ...props }, ref) => (
 		<Button
 			ref={ref}
 			className={classNames(

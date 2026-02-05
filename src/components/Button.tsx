@@ -10,27 +10,12 @@ type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 	iconLeft?: IconProp;
 	iconRight?: IconProp;
 	loading?: boolean;
-	variant?:
-		| "primary"
-		| "secondary"
-		| "secondary-white"
-		| "tertiary"
-		| "tertiary-transparent" 
-		| "tertiary-grey";
+	variant?: "primary" | "secondary" | "secondary-white" | "tertiary" | "tertiary-transparent" | "tertiary-grey";
 };
 
 const Button = forwardRef<HTMLButtonElement, Props>(
 	(
-		{
-			children,
-			className,
-			disabled = false,
-			iconLeft,
-			iconRight,
-			loading = false,
-			variant = "primary",
-			...props
-		},
+		{ children, className, disabled = false, iconLeft, iconRight, loading = false, variant = "primary", ...props },
 		ref,
 	) => (
 		<button
@@ -52,25 +37,15 @@ const Button = forwardRef<HTMLButtonElement, Props>(
 				<Icon
 					className={classNames(styles.icon, styles.loading)}
 					icon={
-						variant === "secondary-white" ||
-						variant === "tertiary" ||
-						variant === "tertiary-transparent"
+						variant === "secondary-white" || variant === "tertiary" || variant === "tertiary-transparent"
 							? "functional.spinnerFilledBlack"
 							: "functional.spinnerFilledWhite"
 					}
 				/>
 			)}
-			{iconLeft && typeof iconLeft === "string" ? (
-				<Icon className={styles.icon} icon={iconLeft} />
-			) : (
-				iconLeft
-			)}
+			{iconLeft && typeof iconLeft === "string" ? <Icon className={styles.icon} icon={iconLeft} /> : iconLeft}
 			{children}
-			{iconRight && typeof iconRight === "string" ? (
-				<Icon className={styles.icon} icon={iconRight} />
-			) : (
-				iconRight
-			)}
+			{iconRight && typeof iconRight === "string" ? <Icon className={styles.icon} icon={iconRight} /> : iconRight}
 		</button>
 	),
 );

@@ -1,159 +1,245 @@
 import classNames from "classnames";
-import { forwardRef } from "react";
-import Button from "@/components/Button";
-import Icon from "@/components/Icon";
+import {
+  forwardRef,
+  useState,
+  useRef,
+  useLayoutEffect,
+  useCallback,
+} from "react";
+import Color from "./shared/Color";
+import WishlistButton from "./shared/WishlistButton";
+import Price from "./shared/Price";
 import styles from "./ProductTileVertical.module.scss";
-import Color from "@/components/ProductTile/Color";
+import Button from "@/components/Button";
 
-type Color = {
-	color: string;
-	active?: boolean;
-	onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
-	imageUrl: string; 
+
+export type ColorOption = {
+  color: string;
+  imageUrl: string;
+  active?: boolean;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
-type Size = {
-	label: string;
-	active?: boolean;
-	disabled?: boolean;
-	onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+export type SizeOption = {
+  label: string;
+  active?: boolean;
+  disabled?: boolean;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
 type Flag = {
-	label: string;
-	type: "default" | "sale" | "special";
+  label: string;
+  type: "default" | "sale" | "special";
 };
 
 export type Props = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
-	brandName: string;
-	productName: string;
-	price: number;
-	imageUrl: string;
-	imageAlt: string;
-	salePrice?: number;
-	wishlistActive?: boolean;
-	onWishlistClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
-	colors?: Color[];
-	sizes?: Size[];
-	flag?: Flag;
-	className?: string;
+  brandName: string;
+  productName: string;
+  price: number;
+  salePrice?: number;
+  imageUrl: string;
+  imageAlt: string;
+  wishlistActive?: boolean;
+  onWishlistClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  colors?: ColorOption[];
+  sizes?: SizeOption[];
+  flags?: Flag[];
+  className?: string;
 };
 
+
+function useVisibleFirstRow(
+  containerRef: React.RefObject<HTMLDivElement | null>,
+  itemsCount: number,
+  expanded: boolean
+) {
+  const [visibleCount, setVisibleCount] = useState(itemsCount);
+
+  const calculate = useCallback(() => {
+    const container = containerRef.current;
+    if (!container || expanded || itemsCount === 0) {
+      setVisibleCount(itemsCount);
+      return;
+    }
+
+    const children = Array.from(container.children) as HTMLElement[];
+    if (children.length === 0) return;
+
+    const firstItemTop = children[0].offsetTop;
+    let countInFirstRow = 0;
+
+    for (const child of children) {
+      if (child.hasAttribute("data-more")) continue;
+      if (child.offsetTop > firstItemTop) break;
+      countInFirstRow++;
+    }
+
+    if (countInFirstRow < itemsCount) {
+      setVisibleCount(Math.max(0, countInFirstRow -1));
+    } else {
+      setVisibleCount(itemsCount);
+    }
+  }, [itemsCount, expanded]);
+
+  useLayoutEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    calculate();
+
+    const observer = new ResizeObserver(() => {
+      requestAnimationFrame(calculate);
+    });
+
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, [calculate, itemsCount]);
+
+  return visibleCount;
+}
+
 const ProductTileVertical = forwardRef<HTMLAnchorElement, Props>(
-	(
-		{
-			brandName,
-			productName,
-			price,
-			salePrice,
-			imageUrl,
-			imageAlt,
-			wishlistActive = false,
-			onWishlistClick,
-			colors,
-			sizes,
-			flag,
-			className,
-			href,
-			...props
-		},
-		ref,
-	) => {
-		const handleWishlistClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-			e.preventDefault();
-			e.stopPropagation();
-			onWishlistClick?.(e);
-		};
+  (
+    {
+      brandName,
+      productName,
+      price,
+      salePrice,
+      imageUrl,
+      imageAlt,
+      wishlistActive = false,
+      onWishlistClick,
+      colors = [],
+      sizes = [],
+      flags = [],
+      className,
+      href,
+      ...props
+    },
+    ref
+  ) => {
+    const [isColorsExpanded, setIsColorsExpanded] = useState(false);
+    const [isSizesExpanded, setIsSizesExpanded] = useState(false);
 
+    const colorsRef = useRef<HTMLDivElement>(null);
+    const sizesRef = useRef<HTMLDivElement>(null);
 
-		return (
-			<a
-				ref={ref}
-				href={href}
-				className={classNames(styles.tile, className)}
-				aria-label={`${brandName} - ${productName}`}
-				{...props}
-			>
-				<div className={styles.imageContainer}>
-					<img src={imageUrl} alt={imageAlt} className={styles.productImage} />
+    const visibleColorsCount = useVisibleFirstRow(colorsRef, colors.length, isColorsExpanded);
+    const visibleSizesCount = useVisibleFirstRow(sizesRef, sizes.length, isSizesExpanded);
 
-					{flag && (
-						<div className={classNames(styles.flag, styles[flag.type])}>
-							{flag.label}
-						</div>
-					)}
+    const remainingColors = colors.length - visibleColorsCount;
+    const remainingSizes = sizes.length - visibleSizesCount;
 
-					{onWishlistClick && (
-						<Button
-							variant="secondary-white"
-							className={styles.wishlistButton}
-							onClick={handleWishlistClick}
-							aria-label={
-								wishlistActive ? "Remove from wishlist" : "Add to wishlist"
-							}
-						>
-							<Icon icon={wishlistActive ? "functional.heartFilledBlue" : "functional.heartFilledGrey"} />
-						</Button>
-					)}
-				</div>
+    const handleWishlistClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault();
+      e.stopPropagation();
+      onWishlistClick?.(e);
+    };
 
-				<div className={styles.infoContainer}>
-					<span className={styles.brandName}>{brandName}</span>
-					<h3 className={styles.productName}>{productName}</h3>
-					{
-						(salePrice && salePrice < price) ? (
-							<div className={styles.priceContainer}>
-								<span className={styles.priceOriginal}>
-									€ {price.toFixed(2).replace(".", ",")}
-								</span>
-							<span className={styles.salePrice}>
-								€ {salePrice.toFixed(2).replace(".", ",")}
-							</span>
-						</div>
-					)
-				
-				: (
-					<div className={styles.priceContainer}>
-						€ {price.toFixed(2).replace(".", ",")}
-					</div>
-				)
-			}
+    return (
+      <a
+        ref={ref}
+        href={href}
+        className={classNames(styles.tile, className)}
+        aria-label={`${brandName} - ${productName}`}
+        {...props}
+      >
+        <div className={styles.imageContainer}>
+          <img src={imageUrl} alt={imageAlt} className={styles.productImage} />
 
-					{colors && colors.length > 0 && (
-						<div className={styles.swatchContainer}>
-							{colors.map((c, index) => (
-								<Color
-									key={index}
-									color={c.color}
-									active={c.active}
-									onClick={(e) => {
-										e.preventDefault();
-										e.stopPropagation();
-										c.onClick?.(e);
-									}}
-								/>
-							))}
-						</div>
-					)}
+          {flags.length > 0 && (
+            <div className={styles.flagsContainer}>
+              {flags.map((f, index) => (
+                <div key={index} className={classNames(styles.flag, styles[f.type])}>
+                  {f.label}
+                </div>
+              ))}
+            </div>
+          )}
 
-					{/* TODO: +4 if to much to be visible in one line */}
-					{sizes && sizes.length > 0 && (
-						<div className={styles.swatchContainer}>
-							{sizes.map((s, index) => (
-								<Button
-									variant="tertiary-grey"
-									className={styles.sizeButton}
-									key={index}
-								>
-									{s.label}
-								</Button>
-							))}
-						</div>
-					)}
-				</div>
-			</a>
-		);
-	},
+          {onWishlistClick && (
+            <WishlistButton active={wishlistActive} onClick={handleWishlistClick} />
+          )}
+        </div>
+
+        <div className={styles.infoContainer}>
+          <span className={styles.brandName}>{brandName}</span>
+          <h3 className={styles.productName}>{productName}</h3>
+          <Price price={price} salePrice={salePrice} />
+
+          {colors.length > 0 && (
+            <div
+              ref={colorsRef}
+              className={classNames(styles.swatchContainer, { [styles.expanded]: isColorsExpanded })}
+            >
+              {(isColorsExpanded ? colors : colors.slice(0, visibleColorsCount)).map((c, index) => (
+                <Color
+                  key={index}
+                  color={c.color}
+                  active={c.active}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    c.onClick?.(e);
+                  }}
+                />
+              ))}
+              {!isColorsExpanded && remainingColors > 0 && (
+                <button
+                  data-more
+                  type="button"
+                  className={styles.moreLabel}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setIsColorsExpanded(true);
+                  }}
+                >
+                  +{remainingColors} more
+                </button>
+              )}
+            </div>
+          )}
+
+          {sizes.length > 0 && (
+            <div
+              ref={sizesRef}
+              className={classNames(styles.swatchContainer, { [styles.expanded]: isSizesExpanded })}
+            >
+              {(isSizesExpanded ? sizes : sizes.slice(0, visibleSizesCount)).map((s, index) => (
+                <Button
+                  variant="tertiary-grey"
+                  className={styles.sizeButton}
+                  key={index}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    s.onClick?.(e);
+                  }}
+                >
+                  {s.label}
+                </Button>
+              ))}
+              {!isSizesExpanded && remainingSizes > 0 && (
+                <button
+                  data-more
+                  type="button"
+                  className={styles.moreLabel}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setIsSizesExpanded(true);
+                  }}
+                >
+                  +{remainingSizes} more
+                </button>
+              )}
+            </div>
+          )}
+        </div>
+      </a>
+    );
+  }
 );
 
 export default ProductTileVertical;

@@ -18,53 +18,24 @@ type Props = React.InputHTMLAttributes<HTMLInputElement> & {
 };
 
 const TextField = forwardRef<HTMLLabelElement, Props>(
-	(
-		{
-			error,
-			helperText,
-			label,
-			optionalText,
-			placeholder,
-			slots,
-			tooltip,
-			...props
-		},
-		ref,
-	) => {
+	({ error, helperText, label, optionalText, placeholder, slots, tooltip, ...props }, ref) => {
 		const tooltipId = useId().slice(1, -1);
 
 		return (
 			<label ref={ref} className={styles.wrapper}>
 				<div className={styles.labelWrapper}>
 					{label && <span className={styles.label}>{label}</span>}
-					{optionalText && (
-						<span className={styles.optionalText}>{optionalText}</span>
-					)}
+					{optionalText && <span className={styles.optionalText}>{optionalText}</span>}
 				</div>
 
-				<div
-					className={classNames(
-						styles.inputWrapper,
-						error && styles.inputWrapperError,
-					)}
-				>
-					{slots?.input ?? (
-						<input
-							className={styles.input}
-							placeholder={placeholder}
-							{...props}
-						/>
-					)}
+				<div className={classNames(styles.inputWrapper, error && styles.inputWrapperError)}>
+					{slots?.input ?? <input className={styles.input} placeholder={placeholder} {...props} />}
 
 					{slots?.afterInput}
 
 					{tooltip && (
 						<>
-							<Icon
-								id={tooltipId}
-								className={styles.inputIcon}
-								icon="functional.helpFilledWhite"
-							/>
+							<Icon id={tooltipId} className={styles.inputIcon} icon="functional.helpFilledWhite" />
 							<Tooltip anchorSelect={`#${tooltipId}`} variant="yellow">
 								{tooltip}
 							</Tooltip>
@@ -80,10 +51,7 @@ const TextField = forwardRef<HTMLLabelElement, Props>(
 				)}
 				{error && typeof error === "string" && (
 					<div className={styles.errorText}>
-						<Icon
-							className={styles.icon}
-							icon="functional.attentionFilledRed"
-						/>
+						<Icon className={styles.icon} icon="functional.attentionFilledRed" />
 						{error}
 					</div>
 				)}

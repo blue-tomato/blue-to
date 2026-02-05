@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
-import Icon from "@/components/Icon"; 
+import Icon from "@/components/Icon";
 import styles from "./NotificationBanner.module.scss";
 
 const icons = {

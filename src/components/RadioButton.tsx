@@ -14,11 +14,7 @@ const RadioButton = forwardRef<HTMLDivElement, Props>(
 				<div className={styles.box}>
 					<input
 						{...inputProps}
-						className={classNames(
-							inputProps?.className,
-							styles.input,
-							!!error && styles.inputError,
-						)}
+						className={classNames(inputProps?.className, styles.input, !!error && styles.inputError)}
 						type={inputProps?.type ?? "radio"}
 					/>
 					<div className={styles.check} />

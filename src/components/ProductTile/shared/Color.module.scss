@@ -1,20 +1,23 @@
 @use "@/index.module.scss" as *;
 
 .swatch {
-    width: $space-24;
-    height: $space-24;
+    width: $space-16;
+    height: $space-16;
     border-radius: 50%;
     border: 1px solid $grey-3;
     cursor: pointer;
     padding: 0;
     flex-shrink: 0;
 
+    @media (min-width: 768px) {
+        width: $space-24;
+        height: $space-24;
+    }
+
     &:hover {
         border-color: $grey-1;
     }
 }
-
-//TODO: extra div for active state
 
 .active {
     border: 2px solid $grey-1;

@@ -7,7 +7,7 @@
   align-items: center;
 }
 
-.inputs-container {
+.inputsContainer {
   display: flex;
   gap: $space-8;
   align-items: center;
@@ -20,7 +20,7 @@
   width: 300px;
 }
 
-.info-text {
+.infoText {
   margin: $space-8 0 0 0;
 
   @include font-16-b;

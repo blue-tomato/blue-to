@@ -9,6 +9,22 @@
   line-height: $lineHeight;
 }
 
+@mixin font-8($color: $grey-1, $weight: normal) {
+  @include bto-text($color: $color, $weight: $weight, $size: 8px, $lineHeight: 11px);
+}
+
+@mixin font-8-sb($color: $grey-1) {
+  @include font-8($color: $color, $weight: 600);
+}
+
+@mixin font-8-b($color: $grey-1) {
+  @include font-8($color: $color, $weight: 700);
+}
+
+@mixin font-8-eb($color: $grey-1) {
+  @include font-8($color: $color, $weight: 800);
+}
+
 @mixin font-10($color: $grey-1, $weight: normal) {
   @include bto-text($color: $color, $weight: $weight, $size: 10px, $lineHeight: 13px);
 }

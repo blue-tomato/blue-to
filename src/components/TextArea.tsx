@@ -10,20 +10,16 @@ type Props = React.InputHTMLAttributes<HTMLInputElement> & {
 	placeholder?: string;
 };
 
-const TextArea = forwardRef<HTMLLabelElement, Props>(
-	({ placeholder, ...props }, ref) => {
-		return (
-			<TextField
-				ref={ref}
-				slots={{
-					input: (
-						<textarea className={styles.textarea} placeholder={placeholder} />
-					),
-				}}
-				{...props}
-			/>
-		);
-	},
-);
+const TextArea = forwardRef<HTMLLabelElement, Props>(({ placeholder, ...props }, ref) => {
+	return (
+		<TextField
+			ref={ref}
+			slots={{
+				input: <textarea className={styles.textarea} placeholder={placeholder} />,
+			}}
+			{...props}
+		/>
+	);
+});
 
 export default TextArea;
