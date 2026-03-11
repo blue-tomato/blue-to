@@ -1,6 +1,7 @@
 import amazonpay from "./amazonpay.svg";
 import amazonpaydefault from "./amazonpaydefault.svg";
 import americanexpress from "./americanexpress.svg";
+import applepay from "./applepay.svg";
 import bancaires from "./bancaires.svg";
 import bancaires2 from "./bancaires2.svg";
 import cashondelivery from "./cashondelivery.svg";
@@ -8,6 +9,7 @@ import creditcard from "./creditcard.svg";
 import dinersclub from "./dinersclub.svg";
 import discover from "./discover.svg";
 import ideal from "./ideal.svg";
+import idealwero from "./idealwero.svg";
 import kar from "./kar.svg";
 import karde from "./karde.svg";
 import karen from "./karen.svg";
@@ -31,6 +33,7 @@ const payment = {
 	amazonpay,
 	amazonpaydefault,
 	americanexpress,
+	applepay,
 	bancaires2,
 	bancaires,
 	cashondelivery,
@@ -38,6 +41,7 @@ const payment = {
 	dinersclub,
 	discover,
 	ideal,
+	idealwero,
 	karde,
 	karen,
 	karfr,
