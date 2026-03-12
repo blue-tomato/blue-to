@@ -254,6 +254,7 @@ declare const icons: {
         amazonpay: string;
         amazonpaydefault: string;
         americanexpress: string;
+        applepay: string;
         bancaires2: string;
         bancaires: string;
         cashondelivery: string;
@@ -261,6 +262,7 @@ declare const icons: {
         dinersclub: string;
         discover: string;
         ideal: string;
+        idealwero: string;
         karde: string;
         karen: string;
         karfr: string;
