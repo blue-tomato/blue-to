@@ -3,9 +3,14 @@ import icons from "@/foundations/icons";
 import Icon from "./Icon";
 import styles from "./index.module.scss";
 
+const writeIconNameToClipboard = (name: string) => {
+	navigator.clipboard.writeText(name);
+	alert(`Copied ${name} to clipboard!`);
+};
+
 const IconsStory = () => (
 	<div className={styles.wrapper}>
-		<div className={styles.header}>Icons</div>
+		<div className={styles.header}>Icons (click to copy name)</div>
 
 		{Object.entries(icons).map(([key, values]) => (
 			<div key={key} className={styles.iconsWrapper}>
@@ -18,6 +23,7 @@ const IconsStory = () => (
 							background={name.toLowerCase().includes("white") ? "dark" : "light"}
 							name={name}
 							src={src}
+							onClick={() => writeIconNameToClipboard(name)}
 						/>
 					))}
 				</div>
