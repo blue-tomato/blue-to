@@ -137,32 +137,66 @@ Key directories:
 
 ### Component Patterns
 - **Component Structure**: Functional components only, no class components
-- **Props**: Destructure props with TypeScript type annotation
+- **Props Type**: ALWAYS use `type Props =` (not `ComponentNameProps`)
+- **Props Extension**: Extend native HTML element attributes with intersection for custom props
   ```ts
-  type ButtonProps = {
+  type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   	variant?: 'primary' | 'secondary';
-  	disabled?: boolean;
-  	children: React.ReactNode;
-  }
-  
-  export const Button = ({ variant = 'primary', disabled, children }: ButtonProps) => {
+  	loading?: boolean;
+  };
+  ```
+- **Props Destructuring**: Destructure props with TypeScript type annotation, provide defaults inline
+  ```ts
+  const Button = ({ variant = 'primary', disabled, children, ...props }: Props) => (
   	// implementation
-  }
+  );
+  ```
+- **JSX Props Order**: `ref` first, explicit props (alphabetically ordered), then `{...props}` last
+  ```tsx
+  <button ref={ref} className={...} disabled={disabled} type="button" {...props}>
+  ```
+- **Conditional Rendering**: Use `&&` for optional elements, ternary only when both branches render something
+  ```tsx
+  {error && <div className={styles.error}>{error}</div>}
+  {isLoading ? <Spinner /> : <Content />}
   ```
 - **CSS Modules**: Import styles and use with `className` prop. Use `classnames` for conditional classes
   ```ts
   import classNames from 'classnames';
   import styles from './Button.module.scss';
-  
-  className={classNames(styles.button, styles[variant], { [styles.disabled]: disabled })}
   ```
+- **classNames Order**: `className` prop first (for override), then base styles, then conditional modifiers
+  ```ts
+  className={classNames(className, styles.button, disabled && styles.disabled)}
+  ```
+- **Multi-file Components**: For components with sub-components: folder named after component, main component in `index.tsx`, sub-components in separate files with own `.module.scss`
 - **Exports**: Default export for components, named exports for types
 
 ### SCSS Styling
 - **Modules**: Use CSS Modules for component styles (`.module.scss`)
+- **Import**: Always use `@use "@/index.module.scss" as *;` at the top
 - **Variables**: Use design tokens from `foundations/` (colors, spacing, typography)
+- **Root Class**: Use `.wrapper` for containers with multiple elements, use component name (e.g., `.button`, `.icon`) for single-element components
 - **Class Names**: camelCase matching TypeScript usage (e.g., `.button`, `.buttonPrimary`)
+- **Modifiers**: Use separate flat classes (`.active`, `.disabled`, `.error`), NOT BEM notation (`.button--active`)
 - **Structure**: Component root class first, modifiers/variants next, nested elements last
+
+### Storybook Patterns
+- **Type**: Use `StoryMeta<typeof Component>` from `@/types` for all story definitions
+- **Title Format**: `"BLUETO/components/[ComponentName]"` with optional subdirectories (e.g., `"BLUETO/components/TextInput/TextField"`)
+- **Default Story**: Always export a `Default` story with empty object `{}`
+- **Story Names**: PascalCase, descriptive (e.g., `WithError`, `WithLongText`, `Minimum`)
+- **Parameters**: Include `parameters.links` with `confluence` and `figma` keys
+  ```ts
+  parameters: {
+  	links: {
+  		confluence: "ABC123",
+  		figma: "rUIq4O2W7nCzofq3nFoURP/BLUETO-Components?node-id=19-2",
+  	},
+  },
+  ```
+- **File Extension**: `.stories.ts` for simple stories, `.stories.tsx` when custom render function uses JSX
+- **Exports**: Default export for docs/meta, named exports for individual stories (alphabetically ordered)
 
 ### Comments & Documentation
 - **When**: Explain "why" not "what"—business logic, workarounds, non-obvious decisions
