@@ -26,7 +26,7 @@ const Checkbox = forwardRef<HTMLDivElement, Props>(
 				{error && (
 					<div className={styles.error}>
 						<Icon className={styles.errorIcon} icon="functional.attentionFilledRed" />
-						{error}
+						<span className={styles.errorText}>{error}</span>
 					</div>
 				)}
 			</div>

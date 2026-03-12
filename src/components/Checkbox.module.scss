@@ -55,16 +55,20 @@
   max-width: 100%;
   overflow-wrap: break-word;
   padding-right: $space-16;
+  overflow: auto;
 }
 
 .error {
-  @include font-12($red-1);
   display: flex;
 }
 
+.error-text {
+  @include font-12($red-1);
+}
+
 .error-icon {
-  width: 14px;
-  height: 14px;
-  margin-right: $space-4;
+  width: auto;
+  height: 12px;
+  margin: 2px $space-4 0 0;
   flex-shrink: 0;
 }
