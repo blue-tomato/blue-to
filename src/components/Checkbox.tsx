@@ -21,9 +21,14 @@ const Checkbox = forwardRef<HTMLDivElement, Props>(
 						/>
 						<Icon className={styles.checkmark} icon="functional.checkDefaultBlue" />
 					</div>
-					{children}
+					<p className={styles.text}>{children}</p>
 				</label>
-				{error && <div className={styles.error}>{error}</div>}
+				{error && (
+					<div className={styles.error}>
+						<Icon className={styles.errorIcon} icon="functional.attentionFilledRed" />
+						{error}
+					</div>
+				)}
 			</div>
 		);
 	},
