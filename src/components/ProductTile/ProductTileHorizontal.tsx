@@ -51,8 +51,8 @@ const ProductTileHorizontal = forwardRef<HTMLDivElement, Props>(
             <p className={styles.productName}>{productName}</p>
 
             <div className={styles.attributes}>
-              <span>Farbe: {color}</span>
-              <span>Größe: {size}</span>
+              <span className={styles.attribute}>Farbe: {color}</span>
+              <span className={styles.attribute}>Größe: {size}</span>
             </div>
           </div>
 

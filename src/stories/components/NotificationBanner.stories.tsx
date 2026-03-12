@@ -24,7 +24,13 @@ const Docs: StoryMeta<typeof NotificationBanner> = {
 	},
 };
 
-const Information: StoryMeta<typeof NotificationBanner> = {};
+const Default: StoryMeta<typeof NotificationBanner> = {};
+
+const Information: StoryMeta<typeof NotificationBanner> = {
+	args: {
+		type: "information",
+	},
+};
 
 const Success: StoryMeta<typeof NotificationBanner> = {
 	render: (props) => (
@@ -70,4 +76,4 @@ const WithError: StoryMeta<typeof NotificationBanner> = {
 };
 
 export default Docs;
-export { Information, Success, WithError };
+export { Default, Information, Success, WithError };

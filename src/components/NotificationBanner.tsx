@@ -19,13 +19,11 @@ const NotificationBanner = forwardRef<HTMLDivElement, Props>(
 		<div
 			ref={ref}
 			className={classNames(
-				styles.banner,
-				{
-					[styles.error]: type === "error",
-					[styles.information]: type === "information",
-					[styles.success]: type === "success",
-				},
 				className,
+				styles.wrapper,
+				type === "error" && styles.error,
+				type === "information" && styles.information,
+				type === "success" && styles.success,
 			)}
 			{...props}
 		>

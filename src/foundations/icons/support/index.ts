@@ -15,7 +15,7 @@ import colors from "./colors.svg";
 import deliveryBlack from "./delivery-black.svg";
 import deliverycostBlack from "./deliverycost-black.svg";
 import deliveryexpress from "./deliveryexpress.svg";
-import deliveryroundedBlack from "./deliveryrounded-black.svg";
+import deliveryroundedBlack from "./deliveryroundedBlack.svg";
 import deliveryryrBlack from "./deliveryryr-black.svg";
 import discountBlack from "./discount-black.svg";
 import drillBlack from "./drill-black.svg";

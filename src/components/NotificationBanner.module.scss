@@ -1,6 +1,6 @@
 @use "@/index.module.scss" as *;
 
-.banner {
+.wrapper {
     display: inline-flex;
     padding: $space-16;
     min-width: 343px;
@@ -10,7 +10,7 @@
 
 .icon {
     width: 20px;
-    height: 20px;
+    height: auto;
     margin-right: $space-8;
     flex-shrink: 0;
 }

@@ -11,6 +11,7 @@
   align-items: center;
   gap: $space-8;
   cursor: pointer;
+  max-width: 570px;
 
   @include font-14;
 
@@ -49,6 +50,25 @@
   }
 }
 
+.text {
+  margin: 0;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  padding-right: $space-16;
+  overflow: auto;
+}
+
 .error {
+  display: flex;
+}
+
+.error-text {
   @include font-12($red-1);
+}
+
+.error-icon {
+  width: auto;
+  height: 12px;
+  margin: 2px $space-4 0 0;
+  flex-shrink: 0;
 }

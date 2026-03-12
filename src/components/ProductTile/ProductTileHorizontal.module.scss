@@ -9,7 +9,6 @@
     width: 100%;
     padding: 0 $space-16 0 0;
     position: relative;
-    background-color: $white;
     max-width: 351px;
 
     @media (min-width: 768px) {
@@ -18,13 +17,12 @@
 }
 
 .product-image {
-    width: 80px;
-    height: 100px;
+    width: 87px;
+    aspect-ratio: 3/4;
     object-fit: cover;
 
     @media (min-width: 768px) {
-        width: 120px;
-        height: 150px;
+        width: 114px;
     }
 }
 
@@ -76,6 +74,12 @@
     display: flex;
     flex-direction: column;
     gap: $space-4;
+}
+
+.attribute {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .actions-container {
