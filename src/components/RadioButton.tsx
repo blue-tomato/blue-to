@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import { forwardRef } from "react";
 import styles from "./RadioButton.module.scss";
+import Icon from "@/components/Icon";
 
 type Props = React.HTMLAttributes<HTMLDivElement> & {
 	error?: React.ReactNode;
@@ -19,9 +20,14 @@ const RadioButton = forwardRef<HTMLDivElement, Props>(
 					/>
 					<div className={styles.check} />
 				</div>
-				{children}
+				<p className={styles.text}>{children}</p>
 			</label>
-			{error && <div className={styles.error}>{error}</div>}
+			{error && (
+				<div className={styles.error}>
+					<Icon className={styles.errorIcon} icon="functional.attentionFilledRed" />
+					<span className={styles.errorText}>{error}</span>
+				</div>
+			)}		
 		</div>
 	),
 );
