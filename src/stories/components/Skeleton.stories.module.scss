@@ -1,0 +1,80 @@
+@use "@/index.module.scss" as *;
+
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: $space-8;
+	max-width: 400px;
+}
+
+.row {
+	display: flex;
+	gap: $space-16;
+	align-items: center;
+}
+
+.productTile {
+	display: flex;
+	flex-direction: column;
+	gap: $space-8;
+}
+
+.label {
+	@include font-12($grey-2);
+
+	margin-bottom: $space-8;
+}
+
+.gridMobile {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: $space-16;
+	max-width: 375px;
+}
+
+.gridDesktop {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: $space-48 $space-16;
+	max-width: 1280px;
+}
+
+.gridResponsive {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: $space-16;
+	width: 100%;
+	max-width: 1280px;
+
+	@media (min-width: 768px) {
+		grid-template-columns: repeat(4, 1fr);
+		gap: $space-48 $space-16;
+	}
+}
+
+.section {
+	display: flex;
+	flex-direction: column;
+	gap: $space-24;
+}
+
+.tileWrapper {
+	display: flex;
+	flex-direction: column;
+	max-width: 220px;
+}
+
+.tileImage {
+	width: 100%;
+	height: auto;
+	aspect-ratio: 3/4;
+	object-fit: cover;
+}
+
+.tileInfo {
+	display: flex;
+	flex-direction: column;
+	gap: $space-4;
+	padding: $space-8;
+}
+

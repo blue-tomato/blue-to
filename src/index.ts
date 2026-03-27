@@ -74,5 +74,6 @@ export {
 	RadioButton,
 	RangeSlider,
 	SizeButton,
+	Skeleton,
 	Tooltip,
 } from "./components";
