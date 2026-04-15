@@ -2,13 +2,31 @@
 
 .skeleton {
 	display: block;
+	width: 100%;
+	height: $space-16;
 	background-color: $grey-4;
+	border-radius: $space-4;
 	pointer-events: none;
 	user-select: none;
 }
 
-.wrapper {
-	position: relative;
+.text {
+	width: 100%;
+	height: $space-16;
+	border-radius: $space-4;
+}
+
+.circular {
+	width: $space-40;
+	height: $space-40;
+	border-radius: 50%;
+}
+
+.rectangular {
+	width: 100%;
+	height: auto;
+	aspect-ratio: 3/4;
+	border-radius: $space-4;
 }
 
 .fadeOut {
@@ -37,25 +55,6 @@
 	100% {
 		opacity: 1;
 	}
-}
-
-.text {
-	width: 100%;
-	height: $space-16;
-	border-radius: $space-4;
-}
-
-.circular {
-	width: $space-40;
-	height: $space-40;
-	border-radius: 50%;
-}
-
-.rectangular {
-	width: 100%;
-	height: auto;
-	aspect-ratio: 3/4;
-	border-radius: $space-4;
 }
 
 @keyframes skeletonPulse {

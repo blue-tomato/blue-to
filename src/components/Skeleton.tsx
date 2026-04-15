@@ -36,11 +36,8 @@ const Skeleton = forwardRef<HTMLDivElement, Props>(
 				className={classNames(
 					className,
 					styles.skeleton,
-					variant === "text" && styles.text,
-					variant === "circular" && styles.circular,
-					variant === "rectangular" && styles.rectangular,
-					animation === "pulse" && styles.pulse,
-					animation === "wave" && styles.wave,
+					styles[variant],
+					animation !== "none" && styles[animation],
 					loaded && styles.fadeOut,
 				)}
 				style={{

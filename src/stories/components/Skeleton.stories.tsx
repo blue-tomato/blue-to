@@ -93,7 +93,7 @@ const WithContent: StoryMeta<typeof Skeleton> = {
 							<span>P-6 Logo Responsibili T-Shirt</span>
 						</Skeleton>
 						<Skeleton variant="text" width="30%" loaded={loaded} animation={props.animation}>
-							<strong>€ 80.95</strong>
+							<strong>&euro; 80.95</strong>
 						</Skeleton>
 					</div>
 				</div>
