@@ -1,0 +1,46 @@
+@use "@/index.module.scss" as *;
+
+.container {
+	max-width: 1280px;
+	width: 100%;
+}
+
+.placeholderCard {
+	aspect-ratio: 3 / 4;
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+	padding: $space-16;
+	border-radius: $space-4;
+	@include font-16-b($white);
+}
+
+.topicCard {
+	position: relative;
+	aspect-ratio: 3 / 4;
+	overflow: hidden;
+	border-radius: $space-4;
+	cursor: pointer;
+}
+
+.topicImage {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.topicLabel {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding: $space-16;
+	background: linear-gradient(transparent, rgba(0, 0, 0, 0.5));
+	@include font-16-b($white);
+
+	@media (min-width: 768px) {
+		@include font-24-b($white);
+		padding: $space-24;
+	}
+}
