@@ -120,7 +120,7 @@ const products = [
 
 const topics = [
 	{
-		label: "Streetwear",
+		label: "Neue Damen Snowboard Anoraks mit sehr langem Namen für drei Zeilen Umbruch",
 		imageUrl:
 			"https://images.blue-tomato.com/is/image/bluetomato/305499878_front.jpg-D72T_m4XYvxrHJ86-ueTb6DnUss/305499878+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
 	},
