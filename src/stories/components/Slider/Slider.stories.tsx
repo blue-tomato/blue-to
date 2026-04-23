@@ -7,8 +7,8 @@ const placeholderColors = ["#6b7fd7", "#e07c5a", "#5ab89e", "#d4a843", "#c75b8e"
 
 const products = [
 	{
-		brandName: "Volcom",
-		productName: "Pocket Dial T-Shirt",
+		brandName: "Volcom Super Extended Brand Collection",
+		productName: "Pocket Dial Ultra Long Edition T-Shirt With Extra Details",
 		price: 34.95,
 		salePrice: 29.95,
 		imageUrl:
@@ -53,8 +53,8 @@ const products = [
 	{
 		brandName: "Patagonia",
 		productName: "P-6 Logo Responsibili T-Shirt",
-		price: 44.95,
-		salePrice: 39.95,
+		price: 1299.95,
+		salePrice: 999.95,
 		imageUrl:
 			"https://images.blue-tomato.com/is/image/bluetomato/305499878_front.jpg-D72T_m4XYvxrHJ86-ueTb6DnUss/305499878+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
 		imageAlt: "Patagonia P-6 Logo Responsibili T-Shirt",
@@ -238,50 +238,17 @@ export const FewItems: StoryMeta<typeof Slider> = {
 	),
 };
 
-export const CustomGap: StoryMeta<typeof Slider> = {
+export const EndReached: StoryMeta<typeof Slider> = {
 	args: {
-		gap: 8,
-	},
-	render: (args) => (
-		<div className={styles.container}>
-			<Slider {...args}>
-				{placeholderColors.map((color) => (
-					<div key={color} className={styles.placeholderCard} style={{ backgroundColor: color }}>
-						{color}
-					</div>
-				))}
-			</Slider>
-		</div>
-	),
-};
-
-export const PartialPage: StoryMeta<typeof Slider> = {
-	args: {
-		columns: 5,
+		columns: 4,
 		label: "Sale products",
+		mobileColumns: 2,
 	},
 	render: (args) => (
 		<div className={styles.container}>
 			<Slider {...args}>
 				{products.slice(0, 6).map((product) => (
 					<ProductTileVertical key={`${product.brandName}-${product.productName}`} {...product} />
-				))}
-			</Slider>
-		</div>
-	),
-};
-
-export const NoPeek: StoryMeta<typeof Slider> = {
-	args: {
-		peek: false,
-	},
-	render: (args) => (
-		<div className={styles.container}>
-			<Slider {...args}>
-				{placeholderColors.map((color) => (
-					<div key={color} className={styles.placeholderCard} style={{ backgroundColor: color }}>
-						{color}
-					</div>
 				))}
 			</Slider>
 		</div>

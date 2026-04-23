@@ -15,7 +15,7 @@ const NavigationButton = ({ className, direction, ...props }: Props) => (
 	>
 		<Icon
 			className={styles.icon}
-			icon={direction === "previous" ? "functional.arrowleftDefaultBlack" : "functional.arrowrightDefaultBlack"}
+			icon={direction === "previous" ? "functional.arrowleftFilledWhite" : "functional.arrowrightFilledWhite"}
 		/>
 	</button>
 );

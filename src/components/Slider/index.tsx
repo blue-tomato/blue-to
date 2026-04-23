@@ -5,15 +5,19 @@ import styles from "./index.module.scss";
 import NavigationButton from "./NavigationButton";
 
 type Props = React.HTMLAttributes<HTMLDivElement> & {
-	columns?: 2 | 3 | 4 | 5;
+	columns?: 4 | 5;
 	gap?: number;
 	label?: string;
 	mobileColumns?: 2 | 3;
+	mobileGap?: number;
 	peek?: boolean;
 };
 
 const Slider = forwardRef<HTMLDivElement, Props>(
-	({ children, className, columns = 4, gap = 16, label, mobileColumns = 2, peek = true, ...props }, ref) => {
+	(
+		{ children, className, columns = 4, gap = 16, label, mobileColumns = 2, mobileGap = 8, peek = true, ...props },
+		ref,
+	) => {
 		const trackRef = useRef<HTMLUListElement>(null);
 		const [canScrollLeft, setCanScrollLeft] = useState(false);
 		const [canScrollRight, setCanScrollRight] = useState(false);
@@ -59,6 +63,7 @@ const Slider = forwardRef<HTMLDivElement, Props>(
 								"--slider-columns": columns,
 								"--slider-gap": `${gap}px`,
 								"--slider-mobile-columns": mobileColumns,
+								"--slider-mobile-gap": `${mobileGap}px`,
 								"--slider-peek": peek ? 1 : 0,
 							} as React.CSSProperties
 						}

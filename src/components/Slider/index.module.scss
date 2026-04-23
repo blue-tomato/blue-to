@@ -12,7 +12,7 @@
 .track {
 	display: grid;
 	grid-auto-flow: column;
-	gap: var(--slider-gap);
+	gap: var(--slider-mobile-gap);
 	overflow-x: auto;
 	overflow-y: hidden;
 	scroll-snap-type: x mandatory;
@@ -24,7 +24,7 @@
 	padding: 0;
 
 	grid-auto-columns: calc(
-		(100% - (var(--slider-mobile-columns) - 1) * var(--slider-gap) - var(--slider-peek) * $space-24) /
+		(100% - (var(--slider-mobile-columns) - 1) * var(--slider-mobile-gap) - var(--slider-peek) * $space-48) /
 			var(--slider-mobile-columns)
 	);
 
@@ -33,6 +33,7 @@
 	}
 
 	@media (min-width: 768px) {
+		gap: var(--slider-gap);
 		grid-auto-columns: calc(
 			(100% - (var(--slider-columns) - 1) * var(--slider-gap) - var(--slider-peek) * $space-40) /
 				var(--slider-columns)
