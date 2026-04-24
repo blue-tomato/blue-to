@@ -8,17 +8,14 @@ type Props = React.HTMLAttributes<HTMLDivElement> & {
 	columns?: 4 | 5;
 	gap?: number;
 	label?: string;
-	mobileColumns?: 2 | 3;
+	mobileColumns?: 1 | 2 | 3;
 	mobileGap?: number;
-	peek?: boolean;
 };
 
 const Slider = forwardRef<HTMLDivElement, Props>(
-	(
-		{ children, className, columns = 4, gap = 16, label, mobileColumns = 2, mobileGap = 8, peek = true, ...props },
-		ref,
-	) => {
+	({ children, className, columns = 4, gap = 16, label, mobileColumns = 2, mobileGap = 8, ...props }, ref) => {
 		const trackRef = useRef<HTMLUListElement>(null);
+		const viewportRef = useRef<HTMLDivElement>(null);
 		const [canScrollLeft, setCanScrollLeft] = useState(false);
 		const [canScrollRight, setCanScrollRight] = useState(false);
 
@@ -29,6 +26,21 @@ const Slider = forwardRef<HTMLDivElement, Props>(
 			setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 2);
 		}, []);
 
+		const updateNavAnchor = useCallback(() => {
+			const track = trackRef.current;
+			const viewport = viewportRef.current;
+			if (!track || !viewport) return;
+			const firstImg = track.querySelector<HTMLElement>("img, picture, video");
+			if (!firstImg) {
+				viewport.style.removeProperty("--slider-nav-top");
+				return;
+			}
+			const imgRect = firstImg.getBoundingClientRect();
+			const trackRect = track.getBoundingClientRect();
+			const center = imgRect.top - trackRect.top + imgRect.height / 2;
+			viewport.style.setProperty("--slider-nav-top", `${center}px`);
+		}, []);
+
 		const handleScroll = useMemo(() => debounce(updateScrollState, 50), [updateScrollState]);
 
 		useEffect(() => {
@@ -36,14 +48,28 @@ const Slider = forwardRef<HTMLDivElement, Props>(
 			if (!el) return;
 
 			updateScrollState();
+			updateNavAnchor();
 
 			const observer = new ResizeObserver(() => {
-				requestAnimationFrame(updateScrollState);
+				requestAnimationFrame(() => {
+					updateScrollState();
+					updateNavAnchor();
+				});
 			});
 
 			observer.observe(el);
-			return () => observer.disconnect();
-		}, [updateScrollState]);
+
+			const firstImg = el.querySelector<HTMLImageElement>("img");
+			const onLoad = () => updateNavAnchor();
+			if (firstImg && !firstImg.complete) {
+				firstImg.addEventListener("load", onLoad);
+			}
+
+			return () => {
+				observer.disconnect();
+				firstImg?.removeEventListener("load", onLoad);
+			};
+		}, [updateScrollState, updateNavAnchor]);
 
 		const scroll = (direction: "next" | "previous") => {
 			const el = trackRef.current;
@@ -54,7 +80,7 @@ const Slider = forwardRef<HTMLDivElement, Props>(
 
 		return (
 			<section ref={ref} aria-label={label} className={classNames(className, styles.wrapper)} {...props}>
-				<div className={styles.viewport}>
+				<div ref={viewportRef} className={styles.viewport}>
 					<ul
 						ref={trackRef}
 						className={styles.track}
@@ -64,7 +90,6 @@ const Slider = forwardRef<HTMLDivElement, Props>(
 								"--slider-gap": `${gap}px`,
 								"--slider-mobile-columns": mobileColumns,
 								"--slider-mobile-gap": `${mobileGap}px`,
-								"--slider-peek": peek ? 1 : 0,
 							} as React.CSSProperties
 						}
 						onScroll={handleScroll}

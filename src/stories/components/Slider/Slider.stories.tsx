@@ -123,6 +123,7 @@ const topics = [
 		label: "Neue Damen Snowboard Anoraks mit sehr langem Namen für drei Zeilen Umbruch",
 		imageUrl:
 			"https://images.blue-tomato.com/is/image/bluetomato/305499878_front.jpg-D72T_m4XYvxrHJ86-ueTb6DnUss/305499878+front+jpg.jpg?$tsl$&wid=662&hei=882&fit=crop%2C1",
+		href: "#damen-snowboard-anoraks",
 	},
 	{
 		label: "Home & Lifestyle",
@@ -163,7 +164,6 @@ const Docs: StoryMeta<typeof Slider> = {
 		columns: 4,
 		gap: 16,
 		mobileColumns: 2,
-		peek: true,
 	},
 	parameters: {
 		links: {
@@ -209,16 +209,24 @@ export const TopicSlider: StoryMeta<typeof Slider> = {
 	args: {
 		columns: 4,
 		label: "Shop by category",
+		mobileColumns: 1,
 	},
 	render: (args) => (
 		<div className={styles.container}>
-			<Slider {...args}>
-				{topics.map((topic) => (
-					<div key={topic.label} className={styles.topicCard}>
-						<img alt={topic.label} className={styles.topicImage} src={topic.imageUrl} />
-						<span className={styles.topicLabel}>{topic.label}</span>
-					</div>
-				))}
+			<Slider {...args} className={styles.topicSlider}>
+				{topics.map((topic) =>
+					topic.href ? (
+						<a key={topic.label} className={styles.topicCard} href={topic.href}>
+							<img alt={topic.label} className={styles.topicImage} src={topic.imageUrl} />
+							<span className={styles.topicLabel}>{topic.label}</span>
+						</a>
+					) : (
+						<div key={topic.label} className={styles.topicCard}>
+							<img alt={topic.label} className={styles.topicImage} src={topic.imageUrl} />
+							<span className={styles.topicLabel}>{topic.label}</span>
+						</div>
+					),
+				)}
 			</Slider>
 		</div>
 	),
@@ -248,6 +256,28 @@ export const EndReached: StoryMeta<typeof Slider> = {
 		<div className={styles.container}>
 			<Slider {...args}>
 				{products.slice(0, 6).map((product) => (
+					<ProductTileVertical key={`${product.brandName}-${product.productName}`} {...product} />
+				))}
+			</Slider>
+		</div>
+	),
+};
+
+export const FullBleed: StoryMeta<typeof Slider> = {
+	args: {
+		columns: 5,
+		label: "Recommended products",
+	},
+	parameters: {
+		layout: "fullscreen",
+	},
+	render: (args) => (
+		<div className={styles.fullBleedPage}>
+			<div className={styles.fullBleedContent}>
+				<h2 className={styles.fullBleedHeading}>Recommended for you</h2>
+			</div>
+			<Slider {...args} className={styles.fullBleedSlider}>
+				{products.map((product) => (
 					<ProductTileVertical key={`${product.brandName}-${product.productName}`} {...product} />
 				))}
 			</Slider>
