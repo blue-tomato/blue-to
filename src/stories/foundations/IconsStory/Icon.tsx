@@ -10,7 +10,9 @@ type Props = {
 
 const Icon = ({ background = "light", src, onClick }: Props) => (
 	<div
-		className={classNames(styles.wrapper, background === "light" ? styles.light : styles.dark, { [styles.clickable]: !!onClick })}
+		className={classNames(styles.wrapper, background === "light" ? styles.light : styles.dark, {
+			[styles.clickable]: !!onClick,
+		})}
 		onClick={onClick}
 	>
 		<img src={src} />

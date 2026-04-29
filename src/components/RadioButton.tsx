@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { forwardRef } from "react";
-import styles from "./RadioButton.module.scss";
 import Icon from "@/components/Icon";
+import styles from "./RadioButton.module.scss";
 
 type Props = React.HTMLAttributes<HTMLDivElement> & {
 	error?: React.ReactNode;
@@ -27,7 +27,7 @@ const RadioButton = forwardRef<HTMLDivElement, Props>(
 					<Icon className={styles.errorIcon} icon="functional.attentionFilledRed" />
 					<span className={styles.errorText}>{error}</span>
 				</div>
-			)}		
+			)}
 		</div>
 	),
 );
