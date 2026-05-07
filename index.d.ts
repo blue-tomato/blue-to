@@ -425,6 +425,14 @@ export declare const SizeButton: ForwardRefExoticComponent<ButtonHTMLAttributes<
     iconRight?: IconProp_2;
 } & RefAttributes<HTMLButtonElement>>;
 
+export declare const Slider: ForwardRefExoticComponent<HTMLAttributes<HTMLDivElement> & {
+    columns?: 4 | 5;
+    gap?: number;
+    label?: string;
+    mobileColumns?: 1 | 2 | 3;
+    mobileGap?: number;
+} & RefAttributes<HTMLDivElement>>;
+
 declare type Styles = {
     white: "#ffffff";
     grey1: "#333333";
