@@ -4,6 +4,7 @@ export { default as CategoryButton } from "./CategoryButton";
 export { default as Checkbox } from "./Checkbox";
 export { default as Icon } from "./Icon";
 export { default as NotificationBanner } from "./NotificationBanner";
+export { default as PageLoadingIndicator } from "./PageLoadingIndicator";
 export { default as Pagination } from "./Pagination";
 export { default as PasswordField } from "./PasswordField";
 export { default as ProductTile } from "./ProductTile";

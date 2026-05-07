@@ -1,0 +1,47 @@
+@use "@/index.module.scss" as *;
+
+@keyframes loading {
+	from {
+		width: 20%;
+	}
+
+	to {
+		width: 90%;
+	}
+}
+
+@keyframes loadingDone {
+	from {
+		opacity: 1;
+	}
+
+	to {
+		opacity: 0;
+	}
+}
+
+.wrapper {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 2147483647;
+	pointer-events: none;
+}
+
+.bar {
+	height: $space-4;
+	background-color: $sky-1;
+	opacity: 0;
+}
+
+.loading .bar {
+	opacity: 1;
+	width: 90%;
+	animation: loading 20s ease-out;
+}
+
+.done .bar {
+	width: 100%;
+	animation: loadingDone 1s ease-out forwards;
+}
