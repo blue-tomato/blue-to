@@ -7,6 +7,7 @@
     color: $grey-1;
     width: 100%;
     max-width: 100%;
+    min-width: 0;
     background-color: $white;
 
     @media (min-width: 768px) {
@@ -118,6 +119,7 @@
 .info-container {
     display: flex;
     flex-direction: column;
+    min-width: 0;
     padding: $space-8 $space-8 $space-16 $space-8;
 
     @media (min-width: 768px) {
@@ -127,6 +129,9 @@
 
 .brand-name {
     @include font-12-b;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
     @media (min-width: 768px) {
         @include font-14-b;
@@ -136,6 +141,9 @@
 .product-name {
     @include font-12;
     margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
     @media (min-width: 768px) {
         @include font-14;
