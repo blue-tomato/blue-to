@@ -2,7 +2,9 @@ import { ButtonHTMLAttributes } from 'react';
 import { ForwardRefExoticComponent } from 'react';
 import { HTMLAttributes } from 'react';
 import { ImgHTMLAttributes } from 'react';
+import { InputHTMLAttributes } from 'react';
 import { Paths } from 'type-fest';
+import { ReactNode } from 'react';
 import { RefAttributes } from 'react';
 import { TooltipRefProps } from 'react-tooltip';
 
@@ -31,6 +33,18 @@ export declare const Checkbox: ForwardRefExoticComponent<HTMLAttributes<HTMLDivE
     error?: React.ReactNode;
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
 } & RefAttributes<HTMLDivElement>>;
+
+declare type ColorOption = {
+    color: string;
+    imageUrl: string;
+    active?: boolean;
+    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+};
+
+declare type Flag = {
+    label: string;
+    type: "default" | "sale" | "special";
+};
 
 export declare const Icon: ForwardRefExoticComponent<ImgHTMLAttributes<HTMLImageElement> & {
     icon?: IconPath;
@@ -383,6 +397,15 @@ declare const icons: {
     };
 };
 
+export declare const NotificationBanner: ForwardRefExoticComponent<HTMLAttributes<HTMLDivElement> & {
+    children: ReactNode;
+    type?: "error" | "information" | "success";
+} & RefAttributes<HTMLDivElement>>;
+
+export declare const PageLoadingIndicator: ForwardRefExoticComponent<HTMLAttributes<HTMLDivElement> & {
+    loading?: boolean;
+} & RefAttributes<HTMLDivElement>>;
+
 export declare const Pagination: ForwardRefExoticComponent<HTMLAttributes<HTMLDivElement> & {
     disableNextButton?: boolean;
     disablePreviousButton?: boolean;
@@ -393,7 +416,46 @@ export declare const Pagination: ForwardRefExoticComponent<HTMLAttributes<HTMLDi
     progressBar?: number;
 } & RefAttributes<HTMLDivElement>>;
 
-declare type Props = {
+export declare const PasswordField: ForwardRefExoticComponent<Omit<Props, "ref"> & RefAttributes<HTMLLabelElement>>;
+
+export declare const ProductTile: ForwardRefExoticComponent<Props_2 & RefAttributes<HTMLAnchorElement | HTMLDivElement>>;
+
+declare type Props = React.ComponentProps<typeof TextField> & {};
+
+declare type Props_2 = {
+    variant?: "vertical" | "horizontal";
+} & (Props_3 | Props_4);
+
+declare type Props_3 = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+    brandName: string;
+    productName: string;
+    price: number;
+    salePrice?: number;
+    imageUrl: string;
+    imageAlt: string;
+    wishlistActive?: boolean;
+    onWishlistClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+    colors?: ColorOption[];
+    sizes?: SizeOption[];
+    flags?: Flag[];
+    className?: string;
+};
+
+declare type Props_4 = React.HTMLAttributes<HTMLDivElement> & {
+    brandName: string;
+    productName: string;
+    price: number;
+    imageUrl: string;
+    imageAlt: string;
+    color: string;
+    size: string;
+    quantity: number;
+    onQuantityChange?: (quantity: number) => void;
+    onRemove?: () => void;
+    className?: string;
+};
+
+declare type Props_5 = {
     anchorSelect?: string;
     children?: React.ReactNode;
     variant?: "black" | "yellow";
@@ -424,6 +486,21 @@ export declare const SizeButton: ForwardRefExoticComponent<ButtonHTMLAttributes<
     iconLeft?: IconProp_2;
     iconRight?: IconProp_2;
 } & RefAttributes<HTMLButtonElement>>;
+
+declare type SizeOption = {
+    label: string;
+    active?: boolean;
+    disabled?: boolean;
+    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+};
+
+export declare const Skeleton: ForwardRefExoticComponent<HTMLAttributes<HTMLDivElement> & {
+    animation?: "pulse" | "wave" | "none";
+    height?: string | number;
+    loaded?: boolean;
+    variant?: "text" | "circular" | "rectangular";
+    width?: string | number;
+} & RefAttributes<HTMLDivElement>>;
 
 export declare const Slider: ForwardRefExoticComponent<HTMLAttributes<HTMLDivElement> & {
     columns?: 4 | 5;
@@ -495,6 +572,35 @@ declare type Styles = {
 
 export declare const styles: Styles;
 
-export declare const Tooltip: ForwardRefExoticComponent<Props & RefAttributes<TooltipRefProps>>;
+export declare const Table: ForwardRefExoticComponent<HTMLAttributes<HTMLDivElement> & {
+    caption?: string;
+    firstColumnSticky?: boolean;
+    header?: boolean;
+    rows?: string[][];
+    scrollText?: string;
+} & RefAttributes<HTMLDivElement>>;
+
+export declare const TextArea: ForwardRefExoticComponent<InputHTMLAttributes<HTMLInputElement> & {
+    error?: boolean | string;
+    helperText?: string;
+    label?: string;
+    optionalText?: string;
+    placeholder?: string;
+} & RefAttributes<HTMLLabelElement>>;
+
+export declare const TextField: ForwardRefExoticComponent<InputHTMLAttributes<HTMLInputElement> & {
+    error?: boolean | string;
+    helperText?: string;
+    label?: string;
+    optionalText?: string;
+    placeholder?: string;
+    slots?: {
+        afterInput?: React.ReactNode;
+        input?: React.ReactNode;
+    };
+    tooltip?: string;
+} & RefAttributes<HTMLLabelElement>>;
+
+export declare const Tooltip: ForwardRefExoticComponent<Props_5 & RefAttributes<TooltipRefProps>>;
 
 export { }
