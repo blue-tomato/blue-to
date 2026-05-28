@@ -1,0 +1,63 @@
+@use "@/index.module.scss" as *;
+
+.wrapper {
+	position: relative;
+	width: 100%;
+}
+
+.viewport {
+	position: relative;
+}
+
+.track {
+	display: grid;
+	grid-auto-flow: column;
+	gap: var(--slider-mobile-gap);
+	overflow-x: auto;
+	overflow-y: hidden;
+	scroll-snap-type: x mandatory;
+	-webkit-overflow-scrolling: touch;
+	overscroll-behavior-x: contain;
+	scrollbar-width: none;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+	grid-auto-columns: calc(
+		(100% - (var(--slider-mobile-columns) - 1) * var(--slider-mobile-gap) - $space-48) /
+			var(--slider-mobile-columns)
+	);
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+
+	@media (min-width: 768px) {
+		gap: var(--slider-gap);
+		grid-auto-columns: calc(
+			(100% - (var(--slider-columns) - 1) * var(--slider-gap) - $space-40) / var(--slider-columns)
+		);
+	}
+}
+
+.slide {
+	scroll-snap-align: start;
+	min-width: 0;
+	display: grid;
+}
+
+.navigation-previous,
+.navigation-next {
+	position: absolute;
+	top: var(--slider-nav-top, 50%);
+	transform: translateY(-50%);
+	z-index: 1;
+}
+
+.navigation-previous {
+	left: $space-8;
+}
+
+.navigation-next {
+	right: $space-8;
+}

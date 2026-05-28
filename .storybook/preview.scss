@@ -15,6 +15,15 @@
   flex-direction: column;
   gap: 8px;
 
+  @media (max-width: 767px) {
+    top: auto;
+    left: $space-24;
+    right: $space-24;
+    bottom: $space-24;
+    flex-direction: row;
+    justify-content: center;
+  }
+
   a {
     display: flex;
     align-items: center;
