@@ -1,0 +1,59 @@
+@use "@/index.module.scss" as *;
+
+.page {
+	position: relative;
+	min-height: 400px;
+	background-color: $white;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: $space-16 $space-24;
+	border-bottom: 1px solid $grey-4;
+}
+
+.logo {
+	@include font-16-b;
+}
+
+.nav {
+	display: flex;
+	gap: $space-16;
+	@include font-14;
+	color: $grey-2;
+}
+
+.content {
+	padding: $space-24;
+}
+
+.title {
+	@include font-16-b;
+	margin: 0 0 $space-16 0;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: $space-16;
+}
+
+.placeholder {
+	height: 180px;
+	background-color: $grey-4;
+	border-radius: 4px;
+}
+
+.skeleton {
+	height: $space-24;
+	margin-bottom: $space-8;
+	background-color: $grey-4;
+	border-radius: 4px;
+	max-width: 400px;
+
+	&:last-child {
+		max-width: 250px;
+	}
+}
