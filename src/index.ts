@@ -64,16 +64,4 @@ type Styles = {
 const styles: Styles = rawStyles as Styles;
 
 export { styles };
-export {
-	Breadcrumb,
-	Button,
-	CategoryButton,
-	Checkbox,
-	Icon,
-	Pagination,
-	RadioButton,
-	RangeSlider,
-	SizeButton,
-	Slider,
-	Tooltip,
-} from "./components";
+export * from "./components";

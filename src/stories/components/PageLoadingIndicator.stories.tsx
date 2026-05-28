@@ -86,4 +86,4 @@ const FastPageLoad: StoryMeta<typeof PageLoadingIndicator> = {
 };
 
 export default Docs;
-export { Default, WithPageContent, FastPageLoad  };
+export { Default, WithPageContent, FastPageLoad };
