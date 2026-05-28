@@ -11,6 +11,7 @@ export { default as ProductTile } from "./ProductTile";
 export { default as RadioButton } from "./RadioButton";
 export { default as RangeSlider } from "./RangeSlider";
 export { default as SizeButton } from "./SizeButton";
+export { default as Skeleton } from "./Skeleton";
 export { default as Slider } from "./Slider";
 export { default as Table } from "./Table";
 export { default as TextArea } from "./TextArea";

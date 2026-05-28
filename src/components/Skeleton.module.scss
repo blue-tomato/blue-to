@@ -1,0 +1,92 @@
+@use "@/index.module.scss" as *;
+
+.skeleton {
+	display: block;
+	width: 100%;
+	height: $space-16;
+	background-color: $grey-4;
+	border-radius: $space-4;
+	pointer-events: none;
+	user-select: none;
+}
+
+.text {
+	width: 100%;
+	height: $space-16;
+	border-radius: $space-4;
+}
+
+.circular {
+	width: $space-40;
+	height: $space-40;
+	border-radius: 50%;
+}
+
+.rectangular {
+	width: 100%;
+	height: auto;
+	aspect-ratio: 3/4;
+	border-radius: $space-4;
+}
+
+.fadeOut {
+	animation: skeletonFadeOut 0.3s ease-out forwards;
+}
+
+.content {
+	animation: skeletonFadeIn 0.3s ease-out forwards;
+}
+
+@keyframes skeletonFadeOut {
+	0% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes skeletonFadeIn {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes skeletonPulse {
+	0% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0.4;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+.pulse {
+	animation: skeletonPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes skeletonWave {
+	0% {
+		background-position: -200% 0;
+	}
+
+	100% {
+		background-position: 200% 0;
+	}
+}
+
+.wave {
+	background: linear-gradient(90deg, $grey-4 25%, $grey-3 50%, $grey-4 75%);
+	background-size: 200% 100%;
+	animation: skeletonWave 1.8s ease-in-out infinite;
+}
