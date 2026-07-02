@@ -1,0 +1,157 @@
+@use "@/index.module.scss" as *;
+
+.wrapper {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  width: fit-content;
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  gap: $space-8;
+  width: 100%;
+  margin: 0;
+  background-color: $white;
+  border: 1px solid $grey-3;
+  cursor: pointer;
+  appearance: none;
+  text-align: left;
+
+  &:hover,
+  &:focus-visible {
+    border-color: $grey-1;
+    outline: none;
+  }
+}
+
+.text {
+  flex: 1;
+  white-space: nowrap;
+}
+
+.leadingIcon,
+.arrow {
+  flex-shrink: 0;
+}
+
+.list {
+  position: absolute;
+  top: calc(100% - 1px);
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background-color: $white;
+  border: 1px solid $grey-1;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: $space-8;
+  width: 100%;
+  margin: 0;
+  background-color: $white;
+  border: none;
+  cursor: pointer;
+  appearance: none;
+  text-align: left;
+
+  &:hover,
+  &:focus-visible {
+    background-color: $grey-4;
+    outline: none;
+  }
+}
+
+.optionSelected {
+  background-color: $grey-4;
+}
+
+// Sizes
+
+.large {
+  .trigger,
+  .option {
+    padding: $space-8 $space-16;
+
+    @include font-14-b;
+  }
+
+  .leadingIcon {
+    width: 18px;
+    height: auto;
+  }
+
+  .arrow {
+    width: 14px;
+    height: auto;
+  }
+}
+
+.small {
+  .trigger,
+  .option {
+    padding: $space-4 $space-8;
+
+    @include font-12-b;
+  }
+
+  .leadingIcon {
+    width: 15px;
+    height: auto;
+  }
+
+  .arrow {
+    width: 12px;
+    height: auto;
+  }
+}
+
+// Colors
+
+.black {
+  .trigger {
+    border-color: $grey-1;
+  }
+}
+
+.grey {
+  .trigger {
+    border-color: $grey-4;
+    background-color: $grey-4;
+
+    &:hover,
+    &:focus-visible {
+      border-color: $grey-3;
+    }
+  }
+}
+
+// States
+
+.open {
+  .trigger {
+    border-color: $grey-1;
+  }
+}
+
+.disabled {
+  .trigger {
+    cursor: not-allowed;
+    border-color: $grey-3;
+    background-color: $grey-4;
+    color: $grey-2;
+  }
+
+  .arrow,
+  .leadingIcon {
+    opacity: 0.5;
+  }
+}

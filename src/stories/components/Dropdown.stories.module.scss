@@ -1,0 +1,7 @@
+@use "@/index.module.scss" as *;
+
+.canvas {
+  min-height: 320px;
+  padding: $space-32;
+  background-color: $sky-4;
+}

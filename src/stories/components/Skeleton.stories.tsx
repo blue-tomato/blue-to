@@ -161,13 +161,4 @@ const ProductTileSkeleton: StoryMeta<typeof Skeleton> = {
 };
 
 export default Docs;
-export {
-	Default,
-	TextLines,
-	Circular,
-	Rectangular,
-	WithContent,
-	WaveAnimation,
-	PulseAnimation,
-	ProductTileSkeleton,
-};
+export { Default, TextLines, Circular, Rectangular, WithContent, WaveAnimation, PulseAnimation, ProductTileSkeleton };
