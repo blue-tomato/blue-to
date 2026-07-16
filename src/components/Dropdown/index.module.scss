@@ -5,6 +5,10 @@
   display: inline-flex;
   flex-direction: column;
   width: fit-content;
+
+  // Per-variant border color, shared by the trigger and the opened list so
+  // they always match. Overridden by the color modifier classes below.
+  --dropdown-border: #{$grey-3};
 }
 
 .trigger {
@@ -14,16 +18,10 @@
   width: 100%;
   margin: 0;
   background-color: $white;
-  border: 1px solid $grey-3;
+  border: 1px solid var(--dropdown-border);
   cursor: pointer;
   appearance: none;
   text-align: left;
-
-  &:hover,
-  &:focus-visible {
-    border-color: $grey-1;
-    outline: none;
-  }
 }
 
 .text {
@@ -46,7 +44,7 @@
   padding: 0;
   list-style: none;
   background-color: $white;
-  border: 1px solid $grey-1;
+  border: 1px solid var(--dropdown-border);
   max-height: 240px;
   overflow-y: auto;
 }
@@ -77,6 +75,7 @@
 // Sizes
 
 .large {
+
   .trigger,
   .option {
     padding: $space-8 $space-16;
@@ -96,6 +95,7 @@
 }
 
 .small {
+
   .trigger,
   .option {
     padding: $space-4 $space-8;
@@ -117,35 +117,20 @@
 // Colors
 
 .black {
-  .trigger {
-    border-color: $grey-1;
-  }
+  --dropdown-border: #{$grey-1};
 }
 
 .grey {
-  .trigger {
-    border-color: $grey-4;
-    background-color: $grey-4;
-
-    &:hover,
-    &:focus-visible {
-      border-color: $grey-3;
-    }
-  }
+  --dropdown-border: #{$grey-3};
 }
 
 // States
 
-.open {
-  .trigger {
-    border-color: $grey-1;
-  }
-}
-
 .disabled {
+  --dropdown-border: #{$grey-3};
+
   .trigger {
     cursor: not-allowed;
-    border-color: $grey-3;
     background-color: $grey-4;
     color: $grey-2;
   }

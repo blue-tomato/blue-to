@@ -84,7 +84,6 @@ const Dropdown = forwardRef<HTMLDivElement, Props>(
 			<div
 				ref={mergeRefs(ref, wrapperRef)}
 				className={classNames(className, styles.wrapper, styles[color], styles[size], {
-					[styles.open]: open,
 					[styles.disabled]: disabled,
 				})}
 				{...props}
